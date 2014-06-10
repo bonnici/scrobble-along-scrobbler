@@ -1,6 +1,6 @@
-/// <reference path="../definitions/DefinitelyTyped/underscore/underscore.d.ts"/>
-/// <reference path="../definitions/dummy-definitions/lastfm.d.ts"/>
-/// <reference path="../definitions/typescript-node-definitions/winston.d.ts"/>
+/// <reference path="./definitions/DefinitelyTyped/underscore/underscore.d.ts"/>
+/// <reference path="./definitions/dummy-definitions/lastfm.d.ts"/>
+/// <reference path="./definitions/typescript-node-definitions/winston.d.ts"/>
 
 
 var _ = require("underscore");

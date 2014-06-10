@@ -1,4 +1,4 @@
-/// <reference path="../../definitions/typescript-node-definitions/winston.d.ts"/>
+/// <reference path="../definitions/typescript-node-definitions/winston.d.ts"/>
 
 import song = require("../Song");
 import scrap = require("Scraper");

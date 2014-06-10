@@ -1,5 +1,5 @@
-/// <reference path="../../../definitions/DefinitelyTyped/jasmine/jasmine.d.ts"/>
-/// <reference path="../../../definitions/typescript-node-definitions/nock.d.ts"/>
+/// <reference path="../../definitions/DefinitelyTyped/jasmine/jasmine.d.ts"/>
+/// <reference path="../../definitions/typescript-node-definitions/nock.d.ts"/>
 var nock = require("nock");
 
 var lfm = require("../../scrapers/LastfmScraper");

@@ -1,6 +1,6 @@
-/// <reference path="../../../definitions/DefinitelyTyped/jasmine/jasmine.d.ts"/>
-/// <reference path="../../../definitions/dummy-definitions/moment.d.ts"/>
-/// <reference path="../../../definitions/typescript-node-definitions/nock.d.ts"/>
+/// <reference path="../../definitions/DefinitelyTyped/jasmine/jasmine.d.ts"/>
+/// <reference path="../../definitions/dummy-definitions/moment.d.ts"/>
+/// <reference path="../../definitions/typescript-node-definitions/nock.d.ts"/>
 
 
 var moment = require("moment");

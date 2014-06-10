@@ -1,7 +1,7 @@
-/// <reference path="../definitions/DefinitelyTyped/mongodb/mongodb.d.ts"/>
-/// <reference path="../definitions/DefinitelyTyped/underscore/underscore.d.ts"/>
-/// <reference path="../definitions/dummy-definitions/lastfm.d.ts"/>
-/// <reference path="../definitions/typescript-node-definitions/winston.d.ts"/>
+/// <reference path="./definitions/DefinitelyTyped/mongodb/mongodb.d.ts"/>
+/// <reference path="./definitions/DefinitelyTyped/underscore/underscore.d.ts"/>
+/// <reference path="./definitions/dummy-definitions/lastfm.d.ts"/>
+/// <reference path="./definitions/typescript-node-definitions/winston.d.ts"/>
 
 import _ = require("underscore");
 import lastfm = require("lastfm");

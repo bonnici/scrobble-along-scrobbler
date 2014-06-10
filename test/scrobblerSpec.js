@@ -1,10 +1,11 @@
-/// <reference path="../../definitions/DefinitelyTyped/jasmine/jasmine.d.ts"/>
+/// <reference path="../definitions/DefinitelyTyped/jasmine/jasmine.d.ts"/>
 
 var assert = require("assert");
 
 var scrap = require("../scrapers/Scraper");
 var scrob = require("../Scrobbler");
 var lfmDao = require("../LastFmDao");
+var usrDao = require("../UserDao");
 
 var nullSong = { Artist: null, Track: null };
 
@@ -12,6 +13,7 @@ describe("Scrobbler", function () {
     describe("scrapeAndScrobble", function () {
         var fetchAndParseSpy;
         var lastFmDao;
+        var userDao;
         var mockStation;
         var mockScraper;
         var scrobbler;
@@ -25,7 +27,11 @@ describe("Scrobbler", function () {
             spyOn(lastFmDao, 'postNowPlaying');
             spyOn(lastFmDao, 'scrobble');
 
-            scrobbler = new scrob.Scrobbler(lastFmDao);
+            userDao = new usrDao.DummyUserDao();
+            spyOn(userDao, 'getUsersListeningToStation');
+            spyOn(userDao, 'incrementUserScrobble');
+
+            scrobbler = new scrob.Scrobbler(lastFmDao, userDao);
 
             mockStation = { StationName: "MockStation", ScraperName: "MockScraper", Session: "MockScraperSession" };
         });
@@ -409,7 +415,7 @@ describe("Scrobbler", function () {
             var scraper2 = new scrap.DummyScraper("Scraper2");
             var fetchAndParseSpy2 = spyOn(scraper2, 'fetchAndParse');
 
-            var scrobbler = new scrob.Scrobbler(lastFmDao);
+            var scrobbler = new scrob.Scrobbler(lastFmDao, userDao);
 
             var mockStation1 = { StationName: "MockStation1", ScraperName: scraper1.name, Session: "MockSession1" };
             var mockStation2 = { StationName: "MockStation2", ScraperName: scraper2.name, Session: "MockSession2" };

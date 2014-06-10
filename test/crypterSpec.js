@@ -1,4 +1,4 @@
-/// <reference path="../../definitions/DefinitelyTyped/jasmine/jasmine.d.ts"/>
+/// <reference path="../definitions/DefinitelyTyped/jasmine/jasmine.d.ts"/>
 var c = require("../common/Crypter");
 
 describe("CrypterImpl", function () {

@@ -1,5 +1,5 @@
-/// <reference path="../../definitions/typescript-node-definitions/winston.d.ts"/>
-/// <reference path="../../definitions/typescript-node-definitions/request.d.ts"/>
+/// <reference path="../definitions/typescript-node-definitions/winston.d.ts"/>
+/// <reference path="../definitions/typescript-node-definitions/request.d.ts"/>
 
 import song = require("../Song");
 

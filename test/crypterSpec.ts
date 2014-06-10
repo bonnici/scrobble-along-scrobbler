@@ -1,4 +1,4 @@
-/// <reference path="../../definitions/DefinitelyTyped/jasmine/jasmine.d.ts"/>
+/// <reference path="../definitions/DefinitelyTyped/jasmine/jasmine.d.ts"/>
 
 import c = require("../common/Crypter");
 

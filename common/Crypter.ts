@@ -1,4 +1,4 @@
-/// <reference path="../../definitions/DefinitelyTyped/node/node.d.ts"/>
+/// <reference path="./../definitions/DefinitelyTyped/node/node.d.ts"/>
 
 import crypto = require("crypto");
 

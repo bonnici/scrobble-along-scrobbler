@@ -1,5 +1,5 @@
-/// <reference path="../../definitions/dummy-definitions/moment-timezone.d.ts"/>
-/// <reference path="../../definitions/typescript-node-definitions/winston.d.ts"/>
+/// <reference path="../definitions/dummy-definitions/moment-timezone.d.ts"/>
+/// <reference path="../definitions/typescript-node-definitions/winston.d.ts"/>
 
 import scrap = require("CheerioScraper");
 import song = require("../Song");

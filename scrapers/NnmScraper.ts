@@ -1,7 +1,7 @@
-/// <reference path="../../definitions/dummy-definitions/cheerio.d.ts"/>
-/// <reference path="../../definitions/dummy-definitions/moment.d.ts"/>
-/// <reference path="../../definitions/DefinitelyTyped/underscore/underscore.d.ts"/>
-/// <reference path="../../definitions/typescript-node-definitions/winston.d.ts"/>
+/// <reference path="../definitions/dummy-definitions/cheerio.d.ts"/>
+/// <reference path="../definitions/dummy-definitions/moment.d.ts"/>
+/// <reference path="../definitions/DefinitelyTyped/underscore/underscore.d.ts"/>
+/// <reference path="../definitions/typescript-node-definitions/winston.d.ts"/>
 
 import song = require("../Song");
 import scrap = require("Scraper");

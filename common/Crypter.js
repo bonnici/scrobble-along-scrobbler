@@ -1,4 +1,4 @@
-/// <reference path="../../definitions/DefinitelyTyped/node/node.d.ts"/>
+/// <reference path="./../definitions/DefinitelyTyped/node/node.d.ts"/>
 var crypto = require("crypto");
 
 var DummyCrypter = (function () {

@@ -1,4 +1,4 @@
-/// <reference path="../../definitions/typescript-node-definitions/winston.d.ts"/>
+/// <reference path="../definitions/typescript-node-definitions/winston.d.ts"/>
 
 //import scrap = require("Scraper");
 import jsonScrap = require("JsonScraper");

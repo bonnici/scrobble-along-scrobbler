@@ -1,0 +1,6 @@
+[submodule "definitions/DefinitelyTyped"]
+	path = definitions/DefinitelyTyped
+	url = https://github.com/borisyankov/DefinitelyTyped
+[submodule "definitions/typescript-node-definitions"]
+	path = definitions/typescript-node-definitions
+	url = https://github.com/soywiz/typescript-node-definitions

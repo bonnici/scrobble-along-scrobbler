@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<abcmusic_playout>
+<channel>JJJ-single</channel> 
+<publishtime>3.27pm</publishtime> 
+<items>
+	<item>
+		<playing>now</playing> 
+		<trackid /> 
+		<playedtime>2012-11-25 15:25:15Z</playedtime> 
+		<publisher /> 
+		<datecopyrighted />
+		<duration>00:02:47</duration>
+		<aust />
+		<tracknote>
+</tracknote> 
+		<tracklink /> 
+		<show /> 
+		<talent /> 
+		<album>
+		<albumname>She&apos;s My Baby {Single}</albumname>
+		<albumid>83-68492</albumid> 
+		<albumimage>http://www.abc.net.au/triplej/albums/50164/covers/100.jpg</albumimage>
+		</album>
+		<artist>
+		<artistname>Kingswood</artistname>
+		<artistid /> 
+		<artistnote /> 
+		<artistlink /> 
+		</artist>
+	</item>
+	<item>
+		<playing>past</playing> 
+		<title>Babel</title>
+		<trackid /> 
+		<playedtime>2012-11-25 15:22:04Z</playedtime> 
+		<publisher /> 
+		<datecopyrighted />
+		<duration>00:03:16</duration>
+		<aust />
+		<tracknote>
+</tracknote> 
+		<tracklink /> 
+		<show /> 
+		<talent /> 
+		<album>
+		<albumname>Babel</albumname>
+		<albumid>83-68247</albumid> 
+		<albumimage>http://www.abc.net.au/triplej/albums/49973/covers/100.jpg</albumimage>
+		</album>
+		<artist>
+		<artistname>Mumford &amp; Sons</artistname>
+		<artistid /> 
+		<artistnote /> 
+		<artistlink /> 
+		</artist>
+	</item>
+</items>
+</abcmusic_playout>

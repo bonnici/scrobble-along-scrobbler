@@ -61,6 +61,9 @@ var LastFmDaoImpl = (function () {
                     winston.info("Success posting now playing for " + lastFmUsername, song);
                     callback(null, "OK");
                 },
+                retry: function (result) {
+                    winston.warn("Retrying post now playing for " + lastFmUsername, result);
+                },
                 error: function (error) {
                     winston.error("Error posting now playing for " + lastFmUsername, error.message);
                     callback(error, null);
@@ -90,6 +93,9 @@ var LastFmDaoImpl = (function () {
                 success: function (data) {
                     winston.info("Success posting scrobble for " + lastFmUsername, song);
                     callback(null, "OK");
+                },
+                retry: function (result) {
+                    winston.warn("Retrying scrobble for " + lastFmUsername, result);
                 },
                 error: function (error) {
                     winston.error("Error posting scrobble for " + lastFmUsername, error.message);

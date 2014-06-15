@@ -47,6 +47,9 @@ import kloveAir1 = require("./scrapers/KLoveAir1RadioScraper");
 import doubleJ = require("./scrapers/DoubleJScraper");
 import amazing = require("./scrapers/AmazingRadioScraper");
 import rockFm = require("./scrapers/RockFmScraper");
+import fluxFm = require("./scrapers/FluxFmScraper");
+import cbcRadio2 = require("./scrapers/CbcRadio2Scraper");
+import cbcRadio3 = require("./scrapers/CbcRadio3Scraper");
 
 // Required environment variables
 var STATION_CRYPTO_KEY = process.env.SA_STATION_CRYPTO_KEY;
@@ -122,7 +125,10 @@ var scrapers:{ [index: string]: scrap.Scraper; } = {
 	WFMUUbu: new wfmu.WfmuScraper("WFMUUbu", "7"),
 	WFMUBored: new wfmu.WfmuScraper("WFMUBored", "8"),
 	Sonar: new mediaStream.MediaStreamScraper("Sonar", "4f34676f86d21c6572001ab9"),
-	RockFM: new rockFm.RockFmScraper("RockFM")
+	RockFM: new rockFm.RockFmScraper("RockFM"),
+	FluxFM: new fluxFm.FluxFmScraper("FluxFMRadio"),
+	CBCRadio2: new cbcRadio2.CbcRadio2Scraper("CBCRadio2"),
+	CBCRadio3: new cbcRadio3.CbcRadio3Scraper("CBCRadio3")
 };
 
 //////////////
@@ -267,7 +273,10 @@ var stations = [
 	{ StationName: "WFMUUbu", ScraperName: "WFMUUbu", Session: "WFMUUbuSession" },
 	{ StationName: "doublejradio", ScraperName: "DoubleJ", Session: "DoubleJSession" },
 	{ StationName: "sonarfm", ScraperName: "Sonar", Session: "SonarSession" },
-    { StationName: "RockFMUK", ScraperName: "RockFM", Session: "RockFMSession" }
+    { StationName: "RockFMUK", ScraperName: "RockFM", Session: "RockFMSession" },
+	{ StationName: "FluxFMRadio", ScraperName: "FluxFM", Session: "FluxFMSession" },
+	{ StationName: "CBCRadio2", ScraperName: "CBCRadio2", Session: "CBCRadio2Session" },
+	{ StationName: "CBCRadio3", ScraperName: "CBCRadio3", Session: "CBCRadio3Session" }
 ];
 
 var usersListening:{[index: string]:usr.User[]} = {

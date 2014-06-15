@@ -46,6 +46,9 @@ var kloveAir1 = require("./scrapers/KLoveAir1RadioScraper");
 var doubleJ = require("./scrapers/DoubleJScraper");
 var amazing = require("./scrapers/AmazingRadioScraper");
 var rockFm = require("./scrapers/RockFmScraper");
+var fluxFm = require("./scrapers/FluxFmScraper");
+var cbcRadio2 = require("./scrapers/CbcRadio2Scraper");
+var cbcRadio3 = require("./scrapers/CbcRadio3Scraper");
 
 // Required environment variables
 var STATION_CRYPTO_KEY = process.env.SA_STATION_CRYPTO_KEY;
@@ -119,7 +122,10 @@ var scrapers = {
     WFMUUbu: new wfmu.WfmuScraper("WFMUUbu", "7"),
     WFMUBored: new wfmu.WfmuScraper("WFMUBored", "8"),
     Sonar: new mediaStream.MediaStreamScraper("Sonar", "4f34676f86d21c6572001ab9"),
-    RockFM: new rockFm.RockFmScraper("RockFM")
+    RockFM: new rockFm.RockFmScraper("RockFM"),
+    FluxFM: new fluxFm.FluxFmScraper("FluxFMRadio"),
+    CBCRadio2: new cbcRadio2.CbcRadio2Scraper("CBCRadio2"),
+    CBCRadio3: new cbcRadio3.CbcRadio3Scraper("CBCRadio3")
 };
 
 //////////////

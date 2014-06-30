@@ -171,6 +171,24 @@ mongodb.connect(MONGO_URI, function (err, dbClient) {
                 userDao.getUsersListeningToStation(station.StationName, function (err, users) {
                     if (err)
                         return;
+
+                    // Check scrobble timeout for all users
+                    var now = new Date().getTime();
+                    var usersLength = users.length;
+                    while (usersLength--) {
+                        var user = users[usersLength];
+                        if (user.ScrobbleTimeoutEnabled && user.ScrobbleTimeoutTime && user.ScrobbleTimeoutTime < now) {
+                            winston.info("User " + user.UserName + " scrobble timeout has lapsed, setting as not scrobbling");
+                            users.splice(usersLength, 1);
+                            userDao.clearUserListening(user.UserName, function (err) {
+                                if (err) {
+                                    winston.error("Error clearing user " + user.UserName + " as listening");
+                                }
+                            });
+                        }
+                    }
+                    ;
+
                     scrobbler.scrapeAndScrobble(scrapers[station.ScraperName], station, users);
                 });
             });

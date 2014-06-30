@@ -63,7 +63,9 @@ var MongoUserDao = (function () {
                     } else {
                         var user = {
                             UserName: record._id,
-                            Session: record.session ? _this.crypter.decrypt(record.session) : null
+                            Session: record.session ? _this.crypter.decrypt(record.session) : null,
+                            ScrobbleTimeoutEnabled: record.scrobbleTimeoutEnabled || false,
+                            ScrobbleTimeoutTime: record.scrobbleTimeoutTime || null
                         };
                         winston.info("Found user listening to " + station + ":", user.UserName);
                         users.push(user);
@@ -88,6 +90,25 @@ var MongoUserDao = (function () {
                     callback(err, null);
                 } else {
                     callback(null, "ok");
+                }
+            });
+        });
+    };
+
+    MongoUserDao.prototype.clearUserListening = function (username, callback) {
+        this.dbClient.collection('user', function (error, collection) {
+            if (error) {
+                callback(error, null);
+                return;
+            }
+
+            collection.findAndModify({ _id: username }, [['_id', 'asc']], { $unset: { listening: 1 } }, { upsert: false }, function (error, record) {
+                if (error) {
+                    var message = "Could not clear listening for user " + username + ": " + error.message;
+                    winston.error(message);
+                    callback(error, null);
+                } else {
+                    callback(null, record);
                 }
             });
         });

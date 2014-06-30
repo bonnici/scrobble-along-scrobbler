@@ -65,7 +65,9 @@ export class MongoUserDao implements UserDao {
 					else {
 						var user = {
 							UserName: record._id,
-							Session: record.session ? this.crypter.decrypt(record.session) : null
+							Session: record.session ? this.crypter.decrypt(record.session) : null,
+							ScrobbleTimeoutEnabled: record.scrobbleTimeoutEnabled || false,
+							ScrobbleTimeoutTime: record.scrobbleTimeoutTime || null
 						};
 						winston.info("Found user listening to " + station + ":", user.UserName);
 						users.push(user);
@@ -93,6 +95,31 @@ export class MongoUserDao implements UserDao {
 					callback(null, "ok");
 				}
 			});
+		});
+	}
+
+	clearUserListening(username: string, callback:(err, string) => void): void {
+		this.dbClient.collection('user', (error, collection) => {
+			if (error) {
+				callback(error, null);
+				return;
+			}
+
+			collection.findAndModify(
+				{ _id: username },
+				[['_id', 'asc']],
+				{ $unset: { listening: 1 } },
+				{ upsert: false },
+				function (error, record) {
+					if (error) {
+						var message = "Could not clear listening for user " + username + ": " + error.message;
+						winston.error(message);
+						callback(error, null);
+					}
+					else {
+						callback(null, record);
+					}
+				});
 		});
 	}
 }

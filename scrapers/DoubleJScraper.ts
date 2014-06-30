@@ -24,7 +24,7 @@ export class DoubleJScraper extends scrap.JsonScraper {
 		var title: string = jsonData.now.published_entity.title;
 
 		if (!artistName || !title) {
-			winston.info("DoubleJScraper could not find song");
+			winston.warn("DoubleJScraper could not find song");
 			return { Artist: null, Track: null };
 		}
 		else {

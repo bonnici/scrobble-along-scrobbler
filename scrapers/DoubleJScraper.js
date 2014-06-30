@@ -27,7 +27,7 @@ var DoubleJScraper = (function (_super) {
         var title = jsonData.now.published_entity.title;
 
         if (!artistName || !title) {
-            winston.info("DoubleJScraper could not find song");
+            winston.warn("DoubleJScraper could not find song");
             return { Artist: null, Track: null };
         } else {
             winston.info("DoubleJScraper found song " + artistName + " - " + title);

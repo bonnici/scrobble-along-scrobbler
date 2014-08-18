@@ -151,7 +151,7 @@ mongodb.connect(MONGO_URI, (err, dbClient) => {
 
 	var stationDao = new statDao.MongoStationDao(dbClient, new crypt.CrypterImpl(STATION_CRYPTO_KEY));
 	var userDao = new usrDao.MongoUserDao(dbClient, new crypt.CrypterImpl(USER_CRYPTO_KEY));
-	var scrobbler = new scrob.Scrobbler(lastFmDao, userDao);
+	var scrobbler = new scrob.Scrobbler(lastFmDao, userDao, stationDao);
 
 	setInterval(() => { scrapeAndScrobbleAllStations(stationDao, userDao); }, interval);
 	scrapeAndScrobbleAllStations(stationDao, userDao);

@@ -7,6 +7,7 @@ import song = require("./Song");
 import stat = require("./Station");
 import usr = require("./User");
 import usrDao = require("./UserDao");
+import statDao = require("./StationDao");
 
 import _ = require("underscore");
 import winston = require("winston");
@@ -33,10 +34,12 @@ export class Scrobbler {
 	private stationData:{ [index: string]: ScrobblerStationData; }
 	private lastFmDao:lfmDao.LastFmDao;
 	private userDao:usrDao.UserDao;
+	private stationDao:statDao.StationDao;
 
-	constructor(lastFmDao:lfmDao.LastFmDao, userDao:usrDao.UserDao) {
+	constructor(lastFmDao:lfmDao.LastFmDao, userDao:usrDao.UserDao, stationDao?:statDao.StationDao) {
 		this.lastFmDao = lastFmDao;
 		this.userDao = userDao;
+		this.stationDao = stationDao;
 		this.stationData = {};
 	}
 
@@ -142,6 +145,14 @@ export class Scrobbler {
 
 		if (station.Session) {
 			this.lastFmDao.scrobble(songToScrobble, station.StationName, station.Session);
+			
+			if (this.stationDao) {
+				this.stationDao.updateStationLastPlayedSong(station.StationName, songToScrobble, (err) => {
+					if (err) {
+						winston.error("Error updating " + station.StationName + " last played song", songToScrobble);
+					}
+				});
+			}
 		}
 
 		_.each(users, (user) => {
@@ -169,6 +180,14 @@ export class Scrobbler {
 
 		if (station.Session) {
 			this.lastFmDao.postNowPlaying(stationData.nowPlayingSong, station.StationName, station.Session);
+
+			if (this.stationDao) {
+				this.stationDao.updateStationNowPlayingSong(station.StationName, stationData.nowPlayingSong, (err) => {
+					if (err) {
+						winston.error("Error updating " + station.StationName + " now playing song", stationData.nowPlayingSong);
+					}
+				});
+			}
 		}
 
 		_.each(users, (user) => {

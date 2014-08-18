@@ -7,6 +7,7 @@
 
 
 
+
 var _ = require("underscore");
 var winston = require("winston");
 
@@ -25,9 +26,10 @@ var ScrobblerStationData = (function () {
 ;
 
 var Scrobbler = (function () {
-    function Scrobbler(lastFmDao, userDao) {
+    function Scrobbler(lastFmDao, userDao, stationDao) {
         this.lastFmDao = lastFmDao;
         this.userDao = userDao;
+        this.stationDao = stationDao;
         this.stationData = {};
     }
     Scrobbler.prototype.scrapeAndScrobble = function (scraper, station, users, timestamp) {
@@ -122,6 +124,14 @@ var Scrobbler = (function () {
 
         if (station.Session) {
             this.lastFmDao.scrobble(songToScrobble, station.StationName, station.Session);
+
+            if (this.stationDao) {
+                this.stationDao.updateStationLastPlayedSong(station.StationName, songToScrobble, function (err) {
+                    if (err) {
+                        winston.error("Error updating " + station.StationName + " last played song", songToScrobble);
+                    }
+                });
+            }
         }
 
         _.each(users, function (user) {
@@ -146,6 +156,14 @@ var Scrobbler = (function () {
 
         if (station.Session) {
             this.lastFmDao.postNowPlaying(stationData.nowPlayingSong, station.StationName, station.Session);
+
+            if (this.stationDao) {
+                this.stationDao.updateStationNowPlayingSong(station.StationName, stationData.nowPlayingSong, function (err) {
+                    if (err) {
+                        winston.error("Error updating " + station.StationName + " now playing song", stationData.nowPlayingSong);
+                    }
+                });
+            }
         }
 
         _.each(users, function (user) {

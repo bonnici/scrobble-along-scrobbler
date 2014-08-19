@@ -88,7 +88,7 @@ export class MongoStationDao implements StationDao {
 	}
 
 	updateStationNowPlayingSong(stationName: string, song:song.Song, callback:(err) => void): void {
-		if (!song || !song.Artist || !song.Track) {
+		if (!song) {
 			callback("Invalid song");
 			return;
 		}

@@ -86,7 +86,7 @@ var MongoStationDao = (function () {
     };
 
     MongoStationDao.prototype.updateStationNowPlayingSong = function (stationName, song, callback) {
-        if (!song || !song.Artist || !song.Track) {
+        if (!song) {
             callback("Invalid song");
             return;
         }

@@ -111,27 +111,22 @@ var Scrobbler = (function () {
             return;
         }
 
-        if (stationData.stationName == "LastFMIgnoreListening" && users.length > 0) {
-            winston.warn("songToScrobble:", songToScrobble);
-            winston.warn("stationData.lastScrobbledSong:", stationData.lastScrobbledSong);
-        }
-
         if (songToScrobble != null && stationData.lastScrobbledSong != null && songToScrobble.Artist == stationData.lastScrobbledSong.Artist && songToScrobble.Track == stationData.lastScrobbledSong.Track) {
             return;
         }
 
         stationData.lastScrobbledSong = { Artist: songToScrobble.Artist, Track: songToScrobble.Track };
 
+        if (this.stationDao) {
+            this.stationDao.updateStationLastPlayedSong(station.StationName, songToScrobble, function (err) {
+                if (err) {
+                    winston.error("Error updating " + station.StationName + " last played song", songToScrobble);
+                }
+            });
+        }
+
         if (station.Session) {
             this.lastFmDao.scrobble(songToScrobble, station.StationName, station.Session);
-
-            if (this.stationDao) {
-                this.stationDao.updateStationLastPlayedSong(station.StationName, songToScrobble, function (err) {
-                    if (err) {
-                        winston.error("Error updating " + station.StationName + " last played song", songToScrobble);
-                    }
-                });
-            }
         }
 
         _.each(users, function (user) {
@@ -150,20 +145,24 @@ var Scrobbler = (function () {
 
     Scrobbler.prototype.postNowPlayingIfValid = function (stationData, station, users) {
         var _this = this;
-        if (!(stationData.nowPlayingSong && stationData.nowPlayingSong.Artist && stationData.nowPlayingSong.Track)) {
+        if (!(stationData.nowPlayingSong)) {
+            return;
+        }
+
+        if (this.stationDao) {
+            this.stationDao.updateStationNowPlayingSong(station.StationName, stationData.nowPlayingSong, function (err) {
+                if (err) {
+                    winston.error("Error updating " + station.StationName + " now playing song", stationData.nowPlayingSong);
+                }
+            });
+        }
+
+        if (!stationData.nowPlayingSong.Artist || !stationData.nowPlayingSong.Track) {
             return;
         }
 
         if (station.Session) {
             this.lastFmDao.postNowPlaying(stationData.nowPlayingSong, station.StationName, station.Session);
-
-            if (this.stationDao) {
-                this.stationDao.updateStationNowPlayingSong(station.StationName, stationData.nowPlayingSong, function (err) {
-                    if (err) {
-                        winston.error("Error updating " + station.StationName + " now playing song", stationData.nowPlayingSong);
-                    }
-                });
-            }
         }
 
         _.each(users, function (user) {

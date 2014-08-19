@@ -129,11 +129,6 @@ export class Scrobbler {
 			return;
 		}
 
-		if (stationData.stationName == "LastFMIgnoreListening" && users.length > 0) {
-			winston.warn("songToScrobble:", songToScrobble);
-			winston.warn("stationData.lastScrobbledSong:", stationData.lastScrobbledSong);
-		}
-
 		// Make sure it's not the same as the one we scrobbled last
 		if (songToScrobble != null && stationData.lastScrobbledSong != null
 			&& songToScrobble.Artist == stationData.lastScrobbledSong.Artist
@@ -143,16 +138,16 @@ export class Scrobbler {
 
 		stationData.lastScrobbledSong = { Artist: songToScrobble.Artist, Track: songToScrobble.Track };
 
+		if (this.stationDao) {
+			this.stationDao.updateStationLastPlayedSong(station.StationName, songToScrobble, (err) => {
+				if (err) {
+					winston.error("Error updating " + station.StationName + " last played song", songToScrobble);
+				}
+			});
+		}
+		
 		if (station.Session) {
 			this.lastFmDao.scrobble(songToScrobble, station.StationName, station.Session);
-			
-			if (this.stationDao) {
-				this.stationDao.updateStationLastPlayedSong(station.StationName, songToScrobble, (err) => {
-					if (err) {
-						winston.error("Error updating " + station.StationName + " last played song", songToScrobble);
-					}
-				});
-			}
 		}
 
 		_.each(users, (user) => {
@@ -173,21 +168,24 @@ export class Scrobbler {
 	}
 
 	private postNowPlayingIfValid(stationData:ScrobblerStationData, station:stat.Station, users:usr.User[]) {
-		// Check song details
-		if (!(stationData.nowPlayingSong && stationData.nowPlayingSong.Artist && stationData.nowPlayingSong.Track)) {
+		if (!(stationData.nowPlayingSong)) {
+			return;
+		}
+
+		if (this.stationDao) {
+			this.stationDao.updateStationNowPlayingSong(station.StationName, stationData.nowPlayingSong, (err) => {
+				if (err) {
+					winston.error("Error updating " + station.StationName + " now playing song", stationData.nowPlayingSong);
+				}
+			});
+		}
+
+		if (!stationData.nowPlayingSong.Artist || !stationData.nowPlayingSong.Track) {
 			return;
 		}
 
 		if (station.Session) {
 			this.lastFmDao.postNowPlaying(stationData.nowPlayingSong, station.StationName, station.Session);
-
-			if (this.stationDao) {
-				this.stationDao.updateStationNowPlayingSong(station.StationName, stationData.nowPlayingSong, (err) => {
-					if (err) {
-						winston.error("Error updating " + station.StationName + " now playing song", stationData.nowPlayingSong);
-					}
-				});
-			}
 		}
 
 		_.each(users, (user) => {

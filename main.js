@@ -49,6 +49,7 @@ var rockFm = require("./scrapers/RockFmScraper");
 var fluxFm = require("./scrapers/FluxFmScraper");
 var cbcRadio2 = require("./scrapers/CbcRadio2Scraper");
 var cbcRadio3 = require("./scrapers/CbcRadio3Scraper");
+var wfku = require("./scrapers/WfkuScraper");
 
 // Required environment variables
 var STATION_CRYPTO_KEY = process.env.SA_STATION_CRYPTO_KEY;
@@ -125,7 +126,9 @@ var scrapers = {
     RockFM: new rockFm.RockFmScraper("RockFM"),
     FluxFM: new fluxFm.FluxFmScraper("FluxFMRadio"),
     CBCRadio2: new cbcRadio2.CbcRadio2Scraper("CBCRadio2"),
-    CBCRadio3: new cbcRadio3.CbcRadio3Scraper("CBCRadio3")
+    CBCRadio3: new cbcRadio3.CbcRadio3Scraper("CBCRadio3"),
+    WFKUGoth: new wfku.WfkuScraper("WFKUGoth", "wfkugoth"),
+    WFKUPerki: new wfku.WfkuScraper("WFKUPerki", "wfkuperki")
 };
 
 //////////////

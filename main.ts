@@ -50,6 +50,7 @@ import rockFm = require("./scrapers/RockFmScraper");
 import fluxFm = require("./scrapers/FluxFmScraper");
 import cbcRadio2 = require("./scrapers/CbcRadio2Scraper");
 import cbcRadio3 = require("./scrapers/CbcRadio3Scraper");
+import wfku = require("./scrapers/WfkuScraper");
 
 // Required environment variables
 var STATION_CRYPTO_KEY = process.env.SA_STATION_CRYPTO_KEY;
@@ -128,7 +129,9 @@ var scrapers:{ [index: string]: scrap.Scraper; } = {
 	RockFM: new rockFm.RockFmScraper("RockFM"),
 	FluxFM: new fluxFm.FluxFmScraper("FluxFMRadio"),
 	CBCRadio2: new cbcRadio2.CbcRadio2Scraper("CBCRadio2"),
-	CBCRadio3: new cbcRadio3.CbcRadio3Scraper("CBCRadio3")
+	CBCRadio3: new cbcRadio3.CbcRadio3Scraper("CBCRadio3"),
+	WFKUGoth: new wfku.WfkuScraper("WFKUGoth", "wfkugoth"),
+	WFKUPerki: new wfku.WfkuScraper("WFKUPerki", "wfkuperki")
 };
 
 //////////////
@@ -293,7 +296,9 @@ var stations = [
     { StationName: "RockFMUK", ScraperName: "RockFM", Session: "RockFMSession" },
 	{ StationName: "FluxFMRadio", ScraperName: "FluxFM", Session: "FluxFMSession" },
 	{ StationName: "CBCRadio2", ScraperName: "CBCRadio2", Session: "CBCRadio2Session" },
-	{ StationName: "CBCRadio3", ScraperName: "CBCRadio3", Session: "CBCRadio3Session" }
+	{ StationName: "CBCRadio3", ScraperName: "CBCRadio3", Session: "CBCRadio3Session" },
+	{ StationName: "WFKUGoth", ScraperName: "WFKUGoth", Session: "WFKUGothSession" },
+	{ StationName: "WFKUPerki", ScraperName: "WFKUPerki", Session: "WFKUPerkiSession" }
 ];
 
 var usersListening:{[index: string]:usr.User[]} = {

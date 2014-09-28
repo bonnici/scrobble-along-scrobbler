@@ -67,6 +67,7 @@ export class Scrobbler {
 		}
 
 		var cb = (err, newNowPlayingSong:song.Song, justScrobbledSong?:song.Song) => {
+
 			if (err) {
 				winston.error("Error scraping " + stationName + ": " + err);
 				if (this.lastUpdatedTooLongAgo(stationData, timestamp)) {
@@ -77,17 +78,22 @@ export class Scrobbler {
 				return;
 			}
 
-			if (justScrobbledSong && newNowPlayingSong) {
-				winston.error("Only one of newNowPlayingSong and justScrobbledSong should be set");
-				return;
-			}
-
 			stationData.lastUpdatedTime = timestamp;
 
-			// justScrobbledSong should be set if the scraper can't figure out what is currently playing
+			// justScrobbledSong should be set if the scraper might not be able to figure out what is currently playing
 			if (justScrobbledSong) {
 				justScrobbledSong.StartTime = new Date().getTime();
 				this.scrobbleNowPlayingIfValid(stationData, justScrobbledSong, station, users);
+
+                // If both justScrobbledSong and newNowPlayingSong are set, only update now playing with
+                // newNowPlayingSong, don't ever scrobble that
+                if (newNowPlayingSong) {
+                    stationData.nowPlayingSong = {
+                        Artist: newNowPlayingSong.Artist,
+                        Track: newNowPlayingSong.Track,
+                        StartTime: timestamp };
+                    this.postNowPlayingIfValid(stationData, station, users);
+                }
 			}
 			else {
 				if (!newNowPlayingSong || !stationData.nowPlayingSong ||

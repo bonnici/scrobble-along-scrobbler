@@ -39,6 +39,7 @@ import playFm = require("./scrapers/PlayFmScraper");
 import theCurrent = require("./scrapers/TheCurrentScraper");
 import lfmScraper = require("./scrapers/LastfmScraper");
 import lfmNoNowPlayingScraper = require("./scrapers/LastfmNoNowPlayingScraper");
+import newLfmScraper = require("./scrapers/NewLastfmScraper");
 import infinita = require("./scrapers/InfinitaScraper");
 import mediaStream = require("./scrapers/MediaStreamScraper");
 import newtown = require("./scrapers/NewtownRadioScraper");
@@ -112,6 +113,7 @@ var scrapers:{ [index: string]: scrap.Scraper; } = {
 	TheCurrent: new theCurrent.TheCurrentScraper("TheCurrent"),
 	LastFM: new lfmScraper.LastfmScraper("LastFM", LASTFM_API_KEY),
 	LastFMIgnoreListening: new lfmNoNowPlayingScraper.LastfmNoNowPlayingScraper("LastFMIgnoreListening", LASTFM_API_KEY),
+    NewLastFM: new newLfmScraper.NewLastfmScraper("NewLastFM", LASTFM_API_KEY),
 	Infinita: new infinita.InfinitaScraper("Infinita"),
 	Oasis: new mediaStream.MediaStreamScraper("Oasis", "5124ed51ed596bde7d000016"),
 	Horizonte: new mediaStream.MediaStreamScraper("Horizonte", "5124f1b4ed596bde7d000017"),
@@ -200,6 +202,7 @@ mongodb.connect(MONGO_URI, (err, dbClient) => {
 	};
 });
 
+
 //////////////
 // Scrobbler that scrapes but does not scrobble or load proper users/stations
 //////////////
@@ -230,6 +233,7 @@ setInterval(
 //////////////
 // Scrobbler that scrapes but does not scrobble and uses fake stations & users
 //////////////
+
 /*
 var stations = [
 	{ StationName: "KEXP903FM", ScraperName: "KEXP", Session: "KEXP903FMSession" },
@@ -266,18 +270,20 @@ var stations = [
 	{ StationName: "SomaGrooveSalad", ScraperName: "LastFM", ScraperParam: "somagroovesalad", Session: "SomaGrooveSaladSession" },
 	{ StationName: "SomaSonicUniverse", ScraperName: "LastFM", ScraperParam: "somasonicunivrs", Session: "SomaSonicUniverseSession" },
 	{ StationName: "SomaDigitalis", ScraperName: "LastFM", ScraperParam: "somadigitalis", Session: "SomaDigitalisSession" },
-	{ StationName: "BBCRadio1", ScraperName: "LastFMIgnoreListening", ScraperParam: "bbcradio1", Session: "BBCRadio1Session" },
+    { StationName: "SomaLush", ScraperName: "LastFM", ScraperParam: "somalush", Session: "SomaLushSession" },
+	//{ StationName: "BBCRadio1", ScraperName: "LastFMIgnoreListening", ScraperParam: "bbcradio1", Session: "BBCRadio1Session" },
+    { StationName: "BBCRadio1", ScraperName: "NewLastFM", ScraperParam: "bbcradio1", Session: "BBCRadio1Session" },
 	{ StationName: "BBC1Xtra", ScraperName: "LastFMIgnoreListening", ScraperParam: "bbc1xtra", Session: "BBC1XtraSession" },
 	{ StationName: "BBCRadio2", ScraperName: "LastFMIgnoreListening", ScraperParam: "bbcradio2", Session: "BBCRadio2Session" },
 	{ StationName: "BBC6", ScraperName: "LastFMIgnoreListening", ScraperParam: "bbc6music", Session: "BBC6Session" },
 	{ StationName: "SeriousRadio", ScraperName: "LastFMIgnoreListening", ScraperParam: "seriousradio", Session: "SeriousRadioSession" },
-	{ StationName: "Absolute80s", ScraperName: "LastFMIgnoreListening", ScraperParam: "absolute80s", Session: "Absolute80sSession" },
-	{ StationName: "AbsoluteRadio", ScraperName: "LastFMIgnoreListening", ScraperParam: "absoluteradio", Session: "AbsoluteRadioSession" },
-	{ StationName: "Absolute60s", ScraperName: "LastFMIgnoreListening", ScraperParam: "absoluterad60s", Session: "Absolute60sSession" },
-	{ StationName: "Absolute70s", ScraperName: "LastFMIgnoreListening", ScraperParam: "absoluterad70s", Session: "Absolute70sSession" },
-	{ StationName: "Absolute90s", ScraperName: "LastFMIgnoreListening", ScraperParam: "absoluterad90s", Session: "Absolute90sSession" },
-	{ StationName: "Absolute00s", ScraperName: "LastFMIgnoreListening", ScraperParam: "absoluterad00s", Session: "Absolute00sSession" },
-	{ StationName: "AbsoluteClassic", ScraperName: "LastFMIgnoreListening", ScraperParam: "absoluteclassic", Session: "AbsoluteClassicSession" },
+	//{ StationName: "Absolute80s", ScraperName: "LastFMIgnoreListening", ScraperParam: "absolute80s", Session: "Absolute80sSession" },
+	//{ StationName: "AbsoluteRadio", ScraperName: "LastFMIgnoreListening", ScraperParam: "absoluteradio", Session: "AbsoluteRadioSession" },
+	//{ StationName: "Absolute60s", ScraperName: "LastFMIgnoreListening", ScraperParam: "absoluterad60s", Session: "Absolute60sSession" },
+	//{ StationName: "Absolute70s", ScraperName: "LastFMIgnoreListening", ScraperParam: "absoluterad70s", Session: "Absolute70sSession" },
+	//{ StationName: "Absolute90s", ScraperName: "LastFMIgnoreListening", ScraperParam: "absoluterad90s", Session: "Absolute90sSession" },
+	//{ StationName: "Absolute00s", ScraperName: "LastFMIgnoreListening", ScraperParam: "absoluterad00s", Session: "Absolute00sSession" },
+	//{ StationName: "AbsoluteClassic", ScraperName: "LastFMIgnoreListening", ScraperParam: "absoluteclassic", Session: "AbsoluteClassicSession" },
 	{ StationName: "MutantRadio", ScraperName: "LastFM", ScraperParam: "mutant_radio", Session: "MutantRadioSession" },
 	{ StationName: "StuBruRadio", ScraperName: "LastFMIgnoreListening", ScraperParam: "stubruradio", Session: "StuBruRadioSession" },
 	{ StationName: "Infinita", ScraperName: "Infinita", Session: "InfinitaSession" },

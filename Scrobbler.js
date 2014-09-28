@@ -59,17 +59,22 @@ var Scrobbler = (function () {
                 return;
             }
 
-            if (justScrobbledSong && newNowPlayingSong) {
-                winston.error("Only one of newNowPlayingSong and justScrobbledSong should be set");
-                return;
-            }
-
             stationData.lastUpdatedTime = timestamp;
 
-            // justScrobbledSong should be set if the scraper can't figure out what is currently playing
+            // justScrobbledSong should be set if the scraper might not be able to figure out what is currently playing
             if (justScrobbledSong) {
                 justScrobbledSong.StartTime = new Date().getTime();
                 _this.scrobbleNowPlayingIfValid(stationData, justScrobbledSong, station, users);
+
+                // If both justScrobbledSong and newNowPlayingSong are set, only update now playing with
+                // newNowPlayingSong, don't ever scrobble that
+                if (newNowPlayingSong) {
+                    stationData.nowPlayingSong = {
+                        Artist: newNowPlayingSong.Artist,
+                        Track: newNowPlayingSong.Track,
+                        StartTime: timestamp };
+                    _this.postNowPlayingIfValid(stationData, station, users);
+                }
             } else {
                 if (!newNowPlayingSong || !stationData.nowPlayingSong || newNowPlayingSong.Artist != stationData.nowPlayingSong.Artist || newNowPlayingSong.Track != stationData.nowPlayingSong.Track) {
                     _this.scrobbleNowPlayingIfValid(stationData, null, station, users);

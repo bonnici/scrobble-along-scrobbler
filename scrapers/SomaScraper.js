@@ -7,7 +7,6 @@ var __extends = this.__extends || function (d, b) {
 };
 var scrap = require("./CheerioScraper");
 
-
 var winston = require("winston");
 
 var SomaScraper = (function (_super) {
@@ -58,5 +57,4 @@ var SomaScraper = (function (_super) {
     return SomaScraper;
 })(scrap.CheerioScraper);
 exports.SomaScraper = SomaScraper;
-
 //# sourceMappingURL=SomaScraper.js.map

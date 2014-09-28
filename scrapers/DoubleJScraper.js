@@ -8,8 +8,6 @@ var __extends = this.__extends || function (d, b) {
 };
 var scrap = require("./JsonScraper");
 
-
-var _ = require("underscore");
 var winston = require("winston");
 
 var DoubleJScraper = (function (_super) {
@@ -37,5 +35,4 @@ var DoubleJScraper = (function (_super) {
     return DoubleJScraper;
 })(scrap.JsonScraper);
 exports.DoubleJScraper = DoubleJScraper;
-
 //# sourceMappingURL=DoubleJScraper.js.map

@@ -7,7 +7,6 @@ var __extends = this.__extends || function (d, b) {
 };
 var scrap = require("./CheerioScraper");
 
-
 var winston = require("winston");
 
 var RockFmScraper = (function (_super) {
@@ -42,5 +41,4 @@ var RockFmScraper = (function (_super) {
     return RockFmScraper;
 })(scrap.CheerioScraper);
 exports.RockFmScraper = RockFmScraper;
-
 //# sourceMappingURL=RockFmScraper.js.map

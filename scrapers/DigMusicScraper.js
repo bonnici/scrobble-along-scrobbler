@@ -8,7 +8,6 @@ var __extends = this.__extends || function (d, b) {
 };
 var scrap = require("./JsonScraper");
 
-
 var _ = require("underscore");
 var winston = require("winston");
 
@@ -43,5 +42,4 @@ var DigMusicScraper = (function (_super) {
     return DigMusicScraper;
 })(scrap.JsonScraper);
 exports.DigMusicScraper = DigMusicScraper;
-
 //# sourceMappingURL=DigMusicScraper.js.map

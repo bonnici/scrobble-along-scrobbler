@@ -1,7 +1,7 @@
 /// <reference path="../definitions/typescript-node-definitions/winston.d.ts"/>
 /// <reference path="../definitions/DefinitelyTyped/underscore/underscore.d.ts"/>
 
-import scrap = require("JsonScraper");
+import scrap = require("./JsonScraper");
 import song = require("../Song");
 
 import _ = require("underscore");

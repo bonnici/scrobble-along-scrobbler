@@ -8,7 +8,6 @@ var __extends = this.__extends || function (d, b) {
 };
 var scrap = require("./Scraper");
 
-
 var cheerio = require("cheerio");
 var winston = require("winston");
 
@@ -70,5 +69,4 @@ var WzbcScraper = (function (_super) {
     return WzbcScraper;
 })(scrap.Scraper);
 exports.WzbcScraper = WzbcScraper;
-
 //# sourceMappingURL=WzbcScraper.js.map

@@ -8,8 +8,6 @@ var __extends = this.__extends || function (d, b) {
 };
 var scrap = require("./CheerioScraper");
 
-
-
 var winston = require("winston");
 
 var TheCurrentScraper = (function (_super) {
@@ -53,5 +51,4 @@ var TheCurrentScraper = (function (_super) {
     return TheCurrentScraper;
 })(scrap.CheerioScraper);
 exports.TheCurrentScraper = TheCurrentScraper;
-
 //# sourceMappingURL=TheCurrentScraper.js.map

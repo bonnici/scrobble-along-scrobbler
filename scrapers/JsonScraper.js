@@ -5,7 +5,6 @@ var __extends = this.__extends || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-
 var scrap = require("./Scraper");
 
 var winston = require("winston");
@@ -74,5 +73,4 @@ var JsonScraper = (function (_super) {
     return JsonScraper;
 })(scrap.Scraper);
 exports.JsonScraper = JsonScraper;
-
 //# sourceMappingURL=JsonScraper.js.map

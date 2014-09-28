@@ -7,9 +7,6 @@ var __extends = this.__extends || function (d, b) {
 };
 var jsonScrap = require("./JsonScraper");
 
-
-
-
 var KcrwEclectic24Scraper = (function (_super) {
     __extends(KcrwEclectic24Scraper, _super);
     function KcrwEclectic24Scraper(name) {
@@ -25,5 +22,4 @@ var KcrwEclectic24Scraper = (function (_super) {
     return KcrwEclectic24Scraper;
 })(jsonScrap.JsonScraper);
 exports.KcrwEclectic24Scraper = KcrwEclectic24Scraper;
-
 //# sourceMappingURL=KcrwEclectic24Scraper.js.map

@@ -138,17 +138,9 @@ export class Scrobbler {
 
 		stationData.lastScrobbledSong = { Artist: songToScrobble.Artist, Track: songToScrobble.Track };
 
-		if (this.stationDao) {
-			this.stationDao.updateStationLastPlayedSong(station.StationName, songToScrobble, (err) => {
-				if (err) {
-					winston.error("Error updating " + station.StationName + " last played song", songToScrobble);
-				}
-			});
-		}
-		
-		if (station.Session) {
-			this.lastFmDao.scrobble(songToScrobble, station.StationName, station.Session);
-		}
+        if (station.Session) {
+            this.lastFmDao.scrobble(songToScrobble, station.StationName, station.Session);
+        }
 
 		_.each(users, (user) => {
 			if (user) {
@@ -165,6 +157,14 @@ export class Scrobbler {
 				});
 			}
 		});
+
+        if (this.stationDao) {
+            this.stationDao.updateStationLastPlayedSong(station.StationName, songToScrobble, (err) => {
+                if (err) {
+                    winston.error("Error updating " + station.StationName + " last played song", songToScrobble);
+                }
+            });
+        }
 	}
 
 	private postNowPlayingIfValid(stationData:ScrobblerStationData, station:stat.Station, users:usr.User[]) {

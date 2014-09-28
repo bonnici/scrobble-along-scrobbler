@@ -1,7 +1,4 @@
 /// <reference path="../definitions/DefinitelyTyped/jasmine/jasmine.d.ts"/>
-
-var assert = require("assert");
-
 var scrap = require("../scrapers/Scraper");
 var scrob = require("../Scrobbler");
 var lfmDao = require("../LastFmDao");
@@ -598,5 +595,4 @@ describe("Scrobbler", function () {
         });
     });
 });
-
 //# sourceMappingURL=scrobblerSpec.js.map

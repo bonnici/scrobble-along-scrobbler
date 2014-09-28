@@ -228,5 +228,4 @@ describe('LastfmScraper', function () {
         });
     });
 });
-
 //# sourceMappingURL=lastfmNoNowPlayingScraperSpec.js.map

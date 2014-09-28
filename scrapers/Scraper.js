@@ -6,8 +6,6 @@ var __extends = this.__extends || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-
-
 var request = require("request");
 var winston = require("winston");
 
@@ -73,5 +71,4 @@ var DummyScraper = (function (_super) {
     return DummyScraper;
 })(Scraper);
 exports.DummyScraper = DummyScraper;
-
 //# sourceMappingURL=Scraper.js.map

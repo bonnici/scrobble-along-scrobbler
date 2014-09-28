@@ -8,8 +8,6 @@ var __extends = this.__extends || function (d, b) {
 };
 var scrap = require("./JsonScraper");
 
-
-var _ = require("underscore");
 var winston = require("winston");
 
 var AmazingRadioScraper = (function (_super) {
@@ -37,5 +35,4 @@ var AmazingRadioScraper = (function (_super) {
     return AmazingRadioScraper;
 })(scrap.JsonScraper);
 exports.AmazingRadioScraper = AmazingRadioScraper;
-
 //# sourceMappingURL=AmazingRadioScraper.js.map

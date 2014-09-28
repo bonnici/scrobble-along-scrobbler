@@ -1,7 +1,7 @@
 /// <reference path="../definitions/typescript-node-definitions/winston.d.ts"/>
 
 //import scrap = require("Scraper");
-import jsonScrap = require("JsonScraper");
+import jsonScrap = require("./JsonScraper");
 import song = require("../Song");
 
 import winston = require("winston");

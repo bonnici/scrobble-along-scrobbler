@@ -7,7 +7,6 @@ var __extends = this.__extends || function (d, b) {
 };
 var scrap = require("./CheerioScraper");
 
-
 var winston = require("winston");
 
 var XfmScraper = (function (_super) {
@@ -61,5 +60,4 @@ var XfmScraper = (function (_super) {
     return XfmScraper;
 })(scrap.CheerioScraper);
 exports.XfmScraper = XfmScraper;
-
 //# sourceMappingURL=XfmScraper.js.map

@@ -7,7 +7,6 @@ var __extends = this.__extends || function (d, b) {
 };
 var scrap = require("./JsonScraper");
 
-
 var winston = require("winston");
 
 var WfkuScraper = (function (_super) {
@@ -33,5 +32,4 @@ var WfkuScraper = (function (_super) {
     return WfkuScraper;
 })(scrap.JsonScraper);
 exports.WfkuScraper = WfkuScraper;
-
 //# sourceMappingURL=WfkuScraper.js.map

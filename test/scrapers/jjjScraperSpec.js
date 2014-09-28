@@ -1,9 +1,6 @@
 /// <reference path="../../definitions/DefinitelyTyped/jasmine/jasmine.d.ts"/>
 /// <reference path="../../definitions/dummy-definitions/moment.d.ts"/>
 /// <reference path="../../definitions/typescript-node-definitions/nock.d.ts"/>
-
-
-var moment = require("moment");
 var nock = require("nock");
 
 var jjj = require("../../scrapers/JjjScraper");
@@ -147,5 +144,4 @@ describe('JjjScraper', function () {
         });
     });
 });
-
 //# sourceMappingURL=jjjScraperSpec.js.map

@@ -425,5 +425,4 @@ describe('NnmScraper', function () {
         });
     });
 });
-
 //# sourceMappingURL=nnmScraperSpec.js.map

@@ -401,5 +401,4 @@ describe('LastfmScraper', function () {
         });
     });
 });
-
 //# sourceMappingURL=lastfmScraperSpec.js.map

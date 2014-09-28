@@ -7,7 +7,6 @@ var __extends = this.__extends || function (d, b) {
 };
 var scrap = require("./Scraper");
 
-
 var winston = require("winston");
 
 var KLoveAir1RadioScraper = (function (_super) {
@@ -52,5 +51,4 @@ var KLoveAir1RadioScraper = (function (_super) {
     return KLoveAir1RadioScraper;
 })(scrap.Scraper);
 exports.KLoveAir1RadioScraper = KLoveAir1RadioScraper;
-
 //# sourceMappingURL=KLoveAir1RadioScraper.js.map

@@ -1,6 +1,6 @@
 /// <reference path="../definitions/typescript-node-definitions/winston.d.ts"/>
 
-import scrap = require("CheerioScraper");
+import scrap = require("./CheerioScraper");
 import song = require("../Song");
 
 import winston = require("winston");

@@ -7,7 +7,6 @@ var __extends = this.__extends || function (d, b) {
 };
 var scrap = require("./CheerioScraper");
 
-
 var winston = require("winston");
 
 var JjjScraper = (function (_super) {
@@ -46,5 +45,4 @@ var JjjScraper = (function (_super) {
     return JjjScraper;
 })(scrap.CheerioScraper);
 exports.JjjScraper = JjjScraper;
-
 //# sourceMappingURL=JjjScraper.js.map

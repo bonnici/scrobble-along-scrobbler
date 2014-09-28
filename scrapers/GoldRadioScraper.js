@@ -7,7 +7,6 @@ var __extends = this.__extends || function (d, b) {
 };
 var scrap = require("./CheerioScraper");
 
-
 var winston = require("winston");
 
 var GoldRadioScraper = (function (_super) {
@@ -68,5 +67,4 @@ var GoldRadioScraper = (function (_super) {
     return GoldRadioScraper;
 })(scrap.CheerioScraper);
 exports.GoldRadioScraper = GoldRadioScraper;
-
 //# sourceMappingURL=GoldRadioScraper.js.map

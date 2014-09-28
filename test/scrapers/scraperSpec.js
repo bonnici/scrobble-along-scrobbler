@@ -1,7 +1,5 @@
 /// <reference path="../../definitions/DefinitelyTyped/jasmine/jasmine.d.ts"/>
 /// <reference path="../../definitions/typescript-node-definitions/nock.d.ts"/>
-
-
 var nock = require("nock");
 
 var scrap = require("../../scrapers/Scraper");
@@ -54,5 +52,4 @@ describe("Scraper", function () {
         });
     });
 });
-
 //# sourceMappingURL=scraperSpec.js.map

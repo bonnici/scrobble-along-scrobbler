@@ -8,7 +8,6 @@ var __extends = this.__extends || function (d, b) {
 };
 var scrap = require("./CheerioScraper");
 
-
 var winston = require("winston");
 var moment = require("moment-timezone");
 
@@ -86,5 +85,4 @@ var CbcRadio2Scraper = (function (_super) {
     return CbcRadio2Scraper;
 })(scrap.CheerioScraper);
 exports.CbcRadio2Scraper = CbcRadio2Scraper;
-
 //# sourceMappingURL=CbcRadio2Scraper.js.map

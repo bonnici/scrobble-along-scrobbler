@@ -5,10 +5,7 @@ var __extends = this.__extends || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-
 var jsonScrap = require("./JsonScraper");
-
-
 
 var MediaStreamScraper = (function (_super) {
     __extends(MediaStreamScraper, _super);
@@ -29,5 +26,4 @@ var MediaStreamScraper = (function (_super) {
     return MediaStreamScraper;
 })(jsonScrap.JsonScraper);
 exports.MediaStreamScraper = MediaStreamScraper;
-
 //# sourceMappingURL=MediaStreamScraper.js.map

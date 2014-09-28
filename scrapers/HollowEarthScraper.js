@@ -7,7 +7,6 @@ var __extends = this.__extends || function (d, b) {
 };
 var scrap = require("./Scraper");
 
-
 var winston = require("winston");
 
 var HollowEarthScraper = (function (_super) {
@@ -52,5 +51,4 @@ var HollowEarthScraper = (function (_super) {
     return HollowEarthScraper;
 })(scrap.Scraper);
 exports.HollowEarthScraper = HollowEarthScraper;
-
 //# sourceMappingURL=HollowEarthScraper.js.map

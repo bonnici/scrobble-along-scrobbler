@@ -8,7 +8,6 @@ var __extends = this.__extends || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-
 var scrap = require("./Scraper");
 
 var _ = require("underscore");
@@ -166,5 +165,4 @@ var NnmScraper = (function (_super) {
     return NnmScraper;
 })(scrap.Scraper);
 exports.NnmScraper = NnmScraper;
-
 //# sourceMappingURL=NnmScraper.js.map

@@ -1,13 +1,5 @@
 /// <reference path="./definitions/typescript-node-definitions/winston.d.ts"/>
 /// <reference path="./definitions/DefinitelyTyped/underscore/underscore.d.ts"/>
-
-
-
-
-
-
-
-
 var _ = require("underscore");
 var winston = require("winston");
 
@@ -74,6 +66,7 @@ var Scrobbler = (function () {
 
             stationData.lastUpdatedTime = timestamp;
 
+            // justScrobbledSong should be set if the scraper can't figure out what is currently playing
             if (justScrobbledSong) {
                 justScrobbledSong.StartTime = new Date().getTime();
                 _this.scrobbleNowPlayingIfValid(stationData, justScrobbledSong, station, users);
@@ -83,8 +76,7 @@ var Scrobbler = (function () {
                     stationData.nowPlayingSong = {
                         Artist: newNowPlayingSong.Artist,
                         Track: newNowPlayingSong.Track,
-                        StartTime: timestamp
-                    };
+                        StartTime: timestamp };
                 }
                 _this.postNowPlayingIfValid(stationData, station, users);
             }
@@ -102,28 +94,23 @@ var Scrobbler = (function () {
         if (!songToScrobble) {
             songToScrobble = stationData.nowPlayingSong;
 
+            // If we are scrobbling the now playing song, check play time
             if (!songToScrobble.StartTime || !stationData.lastUpdatedTime || stationData.lastUpdatedTime - songToScrobble.StartTime <= MIN_SCROBBLE_TIME) {
                 return;
             }
         }
 
+        // Check song details
         if (!(songToScrobble && songToScrobble.Artist && songToScrobble.Track)) {
             return;
         }
 
+        // Make sure it's not the same as the one we scrobbled last
         if (songToScrobble != null && stationData.lastScrobbledSong != null && songToScrobble.Artist == stationData.lastScrobbledSong.Artist && songToScrobble.Track == stationData.lastScrobbledSong.Track) {
             return;
         }
 
         stationData.lastScrobbledSong = { Artist: songToScrobble.Artist, Track: songToScrobble.Track };
-
-        if (this.stationDao) {
-            this.stationDao.updateStationLastPlayedSong(station.StationName, songToScrobble, function (err) {
-                if (err) {
-                    winston.error("Error updating " + station.StationName + " last played song", songToScrobble);
-                }
-            });
-        }
 
         if (station.Session) {
             this.lastFmDao.scrobble(songToScrobble, station.StationName, station.Session);
@@ -141,6 +128,14 @@ var Scrobbler = (function () {
                 });
             }
         });
+
+        if (this.stationDao) {
+            this.stationDao.updateStationLastPlayedSong(station.StationName, songToScrobble, function (err) {
+                if (err) {
+                    winston.error("Error updating " + station.StationName + " last played song", songToScrobble);
+                }
+            });
+        }
     };
 
     Scrobbler.prototype.postNowPlayingIfValid = function (stationData, station, users) {
@@ -174,5 +169,4 @@ var Scrobbler = (function () {
     return Scrobbler;
 })();
 exports.Scrobbler = Scrobbler;
-
 //# sourceMappingURL=Scrobbler.js.map

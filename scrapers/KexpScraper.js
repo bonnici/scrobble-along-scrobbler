@@ -8,7 +8,6 @@ var __extends = this.__extends || function (d, b) {
 };
 var scrap = require("./CheerioScraper");
 
-
 var moment = require('moment-timezone');
 var util = require("util");
 var winston = require("winston");
@@ -32,6 +31,7 @@ var KexpScraper = (function (_super) {
     KexpScraper.prototype.parseCheerio = function ($, callback) {
         var nowPlayingDiv = $.root().children('div').first();
 
+        // Check for airbreak
         if (nowPlayingDiv.hasClass("AirBreak")) {
             winston.info("KexpScraper found an air break");
             callback(null, { Artist: null, Track: null });
@@ -53,5 +53,4 @@ var KexpScraper = (function (_super) {
     return KexpScraper;
 })(scrap.CheerioScraper);
 exports.KexpScraper = KexpScraper;
-
 //# sourceMappingURL=KexpScraper.js.map

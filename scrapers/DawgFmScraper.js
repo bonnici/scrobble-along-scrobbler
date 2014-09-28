@@ -8,7 +8,6 @@ var __extends = this.__extends || function (d, b) {
 };
 var scrap = require("./CheerioScraper");
 
-
 var winston = require("winston");
 
 var DawgFmScraper = (function (_super) {
@@ -44,5 +43,4 @@ var DawgFmScraper = (function (_super) {
     return DawgFmScraper;
 })(scrap.CheerioScraper);
 exports.DawgFmScraper = DawgFmScraper;
-
 //# sourceMappingURL=DawgFmScraper.js.map

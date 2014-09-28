@@ -1,7 +1,7 @@
 /// <reference path="../definitions/dummy-definitions/cheerio.d.ts"/>
 /// <reference path="../definitions/typescript-node-definitions/winston.d.ts"/>
 
-import scrap = require("Scraper");
+import scrap = require("./Scraper");
 import song = require("../Song");
 
 import cheerio = require("cheerio");

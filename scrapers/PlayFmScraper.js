@@ -7,9 +7,6 @@ var __extends = this.__extends || function (d, b) {
 };
 var scrap = require("./JsonScraper");
 
-
-
-
 var PlayFmScraper = (function (_super) {
     __extends(PlayFmScraper, _super);
     function PlayFmScraper(name) {
@@ -25,5 +22,4 @@ var PlayFmScraper = (function (_super) {
     return PlayFmScraper;
 })(scrap.JsonScraper);
 exports.PlayFmScraper = PlayFmScraper;
-
 //# sourceMappingURL=PlayFmScraper.js.map

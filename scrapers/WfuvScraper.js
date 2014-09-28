@@ -7,7 +7,6 @@ var __extends = this.__extends || function (d, b) {
 };
 var scrap = require("./Scraper");
 
-
 var winston = require("winston");
 
 var WfuvScraper = (function (_super) {
@@ -71,5 +70,4 @@ var WfuvScraper = (function (_super) {
     return WfuvScraper;
 })(scrap.Scraper);
 exports.WfuvScraper = WfuvScraper;
-
 //# sourceMappingURL=WfuvScraper.js.map

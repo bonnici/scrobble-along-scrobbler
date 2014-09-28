@@ -7,7 +7,6 @@ var __extends = this.__extends || function (d, b) {
 };
 var scrap = require("./Scraper");
 
-
 var winston = require("winston");
 
 var NewtownRadioScraper = (function (_super) {
@@ -56,5 +55,4 @@ var NewtownRadioScraper = (function (_super) {
     return NewtownRadioScraper;
 })(scrap.Scraper);
 exports.NewtownRadioScraper = NewtownRadioScraper;
-
 //# sourceMappingURL=NewtownRadioScraper.js.map

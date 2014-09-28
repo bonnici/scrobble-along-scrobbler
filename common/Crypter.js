@@ -33,5 +33,4 @@ var CrypterImpl = (function () {
     return CrypterImpl;
 })();
 exports.CrypterImpl = CrypterImpl;
-
 //# sourceMappingURL=Crypter.js.map

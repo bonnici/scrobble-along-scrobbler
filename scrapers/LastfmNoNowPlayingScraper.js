@@ -5,10 +5,7 @@ var __extends = this.__extends || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-
 var jsonScrap = require("./JsonScraper");
-
-
 
 var LastfmNoNowPlayingScraper = (function (_super) {
     __extends(LastfmNoNowPlayingScraper, _super);
@@ -46,5 +43,4 @@ var LastfmNoNowPlayingScraper = (function (_super) {
     return LastfmNoNowPlayingScraper;
 })(jsonScrap.JsonScraper);
 exports.LastfmNoNowPlayingScraper = LastfmNoNowPlayingScraper;
-
 //# sourceMappingURL=LastfmNoNowPlayingScraper.js.map

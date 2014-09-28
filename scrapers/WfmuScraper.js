@@ -7,9 +7,6 @@ var __extends = this.__extends || function (d, b) {
 };
 var scrap = require("./CheerioScraper");
 
-
-
-
 var WfmuScraper = (function (_super) {
     __extends(WfmuScraper, _super);
     function WfmuScraper(name, channel) {
@@ -115,5 +112,4 @@ var WfmuScraper = (function (_super) {
     return WfmuScraper;
 })(scrap.CheerioScraper);
 exports.WfmuScraper = WfmuScraper;
-
 //# sourceMappingURL=WfmuScraper.js.map

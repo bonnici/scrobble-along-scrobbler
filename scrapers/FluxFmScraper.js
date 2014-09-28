@@ -5,10 +5,7 @@ var __extends = this.__extends || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-
 var jsonScrap = require("./JsonScraper");
-
-
 
 var FluxFmScraper = (function (_super) {
     __extends(FluxFmScraper, _super);
@@ -28,5 +25,4 @@ var FluxFmScraper = (function (_super) {
     return FluxFmScraper;
 })(jsonScrap.JsonScraper);
 exports.FluxFmScraper = FluxFmScraper;
-
 //# sourceMappingURL=FluxFmScraper.js.map

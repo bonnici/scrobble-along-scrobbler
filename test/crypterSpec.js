@@ -14,5 +14,4 @@ describe("CrypterImpl", function () {
         });
     });
 });
-
 //# sourceMappingURL=crypterSpec.js.map

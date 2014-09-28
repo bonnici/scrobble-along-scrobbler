@@ -34,7 +34,8 @@ export class JsonScraper extends scrap.Scraper {
 				var json = JSON.parse(body);
 			}
 			catch (e) {
-				winston.error("Could not parse JSON body", body);
+				//winston.error("Could not parse JSON body", body);
+                winston.error("Could not parse JSON body");
 				callback("Could not parse JSON body", null);
 				return;
 			}
@@ -46,7 +47,8 @@ export class JsonScraper extends scrap.Scraper {
 				return;
 			}
 			catch (err) {
-				winston.warn("JsonScraper: Invalid JSON", json);
+				//winston.warn("JsonScraper: Invalid JSON", json);
+                winston.warn("JsonScraper: Invalid JSON");
 			}
 
 			callback(null, { Artist: null, Track: null });

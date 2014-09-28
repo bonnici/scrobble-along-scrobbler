@@ -20,15 +20,20 @@ export class LastfmNoNowPlayingScraper extends jsonScrap.JsonScraper {
 		}
 
 		return "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=" + lastfmUsername + "&api_key=" +
-			this.apiKey + "&limit=1&format=json"
+			this.apiKey + "&limit=2&format=json"
 	}
 
 	extractJustPlayedSong(jsonData:any): song.Song {
-		var track = jsonData['recenttracks']['track'];
+        var tracks = jsonData['recenttracks']['track'];
 
-		if (!track["artist"]) {
-			track = track[0];
-		}
+        var track = tracks[0];
+
+        if (track["@attr"] && track["@attr"]["nowplaying"] == "true") {
+            if (tracks.length == 0) {
+                return { Artist: null, Track: null };
+            }
+            track = tracks[1];
+        }
 
 		var scrobbledTime = parseInt(track['date']['uts']) * 1000;
 		var timeNow = new Date().getTime();

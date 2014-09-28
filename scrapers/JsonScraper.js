@@ -37,7 +37,8 @@ var JsonScraper = (function (_super) {
             try  {
                 var json = JSON.parse(body);
             } catch (e) {
-                winston.error("Could not parse JSON body", body);
+                //winston.error("Could not parse JSON body", body);
+                winston.error("Could not parse JSON body");
                 callback("Could not parse JSON body", null);
                 return;
             }
@@ -48,7 +49,8 @@ var JsonScraper = (function (_super) {
                 callback(null, nowPlayingSong, justPlayedSong);
                 return;
             } catch (err) {
-                winston.warn("JsonScraper: Invalid JSON", json);
+                //winston.warn("JsonScraper: Invalid JSON", json);
+                winston.warn("JsonScraper: Invalid JSON");
             }
 
             callback(null, { Artist: null, Track: null });

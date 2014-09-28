@@ -317,7 +317,7 @@ TheCurrent: []
 var lastFmDao = new lfmDao.DummyLastFmDao();
 var userDao = new usrDao.DummyUserDao();
 var scrobbler = new scrob.Scrobbler(lastFmDao, userDao);
-setInterval(() => { testScrapeAndScrobble(); }, interval);
+//setInterval(() => { testScrapeAndScrobble(); }, interval);
 testScrapeAndScrobble();
 function testScrapeAndScrobble() {
 _.each(stations, (station:stat.Station) => {

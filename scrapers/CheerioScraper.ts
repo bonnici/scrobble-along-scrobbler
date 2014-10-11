@@ -13,7 +13,7 @@ export class CheerioScraper extends scrap.Scraper {
 		super(name);
 	}
 
-	public getUrl(): string {
+	public getUrl(scraperParam?:string): string {
 		throw "Abstract Class";
 	}
 
@@ -22,7 +22,7 @@ export class CheerioScraper extends scrap.Scraper {
 	}
 
 	public fetchAndParse(callback: (err, newNowPlayingSong: song.Song, justScrobbledSong?:song.Song) => void, scraperParam?:string): void {
-		this.fetchUrl(this.getUrl(), (err, body) => {
+		this.fetchUrl(this.getUrl(scraperParam), (err, body) => {
 			if (err) {
 				callback(err, null);
 				return;

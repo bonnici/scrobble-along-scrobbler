@@ -52,6 +52,7 @@ var cbcRadio2 = require("./scrapers/CbcRadio2Scraper");
 var cbcRadio3 = require("./scrapers/CbcRadio3Scraper");
 var wfku = require("./scrapers/WfkuScraper");
 var dawg = require("./scrapers/DawgFmScraper");
+var drDk = require("./scrapers/DrDkScraper");
 
 // Required environment variables
 var STATION_CRYPTO_KEY = process.env.SA_STATION_CRYPTO_KEY;
@@ -132,7 +133,8 @@ var scrapers = {
     CBCRadio3: new cbcRadio3.CbcRadio3Scraper("CBCRadio3"),
     WFKUGoth: new wfku.WfkuScraper("WFKUGoth", "wfkugoth"),
     WFKUPerki: new wfku.WfkuScraper("WFKUPerki", "wfkuperki"),
-    DawgFM: new dawg.DawgFmScraper("DawgFM")
+    DawgFM: new dawg.DawgFmScraper("DawgFM"),
+    DrDk: new drDk.DrDkScraper("DrDk")
 };
 
 //////////////
@@ -194,14 +196,12 @@ mongodb.connect(MONGO_URI, function (err, dbClient) {
                             });
                         }
                     }
-                    ;
 
                     scrobbler.scrapeAndScrobble(scrapers[station.ScraperName], station, users);
                 });
             });
         });
     }
-    ;
 });
 //////////////
 // Scrobbler that scrapes but does not scrobble or load proper users/stations
@@ -303,7 +303,10 @@ var stations = [
 { StationName: "CBCRadio3", ScraperName: "CBCRadio3", Session: "CBCRadio3Session" },
 { StationName: "WFKUGoth", ScraperName: "WFKUGoth", Session: "WFKUGothSession" },
 { StationName: "WFKUPerki", ScraperName: "WFKUPerki", Session: "WFKUPerkiSession" },
-{ StationName: "DawgFM", ScraperName: "DawgFM", Session: "DawgFMSession" }
+{ StationName: "DawgFM", ScraperName: "DawgFM", Session: "DawgFMSession" },
+{ StationName: "DrDkP3", ScraperName: "DrDk", Session: "DrDkP3Session", ScraperParam: "p3" },
+{ StationName: "DrDkP4", ScraperName: "DrDk", Session: "DrDkP4Session", ScraperParam: "p4kbh" },
+{ StationName: "DrDkP7", ScraperName: "DrDk", Session: "DrDkP7Session", ScraperParam: "p7mix" }
 ];
 var usersListening:{[index: string]:usr.User[]} = {
 KEXP903FM: [{ UserName: "KEXPListener1", Session: "KEXPListener1Session" },

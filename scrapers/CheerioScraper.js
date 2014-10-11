@@ -16,7 +16,7 @@ var CheerioScraper = (function (_super) {
     function CheerioScraper(name) {
         _super.call(this, name);
     }
-    CheerioScraper.prototype.getUrl = function () {
+    CheerioScraper.prototype.getUrl = function (scraperParam) {
         throw "Abstract Class";
     };
 
@@ -26,7 +26,7 @@ var CheerioScraper = (function (_super) {
 
     CheerioScraper.prototype.fetchAndParse = function (callback, scraperParam) {
         var _this = this;
-        this.fetchUrl(this.getUrl(), function (err, body) {
+        this.fetchUrl(this.getUrl(scraperParam), function (err, body) {
             if (err) {
                 callback(err, null);
                 return;

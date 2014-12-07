@@ -54,6 +54,8 @@ import cbcRadio3 = require("./scrapers/CbcRadio3Scraper");
 import wfku = require("./scrapers/WfkuScraper");
 import dawg = require("./scrapers/DawgFmScraper");
 import drDk = require("./scrapers/DrDkScraper");
+import cod = require("./scrapers/CoreOfDestructionScraper");
+import bristol = require("./scrapers/BristolScraper");
 
 // Required environment variables
 var STATION_CRYPTO_KEY = process.env.SA_STATION_CRYPTO_KEY;
@@ -137,7 +139,9 @@ var scrapers:{ [index: string]: scrap.Scraper; } = {
 	WFKUGoth: new wfku.WfkuScraper("WFKUGoth", "wfkugoth"),
 	WFKUPerki: new wfku.WfkuScraper("WFKUPerki", "wfkuperki"),
 	DawgFM: new dawg.DawgFmScraper("DawgFM"),
-    DrDk: new drDk.DrDkScraper("DrDk")
+    DrDk: new drDk.DrDkScraper("DrDk"),
+    CoreOfDestruction: new cod.CoreOfDestructionScraper("CoreOfDestruction"),
+    Bristol: new bristol.BristolScraper("Bristol")
 };
 
 //////////////
@@ -311,7 +315,10 @@ var stations = [
 	{ StationName: "DawgFM", ScraperName: "DawgFM", Session: "DawgFMSession" },
     { StationName: "DrDkP3", ScraperName: "DrDk", Session: "DrDkP3Session", ScraperParam: "p3" },
     { StationName: "DrDkP4", ScraperName: "DrDk", Session: "DrDkP4Session", ScraperParam: "p4kbh" },
-    { StationName: "DrDkP7", ScraperName: "DrDk", Session: "DrDkP7Session", ScraperParam: "p7mix" }
+    { StationName: "DrDkP7", ScraperName: "DrDk", Session: "DrDkP7Session", ScraperParam: "p7mix" },
+     { StationName: "CoreOfDestruction", ScraperName: "CoreOfDestruction", Session: "CoreOfDestructionSession" }
+    { StationName: "CoreOfDestruction", ScraperName: "CoreOfDestruction", Session: "CoreOfDestructionSession" },
+    { StationName: "Bristol", ScraperName: "Bristol", Session: "BristolSession" }
 ];
 
 var usersListening:{[index: string]:usr.User[]} = {
@@ -328,7 +335,7 @@ var lastFmDao = new lfmDao.DummyLastFmDao();
 var userDao = new usrDao.DummyUserDao();
 var scrobbler = new scrob.Scrobbler(lastFmDao, userDao);
 
-//setInterval(() => { testScrapeAndScrobble(); }, interval);
+setInterval(() => { testScrapeAndScrobble(); }, interval);
 testScrapeAndScrobble();
 
 function testScrapeAndScrobble() {

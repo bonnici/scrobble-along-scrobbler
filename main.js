@@ -53,6 +53,8 @@ var cbcRadio3 = require("./scrapers/CbcRadio3Scraper");
 var wfku = require("./scrapers/WfkuScraper");
 var dawg = require("./scrapers/DawgFmScraper");
 var drDk = require("./scrapers/DrDkScraper");
+var cod = require("./scrapers/CoreOfDestructionScraper");
+var bristol = require("./scrapers/BristolScraper");
 
 // Required environment variables
 var STATION_CRYPTO_KEY = process.env.SA_STATION_CRYPTO_KEY;
@@ -134,7 +136,9 @@ var scrapers = {
     WFKUGoth: new wfku.WfkuScraper("WFKUGoth", "wfkugoth"),
     WFKUPerki: new wfku.WfkuScraper("WFKUPerki", "wfkuperki"),
     DawgFM: new dawg.DawgFmScraper("DawgFM"),
-    DrDk: new drDk.DrDkScraper("DrDk")
+    DrDk: new drDk.DrDkScraper("DrDk"),
+    CoreOfDestruction: new cod.CoreOfDestructionScraper("CoreOfDestruction"),
+    Bristol: new bristol.BristolScraper("Bristol")
 };
 
 //////////////
@@ -306,7 +310,10 @@ var stations = [
 { StationName: "DawgFM", ScraperName: "DawgFM", Session: "DawgFMSession" },
 { StationName: "DrDkP3", ScraperName: "DrDk", Session: "DrDkP3Session", ScraperParam: "p3" },
 { StationName: "DrDkP4", ScraperName: "DrDk", Session: "DrDkP4Session", ScraperParam: "p4kbh" },
-{ StationName: "DrDkP7", ScraperName: "DrDk", Session: "DrDkP7Session", ScraperParam: "p7mix" }
+{ StationName: "DrDkP7", ScraperName: "DrDk", Session: "DrDkP7Session", ScraperParam: "p7mix" },
+{ StationName: "CoreOfDestruction", ScraperName: "CoreOfDestruction", Session: "CoreOfDestructionSession" }
+{ StationName: "CoreOfDestruction", ScraperName: "CoreOfDestruction", Session: "CoreOfDestructionSession" },
+{ StationName: "Bristol", ScraperName: "Bristol", Session: "BristolSession" }
 ];
 var usersListening:{[index: string]:usr.User[]} = {
 KEXP903FM: [{ UserName: "KEXPListener1", Session: "KEXPListener1Session" },
@@ -320,7 +327,7 @@ TheCurrent: []
 var lastFmDao = new lfmDao.DummyLastFmDao();
 var userDao = new usrDao.DummyUserDao();
 var scrobbler = new scrob.Scrobbler(lastFmDao, userDao);
-//setInterval(() => { testScrapeAndScrobble(); }, interval);
+setInterval(() => { testScrapeAndScrobble(); }, interval);
 testScrapeAndScrobble();
 function testScrapeAndScrobble() {
 _.each(stations, (station:stat.Station) => {

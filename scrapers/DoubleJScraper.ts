@@ -12,7 +12,7 @@ export class DoubleJScraper extends scrap.JsonScraper {
 
 	constructor(name:string) {
 		super(name);
-		this.url = "http://program.abcradio.net.au/api/v1/now_next_previous/doublej.json";
+		this.url = "http://music.abcradio.net.au/api/v1/plays/doublej/now.json";
 	}
 
 	getUrl(lastfmUsername?:string): string {
@@ -20,8 +20,8 @@ export class DoubleJScraper extends scrap.JsonScraper {
 	}
 
 	extractNowPlayingSong(jsonData:any): song.Song {
-		var artistName: string = jsonData.now.published_entity.artists[0].name;
-		var title: string = jsonData.now.published_entity.title;
+		var artistName: string = jsonData.now.recording.artists[0].name;
+		var title: string = jsonData.now.recording.title;
 
 		if (!artistName || !title) {
 			winston.warn("DoubleJScraper could not find song");

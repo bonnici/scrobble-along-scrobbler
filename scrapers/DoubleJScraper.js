@@ -14,15 +14,15 @@ var DoubleJScraper = (function (_super) {
     __extends(DoubleJScraper, _super);
     function DoubleJScraper(name) {
         _super.call(this, name);
-        this.url = "http://program.abcradio.net.au/api/v1/now_next_previous/doublej.json";
+        this.url = "http://music.abcradio.net.au/api/v1/plays/doublej/now.json";
     }
     DoubleJScraper.prototype.getUrl = function (lastfmUsername) {
         return this.url;
     };
 
     DoubleJScraper.prototype.extractNowPlayingSong = function (jsonData) {
-        var artistName = jsonData.now.published_entity.artists[0].name;
-        var title = jsonData.now.published_entity.title;
+        var artistName = jsonData.now.recording.artists[0].name;
+        var title = jsonData.now.recording.title;
 
         if (!artistName || !title) {
             winston.warn("DoubleJScraper could not find song");

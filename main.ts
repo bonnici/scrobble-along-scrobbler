@@ -316,7 +316,6 @@ var stations = [
     { StationName: "DrDkP3", ScraperName: "DrDk", Session: "DrDkP3Session", ScraperParam: "p3" },
     { StationName: "DrDkP4", ScraperName: "DrDk", Session: "DrDkP4Session", ScraperParam: "p4kbh" },
     { StationName: "DrDkP7", ScraperName: "DrDk", Session: "DrDkP7Session", ScraperParam: "p7mix" },
-     { StationName: "CoreOfDestruction", ScraperName: "CoreOfDestruction", Session: "CoreOfDestructionSession" }
     { StationName: "CoreOfDestruction", ScraperName: "CoreOfDestruction", Session: "CoreOfDestructionSession" },
     { StationName: "Bristol", ScraperName: "Bristol", Session: "BristolSession" }
 ];

@@ -57,7 +57,7 @@ var CbcRadio2Scraper = (function (_super) {
 
             var trackArtist = this.findDd(trackElem, 'artist');
             if (trackArtist) {
-                callback(null, { Artist: trackArtist, Track: trackName });
+                callback(null, { Artist: trackArtist, Track: this.capitalize(trackName) });
             } else {
                 winston.warn("CbcRadio2Scraper could not find artist");
                 callback(null, { Artist: null, Track: null });

@@ -55,6 +55,7 @@ var dawg = require("./scrapers/DawgFmScraper");
 var drDk = require("./scrapers/DrDkScraper");
 var cod = require("./scrapers/CoreOfDestructionScraper");
 var bristol = require("./scrapers/BristolScraper");
+var fip = require("./scrapers/FipScraper");
 
 // Required environment variables
 var STATION_CRYPTO_KEY = process.env.SA_STATION_CRYPTO_KEY;
@@ -138,7 +139,8 @@ var scrapers = {
     DawgFM: new dawg.DawgFmScraper("DawgFM"),
     DrDk: new drDk.DrDkScraper("DrDk"),
     CoreOfDestruction: new cod.CoreOfDestructionScraper("CoreOfDestruction"),
-    Bristol: new bristol.BristolScraper("Bristol")
+    Bristol: new bristol.BristolScraper("Bristol"),
+    Fip: new fip.FipScraper("Fip")
 };
 
 //////////////
@@ -312,7 +314,8 @@ var stations = [
 { StationName: "DrDkP4", ScraperName: "DrDk", Session: "DrDkP4Session", ScraperParam: "p4kbh" },
 { StationName: "DrDkP7", ScraperName: "DrDk", Session: "DrDkP7Session", ScraperParam: "p7mix" },
 { StationName: "CoreOfDestruction", ScraperName: "CoreOfDestruction", Session: "CoreOfDestructionSession" },
-{ StationName: "Bristol", ScraperName: "Bristol", Session: "BristolSession" }
+{ StationName: "Bristol", ScraperName: "Bristol", Session: "BristolSession" },
+{ StationName: "Fip", ScraperName: "Fip", Session: "FipSession" },
 ];
 var usersListening:{[index: string]:usr.User[]} = {
 KEXP903FM: [{ UserName: "KEXPListener1", Session: "KEXPListener1Session" },

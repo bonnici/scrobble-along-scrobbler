@@ -35,6 +35,6 @@ export class DawgFmScraper extends scrap.CheerioScraper {
 			return;
 		}
 
-		callback(null, { Artist: artistText, Track: titleText });
+		callback(null, { Artist: this.capitalize(artistText), Track: this.capitalize(titleText) });
 	}
 }

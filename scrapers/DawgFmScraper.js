@@ -38,7 +38,7 @@ var DawgFmScraper = (function (_super) {
             return;
         }
 
-        callback(null, { Artist: artistText, Track: titleText });
+        callback(null, { Artist: this.capitalize(artistText), Track: this.capitalize(titleText) });
     };
     return DawgFmScraper;
 })(scrap.CheerioScraper);

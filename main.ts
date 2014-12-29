@@ -57,6 +57,7 @@ import drDk = require("./scrapers/DrDkScraper");
 import cod = require("./scrapers/CoreOfDestructionScraper");
 import bristol = require("./scrapers/BristolScraper");
 import fip = require("./scrapers/FipScraper");
+import chronisch = require("./scrapers/ChronischScraper");
 
 // Required environment variables
 var STATION_CRYPTO_KEY = process.env.SA_STATION_CRYPTO_KEY;
@@ -143,7 +144,8 @@ var scrapers:{ [index: string]: scrap.Scraper; } = {
     DrDk: new drDk.DrDkScraper("DrDk"),
     CoreOfDestruction: new cod.CoreOfDestructionScraper("CoreOfDestruction"),
     Bristol: new bristol.BristolScraper("Bristol"),
-    Fip: new fip.FipScraper("Fip")
+    Fip: new fip.FipScraper("Fip"),
+    Chronisch: new chronisch.ChronischScraper("Chronisch")
 };
 
 //////////////
@@ -320,7 +322,8 @@ var stations = [
     { StationName: "DrDkP7", ScraperName: "DrDk", Session: "DrDkP7Session", ScraperParam: "p7mix" },
     { StationName: "CoreOfDestruction", ScraperName: "CoreOfDestruction", Session: "CoreOfDestructionSession" },
     { StationName: "Bristol", ScraperName: "Bristol", Session: "BristolSession" },
-     { StationName: "Fip", ScraperName: "Fip", Session: "FipSession" },
+    { StationName: "Fip", ScraperName: "Fip", Session: "FipSession" },
+    { StationName: "Chronisch", ScraperName: "Chronisch", Session: "ChronischSession" }
 ];
 
 var usersListening:{[index: string]:usr.User[]} = {

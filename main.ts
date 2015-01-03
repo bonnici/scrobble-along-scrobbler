@@ -58,6 +58,8 @@ import cod = require("./scrapers/CoreOfDestructionScraper");
 import bristol = require("./scrapers/BristolScraper");
 import fip = require("./scrapers/FipScraper");
 import chronisch = require("./scrapers/ChronischScraper");
+import bytefm = require("./scrapers/ByteFmScraper");
+import tunein = require("./scrapers/TuneInScraper");
 
 // Required environment variables
 var STATION_CRYPTO_KEY = process.env.SA_STATION_CRYPTO_KEY;
@@ -145,7 +147,9 @@ var scrapers:{ [index: string]: scrap.Scraper; } = {
     CoreOfDestruction: new cod.CoreOfDestructionScraper("CoreOfDestruction"),
     Bristol: new bristol.BristolScraper("Bristol"),
     Fip: new fip.FipScraper("Fip"),
-    Chronisch: new chronisch.ChronischScraper("Chronisch")
+    Chronisch: new chronisch.ChronischScraper("Chronisch"),
+    ByteFM: new bytefm.ByteFmScraper("ByteFM"),
+    RadyoBabylon: new tunein.TuneInScraper("RadyoBabylon", "Radyo-Babylon-s131728")
 };
 
 //////////////
@@ -323,7 +327,9 @@ var stations = [
     { StationName: "CoreOfDestruction", ScraperName: "CoreOfDestruction", Session: "CoreOfDestructionSession" },
     { StationName: "Bristol", ScraperName: "Bristol", Session: "BristolSession" },
     { StationName: "Fip", ScraperName: "Fip", Session: "FipSession" },
-    { StationName: "Chronisch", ScraperName: "Chronisch", Session: "ChronischSession" }
+    { StationName: "Chronisch", ScraperName: "Chronisch", Session: "ChronischSession" },
+    { StationName: "ByteFM", ScraperName: "ByteFM", Session: "ByteFMSession" },
+    { StationName: "RadyoBabylon", ScraperName: "RadyoBabylon", Session: "RadyoBabylonSession" }
 ];
 
 var usersListening:{[index: string]:usr.User[]} = {

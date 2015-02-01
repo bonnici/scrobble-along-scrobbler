@@ -20,7 +20,7 @@ export class KexpScraper extends scrap.CheerioScraper {
 	// Separated so that it is mockable
 	private startTime(): string {
 		return this.defaultStartTime ||
-			moment().tz("America/Los_Angeles").subtract('minutes', 30).format("YYYY-MM-DDTHH:mm:ss.SSS");
+            moment().tz("America/Los_Angeles").subtract(30, 'minutes').format("YYYY-MM-DDTHH:mm:ss.SSS");
 	}
 
 	public getUrl(): string {

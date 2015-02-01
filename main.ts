@@ -89,7 +89,7 @@ else {
 winston.remove(winston.transports.Console);
 winston.add(winston.transports.Console, winstonOpts);
 
-var interval = 15000; // 15 seconds
+var interval = 30000; // 30 seconds
 var scrapers:{ [index: string]: scrap.Scraper; } = {
 	KEXP: new kexp.KexpScraper("KEXP"),
 	NNM: new nnm.NnmScraper("NNM"),

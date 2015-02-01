@@ -28,7 +28,7 @@ export class CbcRadio2Scraper extends scrap.CheerioScraper {
 
 		var curTrackIndex:number = null;
 		tracks.each(function(idx: number) {
-			var _this:any = this; // Trick TypeScript parser
+			var _this:any = $(this); // Trick TypeScript parser
 			var timeElem = _this.find('div.logEntryTime');
 
 			if (timeElem) {
@@ -53,7 +53,22 @@ export class CbcRadio2Scraper extends scrap.CheerioScraper {
 			var trackElem = tracks.eq(curTrackIndex);
 			var trackName = trackElem.find('h3').text().trim();
 
-			var trackArtist = this.findDd(trackElem, 'artist');
+            var matchingDt:any = null;
+            trackElem.find('dt').each(function() {
+                var _this:any = $(this); // Trick TypeScript parser
+                if (_this.text().trim().toLowerCase() == 'artist') {
+                    matchingDt = _this;
+                    return false;
+                }
+                return;
+            });
+
+            if (!matchingDt) {
+                return null;
+            }
+            var matchingDd = matchingDt.next('dd');
+            var trackArtist = matchingDd ? matchingDd.text().trim() : null;
+
 			if (trackArtist) {
 				callback(null, { Artist: trackArtist, Track: this.capitalize(trackName) });
 			}
@@ -62,23 +77,5 @@ export class CbcRadio2Scraper extends scrap.CheerioScraper {
 				callback(null, { Artist: null, Track: null });
 			}
 		}
-	}
-
-	public findDd(elem:any, name:string): string {
-		var matchingDt:any = null;
-		elem.find('dt').each(function() {
-			var _this:any = this; // Trick TypeScript parser
-			if (this.text().trim().toLowerCase() == name.toLowerCase()) {
-				matchingDt = _this;
-				return false;
-			}
-			return;
-		});
-
-		if (!matchingDt) {
-			return null;
-		}
-		var matchingDd = matchingDt.next('dd');
-		return matchingDd ? matchingDd.text().trim() : null;
 	}
 }

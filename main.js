@@ -86,7 +86,7 @@ if (NODE_ENV === 'production') {
 winston.remove(winston.transports.Console);
 winston.add(winston.transports.Console, winstonOpts);
 
-var interval = 15000;
+var interval = 30000;
 var scrapers = {
     KEXP: new kexp.KexpScraper("KEXP"),
     NNM: new nnm.NnmScraper("NNM"),

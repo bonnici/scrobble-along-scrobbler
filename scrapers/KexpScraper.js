@@ -21,7 +21,7 @@ var KexpScraper = (function (_super) {
     }
     // Separated so that it is mockable
     KexpScraper.prototype.startTime = function () {
-        return this.defaultStartTime || moment().tz("America/Los_Angeles").subtract('minutes', 30).format("YYYY-MM-DDTHH:mm:ss.SSS");
+        return this.defaultStartTime || moment().tz("America/Los_Angeles").subtract(30, 'minutes').format("YYYY-MM-DDTHH:mm:ss.SSS");
     };
 
     KexpScraper.prototype.getUrl = function () {

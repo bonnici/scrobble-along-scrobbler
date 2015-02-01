@@ -31,7 +31,7 @@ var CbcRadio2Scraper = (function (_super) {
 
         var curTrackIndex = null;
         tracks.each(function (idx) {
-            var _this = this;
+            var _this = $(this);
             var timeElem = _this.find('div.logEntryTime');
 
             if (timeElem) {
@@ -55,7 +55,22 @@ var CbcRadio2Scraper = (function (_super) {
             var trackElem = tracks.eq(curTrackIndex);
             var trackName = trackElem.find('h3').text().trim();
 
-            var trackArtist = this.findDd(trackElem, 'artist');
+            var matchingDt = null;
+            trackElem.find('dt').each(function () {
+                var _this = $(this);
+                if (_this.text().trim().toLowerCase() == 'artist') {
+                    matchingDt = _this;
+                    return false;
+                }
+                return;
+            });
+
+            if (!matchingDt) {
+                return null;
+            }
+            var matchingDd = matchingDt.next('dd');
+            var trackArtist = matchingDd ? matchingDd.text().trim() : null;
+
             if (trackArtist) {
                 callback(null, { Artist: trackArtist, Track: this.capitalize(trackName) });
             } else {
@@ -63,24 +78,6 @@ var CbcRadio2Scraper = (function (_super) {
                 callback(null, { Artist: null, Track: null });
             }
         }
-    };
-
-    CbcRadio2Scraper.prototype.findDd = function (elem, name) {
-        var matchingDt = null;
-        elem.find('dt').each(function () {
-            var _this = this;
-            if (this.text().trim().toLowerCase() == name.toLowerCase()) {
-                matchingDt = _this;
-                return false;
-            }
-            return;
-        });
-
-        if (!matchingDt) {
-            return null;
-        }
-        var matchingDd = matchingDt.next('dd');
-        return matchingDd ? matchingDd.text().trim() : null;
     };
     return CbcRadio2Scraper;
 })(scrap.CheerioScraper);

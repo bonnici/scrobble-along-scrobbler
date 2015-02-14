@@ -60,6 +60,7 @@ var chronisch = require("./scrapers/ChronischScraper");
 var bytefm = require("./scrapers/ByteFmScraper");
 var tunein = require("./scrapers/TuneInScraper");
 var bluesdebut = require("./scrapers/BluesDebutScraper");
+var farpastpost = require("./scrapers/FarPastPostScraper");
 
 // Required environment variables
 var STATION_CRYPTO_KEY = process.env.SA_STATION_CRYPTO_KEY;
@@ -148,7 +149,8 @@ var scrapers = {
     Chronisch: new chronisch.ChronischScraper("Chronisch"),
     ByteFM: new bytefm.ByteFmScraper("ByteFM"),
     RadyoBabylon: new tunein.TuneInScraper("RadyoBabylon", "Radyo-Babylon-s131728"),
-    BluesDebut: new bluesdebut.BluesDebutScraper("BluesDebut")
+    BluesDebut: new bluesdebut.BluesDebutScraper("BluesDebut"),
+    FarPastPost: new farpastpost.FarPastPostScraper("FarPastPost")
 };
 
 //////////////
@@ -327,7 +329,8 @@ var stations = [
 { StationName: "Chronisch", ScraperName: "Chronisch", Session: "ChronischSession" },
 { StationName: "ByteFM", ScraperName: "ByteFM", Session: "ByteFMSession" },
 { StationName: "RadyoBabylon", ScraperName: "RadyoBabylon", Session: "RadyoBabylonSession" },
-{ StationName: "BluesDebut", ScraperName: "BluesDebut", Session: "BluesDebutSession" }
+{ StationName: "BluesDebut", ScraperName: "BluesDebut", Session: "BluesDebutSession" },
+{ StationName: "FarPastPost", ScraperName: "FarPastPost", Session: "FarPastPostSession" }
 ];
 var usersListening:{[index: string]:usr.User[]} = {
 KEXP903FM: [{ UserName: "KEXPListener1", Session: "KEXPListener1Session" },

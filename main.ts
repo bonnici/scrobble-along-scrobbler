@@ -61,6 +61,7 @@ import chronisch = require("./scrapers/ChronischScraper");
 import bytefm = require("./scrapers/ByteFmScraper");
 import tunein = require("./scrapers/TuneInScraper");
 import bluesdebut = require("./scrapers/BluesDebutScraper");
+import farpastpost = require("./scrapers/FarPastPostScraper");
 
 // Required environment variables
 var STATION_CRYPTO_KEY = process.env.SA_STATION_CRYPTO_KEY;
@@ -151,7 +152,8 @@ var scrapers:{ [index: string]: scrap.Scraper; } = {
     Chronisch: new chronisch.ChronischScraper("Chronisch"),
     ByteFM: new bytefm.ByteFmScraper("ByteFM"),
     RadyoBabylon: new tunein.TuneInScraper("RadyoBabylon", "Radyo-Babylon-s131728"),
-    BluesDebut: new bluesdebut.BluesDebutScraper("BluesDebut")
+    BluesDebut: new bluesdebut.BluesDebutScraper("BluesDebut"),
+    FarPastPost: new farpastpost.FarPastPostScraper("FarPastPost")
 };
 
 //////////////
@@ -248,7 +250,6 @@ setInterval(
 //////////////
 // Scrobbler that scrapes but does not scrobble and uses fake stations & users
 //////////////
-
 /*
 var stations = [
 	{ StationName: "KEXP903FM", ScraperName: "KEXP", Session: "KEXP903FMSession" },
@@ -333,7 +334,9 @@ var stations = [
     { StationName: "Chronisch", ScraperName: "Chronisch", Session: "ChronischSession" },
     { StationName: "ByteFM", ScraperName: "ByteFM", Session: "ByteFMSession" },
     { StationName: "RadyoBabylon", ScraperName: "RadyoBabylon", Session: "RadyoBabylonSession" },
-     { StationName: "BluesDebut", ScraperName: "BluesDebut", Session: "BluesDebutSession" }
+     { StationName: "BluesDebut", ScraperName: "BluesDebut", Session: "BluesDebutSession" },
+    { StationName: "FarPastPost", ScraperName: "FarPastPost", Session: "FarPastPostSession" }
+
 ];
 
 var usersListening:{[index: string]:usr.User[]} = {

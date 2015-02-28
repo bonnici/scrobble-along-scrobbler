@@ -23,19 +23,25 @@ export class CheerioScraper extends scrap.Scraper {
 
 	public fetchAndParse(callback: (err, newNowPlayingSong: song.Song, justScrobbledSong?:song.Song) => void, scraperParam?:string): void {
 		this.fetchUrl(this.getUrl(scraperParam), (err, body) => {
-			if (err) {
-				callback(err, null);
-				return;
-			}
+            if (err) {
+                callback(err, null);
+                return;
+            }
 
-			if (!body) {
-				winston.warn("CheerioScraper: No HTML body");
-				callback(null, { Artist: null, Track: null });
-				return;
-			}
+            if (!body) {
+                winston.warn("CheerioScraper: No HTML body");
+                callback(null, { Artist: null, Track: null });
+                return;
+            }
 
-			var $ = cheerio.load(body);
-			this.parseCheerio($, callback);
+            try {
+                var $ = cheerio.load(body);
+                this.parseCheerio($, callback);
+            }
+            catch (e) {
+                winston.warn("CheerioScraper: Could not parse HTML");
+                callback("Could not parse HTML", null);
+            }
 		});
 	}
 }

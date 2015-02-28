@@ -9,11 +9,12 @@ var jsonScrap = require("./JsonScraper");
 
 var FipScraper = (function (_super) {
     __extends(FipScraper, _super);
-    function FipScraper(name) {
+    function FipScraper(name, url) {
         _super.call(this, name);
+        this.url = url;
     }
     FipScraper.prototype.getUrl = function (scraperParam) {
-        return "http://www.fipradio.fr/sites/default/files/import_si/si_titre_antenne/FIP_player_current.json?_=" + new Date().getTime();
+        return this.url + new Date().getTime();
     };
 
     FipScraper.prototype.extractNowPlayingSong = function (jsonData) {

@@ -38,8 +38,13 @@ var CheerioScraper = (function (_super) {
                 return;
             }
 
-            var $ = cheerio.load(body);
-            _this.parseCheerio($, callback);
+            try  {
+                var $ = cheerio.load(body);
+                _this.parseCheerio($, callback);
+            } catch (e) {
+                winston.warn("CheerioScraper: Could not parse HTML");
+                callback("Could not parse HTML", null);
+            }
         });
     };
     return CheerioScraper;

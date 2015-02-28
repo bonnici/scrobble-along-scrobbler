@@ -61,6 +61,10 @@ var bytefm = require("./scrapers/ByteFmScraper");
 var tunein = require("./scrapers/TuneInScraper");
 var bluesdebut = require("./scrapers/BluesDebutScraper");
 var farpastpost = require("./scrapers/FarPastPostScraper");
+var fusion = require("./scrapers/FusionScraper");
+var go963 = require("./scrapers/Go963Scraper");
+var radionomy = require("./scrapers/RadionomyScraper");
+var wave965 = require("./scrapers/Wave965Scraper");
 
 // Required environment variables
 var STATION_CRYPTO_KEY = process.env.SA_STATION_CRYPTO_KEY;
@@ -145,12 +149,17 @@ var scrapers = {
     DrDk: new drDk.DrDkScraper("DrDk"),
     CoreOfDestruction: new cod.CoreOfDestructionScraper("CoreOfDestruction"),
     Bristol: new bristol.BristolScraper("Bristol"),
-    Fip: new fip.FipScraper("Fip"),
+    Fip: new fip.FipScraper("Fip", "http://www.fipradio.fr/sites/default/files/import_si/si_titre_antenne/FIP_player_current.json?_="),
     Chronisch: new chronisch.ChronischScraper("Chronisch"),
     ByteFM: new bytefm.ByteFmScraper("ByteFM"),
     RadyoBabylon: new tunein.TuneInScraper("RadyoBabylon", "Radyo-Babylon-s131728"),
     BluesDebut: new bluesdebut.BluesDebutScraper("BluesDebut"),
-    FarPastPost: new farpastpost.FarPastPostScraper("FarPastPost")
+    FarPastPost: new farpastpost.FarPastPostScraper("FarPastPost"),
+    LeMouv: new fip.FipScraper("LeMouv", "http://www.lemouv.fr/sites/default/files/import_si/si_titre_antenne/leMouv_player_current.json?_="),
+    Fusion: new fusion.FusionScraper("Fusion"),
+    Go963: new go963.Go963Scraper("Go963"),
+    LuvuFm: new radionomy.RadionomyScraper("LuvuFm", "850b8904-2108-4ed7-a01c-dfde83b22ae8"),
+    Wave965: new wave965.Wave965Scraper("Wave965")
 };
 
 //////////////
@@ -330,7 +339,17 @@ var stations = [
 { StationName: "ByteFM", ScraperName: "ByteFM", Session: "ByteFMSession" },
 { StationName: "RadyoBabylon", ScraperName: "RadyoBabylon", Session: "RadyoBabylonSession" },
 { StationName: "BluesDebut", ScraperName: "BluesDebut", Session: "BluesDebutSession" },
-{ StationName: "FarPastPost", ScraperName: "FarPastPost", Session: "FarPastPostSession" }
+{ StationName: "FarPastPost", ScraperName: "FarPastPost", Session: "FarPastPostSession" },
+{ StationName: "LeMouv", ScraperName: "LeMouv", Session: "LeMouvSession" },
+{ StationName: "FusionDance", ScraperName: "Fusion", Session: "FusionDanceSession", ScraperParam: "dance" },
+{ StationName: "FusionPop", ScraperName: "Fusion", Session: "FusionPopSession", ScraperParam: "pop" },
+{ StationName: "FusionLatin", ScraperName: "Fusion", Session: "FusionLatinSession", ScraperParam: "latin" },
+{ StationName: "FusionAlternative", ScraperName: "Fusion", Session: "FusionAlternativeSession", ScraperParam: "alternative" },
+{ StationName: "FusionRaveo", ScraperName: "Fusion", Session: "FusionRaveoSession", ScraperParam: "raveo" },
+{ StationName: "FusionJamz", ScraperName: "Fusion", Session: "FusionJamzSession", ScraperParam: "jamz" },
+{ StationName: "Go963", ScraperName: "Go963", Session: "Go963Session" },
+{ StationName: "LuvuFm", ScraperName: "LuvuFm", Session: "LuvuFmSession" },
+{ StationName: "Wave965", ScraperName: "Wave965", Session: "Wave965Session" }
 ];
 var usersListening:{[index: string]:usr.User[]} = {
 KEXP903FM: [{ UserName: "KEXPListener1", Session: "KEXPListener1Session" },

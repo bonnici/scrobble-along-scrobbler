@@ -5,22 +5,21 @@ import song = require("../Song");
 
 import winston = require("winston");
 
-export class FipScraper extends jsonScrap.JsonScraper {
-    private url: string;
+export class Go963Scraper extends jsonScrap.JsonScraper {
 
-    constructor(name:string, url?: string) {
+    constructor(name:string) {
         super(name);
-        this.url = url;
     }
 
     getUrl(scraperParam?:string): string {
-        return this.url + new Date().getTime();
+        return "http://core.commotion.com/B7F19079-E958-48ED-8C90-E879D3D0B314/nowplaying/songs?since=now&count=1&_="
+            + new Date().getTime();
     }
 
     extractNowPlayingSong(jsonData:any): song.Song {
         return {
-            Artist: this.capitalize(jsonData.current.song.interpreteMorceau),
-            Track: this.capitalize(jsonData.current.song.titre)
+            Artist: jsonData.songs[0].songartist,
+            Track: jsonData.songs[0].songtitle
         };
     }
 }

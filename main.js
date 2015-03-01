@@ -65,6 +65,7 @@ var fusion = require("./scrapers/FusionScraper");
 var go963 = require("./scrapers/Go963Scraper");
 var radionomy = require("./scrapers/RadionomyScraper");
 var wave965 = require("./scrapers/Wave965Scraper");
+var chilldab = require("./scrapers/ChillDABScraper");
 
 // Required environment variables
 var STATION_CRYPTO_KEY = process.env.SA_STATION_CRYPTO_KEY;
@@ -159,7 +160,8 @@ var scrapers = {
     Fusion: new fusion.FusionScraper("Fusion"),
     Go963: new go963.Go963Scraper("Go963"),
     LuvuFm: new radionomy.RadionomyScraper("LuvuFm", "850b8904-2108-4ed7-a01c-dfde83b22ae8"),
-    Wave965: new wave965.Wave965Scraper("Wave965")
+    Wave965: new wave965.Wave965Scraper("Wave965"),
+    ChillDAB: new chilldab.ChillDABScraper("ChillDAB")
 };
 
 //////////////
@@ -349,7 +351,8 @@ var stations = [
 { StationName: "FusionJamz", ScraperName: "Fusion", Session: "FusionJamzSession", ScraperParam: "jamz" },
 { StationName: "Go963", ScraperName: "Go963", Session: "Go963Session" },
 { StationName: "LuvuFm", ScraperName: "LuvuFm", Session: "LuvuFmSession" },
-{ StationName: "Wave965", ScraperName: "Wave965", Session: "Wave965Session" }
+{ StationName: "Wave965", ScraperName: "Wave965", Session: "Wave965Session" },
+{ StationName: "ChillDAB", ScraperName: "ChillDAB", Session: "ChillDABSession" }
 ];
 var usersListening:{[index: string]:usr.User[]} = {
 KEXP903FM: [{ UserName: "KEXPListener1", Session: "KEXPListener1Session" },

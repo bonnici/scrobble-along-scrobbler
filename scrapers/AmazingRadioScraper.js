@@ -7,9 +7,7 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 var scrap = require("./JsonScraper");
-
 var winston = require("winston");
-
 var AmazingRadioScraper = (function (_super) {
     __extends(AmazingRadioScraper, _super);
     function AmazingRadioScraper(name) {
@@ -19,15 +17,14 @@ var AmazingRadioScraper = (function (_super) {
     AmazingRadioScraper.prototype.getUrl = function (lastfmUsername) {
         return this.url;
     };
-
     AmazingRadioScraper.prototype.extractNowPlayingSong = function (jsonData) {
         var artistName = jsonData[0].tune.artist.display_name;
         var title = jsonData[0].tune.title;
-
         if (!artistName || !title) {
             winston.info("AmazingRadioScraper could not find song");
             return { Artist: null, Track: null };
-        } else {
+        }
+        else {
             winston.info("AmazingRadioScraper found song " + artistName + " - " + title);
             return { Artist: artistName, Track: title };
         }

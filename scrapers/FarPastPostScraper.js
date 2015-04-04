@@ -7,7 +7,6 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 var scrap = require("./JsonScraper");
-
 var FarPastPostScraper = (function (_super) {
     __extends(FarPastPostScraper, _super);
     function FarPastPostScraper(name) {
@@ -17,7 +16,6 @@ var FarPastPostScraper = (function (_super) {
     FarPastPostScraper.prototype.getUrl = function (lastfmUsername) {
         return this.url;
     };
-
     FarPastPostScraper.prototype.extractNowPlayingSong = function (jsonData) {
         return { Artist: jsonData.data[0].track.artist, Track: jsonData.data[0].track.title };
     };

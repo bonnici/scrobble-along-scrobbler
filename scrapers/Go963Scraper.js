@@ -6,7 +6,6 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 var jsonScrap = require("./JsonScraper");
-
 var Go963Scraper = (function (_super) {
     __extends(Go963Scraper, _super);
     function Go963Scraper(name) {
@@ -15,7 +14,6 @@ var Go963Scraper = (function (_super) {
     Go963Scraper.prototype.getUrl = function (scraperParam) {
         return "http://core.commotion.com/B7F19079-E958-48ED-8C90-E879D3D0B314/nowplaying/songs?since=now&count=1&_=" + new Date().getTime();
     };
-
     Go963Scraper.prototype.extractNowPlayingSong = function (jsonData) {
         return {
             Artist: jsonData.songs[0].songartist,

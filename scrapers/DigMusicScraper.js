@@ -7,10 +7,8 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 var scrap = require("./JsonScraper");
-
 var _ = require("underscore");
 var winston = require("winston");
-
 var DigMusicScraper = (function (_super) {
     __extends(DigMusicScraper, _super);
     function DigMusicScraper(name, baseUrl) {
@@ -20,7 +18,6 @@ var DigMusicScraper = (function (_super) {
     DigMusicScraper.prototype.getUrl = function (lastfmUsername) {
         return this.url;
     };
-
     DigMusicScraper.prototype.extractNowPlayingSong = function (jsonData) {
         var artistName = null;
         var title = null;
@@ -30,11 +27,11 @@ var DigMusicScraper = (function (_super) {
                 title = element.title;
             }
         });
-
         if (!artistName || !title) {
             winston.info("DigMusicScraper could not find song");
             return { Artist: null, Track: null };
-        } else {
+        }
+        else {
             winston.info("DigMusicScraper found song " + artistName + " - " + title);
             return { Artist: artistName, Track: title };
         }

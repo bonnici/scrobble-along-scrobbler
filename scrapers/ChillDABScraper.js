@@ -7,7 +7,6 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 var scrap = require("./Scraper");
-
 var ChillDABScraper = (function (_super) {
     __extends(ChillDABScraper, _super);
     function ChillDABScraper(name) {
@@ -24,22 +23,20 @@ var ChillDABScraper = (function (_super) {
             _this.parseBody(body, callback);
         });
     };
-
     ChillDABScraper.prototype.parseBody = function (body, callback) {
         if (!body) {
             callback(null, { Artist: null, Track: null });
             return;
         }
-
         var infoPattern = /^TEXT Now on Chill: (.*?) with (.*?)$/m;
         var infoMatches = infoPattern.exec(body);
-
         if (infoMatches && infoMatches.length > 2) {
             callback(null, {
                 Artist: this.capitalize(infoMatches[1].trim()),
                 Track: this.capitalize(infoMatches[2].trim())
             });
-        } else {
+        }
+        else {
             callback(null, { Artist: null, Track: null });
         }
     };

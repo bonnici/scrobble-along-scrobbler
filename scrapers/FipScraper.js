@@ -6,7 +6,6 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 var jsonScrap = require("./JsonScraper");
-
 var FipScraper = (function (_super) {
     __extends(FipScraper, _super);
     function FipScraper(name, url) {
@@ -16,7 +15,6 @@ var FipScraper = (function (_super) {
     FipScraper.prototype.getUrl = function (scraperParam) {
         return this.url + new Date().getTime();
     };
-
     FipScraper.prototype.extractNowPlayingSong = function (jsonData) {
         return {
             Artist: this.capitalize(jsonData.current.song.interpreteMorceau),

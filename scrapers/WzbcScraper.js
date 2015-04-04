@@ -7,10 +7,8 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 var scrap = require("./Scraper");
-
 var cheerio = require("cheerio");
 var winston = require("winston");
-
 var WzbcScraper = (function (_super) {
     __extends(WzbcScraper, _super);
     function WzbcScraper(name) {
@@ -28,40 +26,33 @@ var WzbcScraper = (function (_super) {
             _this.parseHtml(body, callback);
         });
     };
-
     WzbcScraper.prototype.parseHtml = function (body, callback) {
         if (!body) {
             winston.warn("WzbcScraper: No HTML body");
             callback(null, { Artist: null, Track: null });
             return;
         }
-
         var $ = cheerio.load(body);
-
         var playlistRows = $('div.f2row');
-
         if (playlistRows.length < 1) {
             winston.info("WzbcScraper could not find song");
             callback(null, { Artist: null, Track: null });
             return;
         }
-
         var artist = playlistRows.first().find('span.aw').text();
         var song = playlistRows.first().find('span.sn').text();
-
         if (!artist || !song) {
             winston.info("WzbcScraper could not find song");
             callback(null, { Artist: null, Track: null });
             return;
         }
-
         artist = artist.trim();
         song = song.trim().substring(1, song.length - 1).trim();
-
         if (!artist || !song) {
             winston.info("WzbcScraper could not find song");
             callback(null, { Artist: null, Track: null });
-        } else {
+        }
+        else {
             winston.info("WzbcScraper found song " + artist + " - " + song);
             callback(null, { Artist: artist, Track: song });
         }

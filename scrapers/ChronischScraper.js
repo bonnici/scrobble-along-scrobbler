@@ -6,7 +6,6 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 var jsonScrap = require("./JsonScraper");
-
 var ChronischScraper = (function (_super) {
     __extends(ChronischScraper, _super);
     function ChronischScraper(name) {
@@ -15,12 +14,11 @@ var ChronischScraper = (function (_super) {
     ChronischScraper.prototype.getUrl = function (scraperParam) {
         return "http://api.laut.fm/station/chronisch_elektronisch/current_song";
     };
-
     /*
     preprocessBody(body: string):string {
-    //simple regex to extract json body
-    var matches = body.match(/{.*}/);
-    return matches.length > 0 ? matches[0] : body;
+        //simple regex to extract json body
+        var matches = body.match(/{.*}/);
+        return matches.length > 0 ? matches[0] : body;
     }
     */
     ChronischScraper.prototype.extractNowPlayingSong = function (jsonData) {

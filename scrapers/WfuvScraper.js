@@ -6,9 +6,7 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 var scrap = require("./Scraper");
-
 var winston = require("winston");
-
 var WfuvScraper = (function (_super) {
     __extends(WfuvScraper, _super);
     function WfuvScraper(name, jsonName) {
@@ -26,43 +24,38 @@ var WfuvScraper = (function (_super) {
             _this.parseJson(body, callback);
         });
     };
-
     WfuvScraper.prototype.parseJson = function (body, callback) {
         if (!body || body.length < 14) {
             winston.warn("WfuvScraper: No/invalid body", body);
             callback(null, { Artist: null, Track: null });
             return;
         }
-
         body = body.trim().substring(12, body.length - 2);
-
-        try  {
+        try {
             var json = JSON.parse(body);
-        } catch (e) {
+        }
+        catch (e) {
             winston.error("Could not parse JSON body", body);
             callback("Could not parse JSON body", null);
             return;
         }
-
         if (!json || !json[this.jsonName]) {
             winston.warn("WfuvScraper: Invalid JSON", json);
             callback(null, { Artist: null, Track: null });
             return;
         }
-
         if (!json[this.jsonName].artist || !json[this.jsonName].title) {
             winston.info("WfuvScraper could not find song");
             callback(null, { Artist: null, Track: null });
             return;
         }
-
         var artist = json[this.jsonName].artist.trim();
         var title = json[this.jsonName].title.trim();
-
         if (!artist || !title) {
             winston.info("WfuvScraper could not find song");
             callback(null, { Artist: null, Track: null });
-        } else {
+        }
+        else {
             winston.info("WfuvScraper found song " + artist + " - " + title);
             callback(null, { Artist: artist, Track: title });
         }

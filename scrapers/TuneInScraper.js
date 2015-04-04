@@ -6,9 +6,7 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 var scrap = require("./CheerioScraper");
-
 var winston = require("winston");
-
 var TuneInScraper = (function (_super) {
     __extends(TuneInScraper, _super);
     function TuneInScraper(name, radioId) {
@@ -18,16 +16,15 @@ var TuneInScraper = (function (_super) {
     TuneInScraper.prototype.getUrl = function () {
         return this.url;
     };
-
     TuneInScraper.prototype.parseCheerio = function ($, callback) {
         var nowPlaying = $('#nowPlayingInfo div.now-playing');
         var song = nowPlaying.next().text().trim();
         var splitSong = song.split(" - ");
-
         if (splitSong.length < 2) {
             winston.warn("TuneInScraper: Could not split song " + song);
             callback(null, { Artist: null, Track: null });
-        } else {
+        }
+        else {
             callback(null, { Artist: splitSong[1].trim(), Track: splitSong[0].trim() });
         }
     };

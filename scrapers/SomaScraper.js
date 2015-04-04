@@ -6,9 +6,7 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 var scrap = require("./CheerioScraper");
-
 var winston = require("winston");
-
 var SomaScraper = (function (_super) {
     __extends(SomaScraper, _super);
     function SomaScraper(name, station) {
@@ -18,38 +16,32 @@ var SomaScraper = (function (_super) {
     SomaScraper.prototype.getUrl = function () {
         return this.url;
     };
-
     SomaScraper.prototype.parseCheerio = function ($, callback) {
         var playlistRows = $('#playinc table tr');
-
         if (playlistRows.length < 2) {
             winston.warn("SomaScraper: Not enough playlist rows (" + playlistRows.length + ")");
             callback(null, { Artist: null, Track: null });
             return;
         }
-
         var firstSongRow = playlistRows.eq(2);
-
         if (firstSongRow.children("td").length < 3) {
             winston.warn("SomaScraper: Not enough playlist cols (" + firstSongRow.children("td").length + ")");
             callback(null, { Artist: null, Track: null });
             return;
         }
-
         var time = firstSongRow.children("td").first().text();
         var artist = firstSongRow.children("td").eq(1).text();
         var song = firstSongRow.children("td").eq(2).text();
-
         if (!time || time == '' || !artist || artist == '' || !song || song == '') {
             winston.warn("SomaScraper: Invalid cols (" + time + "/" + artist + "/" + song + ")");
             callback(null, { Artist: null, Track: null });
             return;
         }
-
         if (time.toLowerCase().indexOf("(now)") == -1) {
             winston.info("SomaScraper did not find a currently playing song");
             callback(null, { Artist: null, Track: null });
-        } else {
+        }
+        else {
             winston.info("SomaScraper found song " + artist + " - " + song);
             callback(null, { Artist: artist, Track: song });
         }

@@ -6,7 +6,6 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 var jsonScrap = require("./JsonScraper");
-
 var Radio2NLScraper = (function (_super) {
     __extends(Radio2NLScraper, _super);
     function Radio2NLScraper(name) {
@@ -15,7 +14,6 @@ var Radio2NLScraper = (function (_super) {
     Radio2NLScraper.prototype.getUrl = function (scraperParam) {
         return "http://www.radio2.nl/block/header/currentsong.json";
     };
-
     Radio2NLScraper.prototype.extractNowPlayingSong = function (jsonData) {
         return {
             Artist: jsonData.data.songfile.artist.trim(),

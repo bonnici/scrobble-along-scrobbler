@@ -6,7 +6,6 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 var jsonScrap = require("./JsonScraper");
-
 var Wave965Scraper = (function (_super) {
     __extends(Wave965Scraper, _super);
     function Wave965Scraper(name) {
@@ -15,12 +14,10 @@ var Wave965Scraper = (function (_super) {
     Wave965Scraper.prototype.getUrl = function (scraperParam) {
         return "http://np.radioplayer.co.uk/qp/v3/onair?rpIds=501&nameSize=200&artistNameSize=200&descriptionSize=200&_=" + new Date().getTime();
     };
-
     Wave965Scraper.prototype.preprocessBody = function (body) {
         // Strip "callback(" from start and ")" from end
         return body.substring(9, body.length - 1);
     };
-
     Wave965Scraper.prototype.extractNowPlayingSong = function (jsonData) {
         for (var i = 0; i < jsonData.results["501"].length; i++) {
             if (jsonData.results["501"][i].type == "PE_E") {

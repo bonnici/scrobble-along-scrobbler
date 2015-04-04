@@ -7,7 +7,6 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 var scrap = require("./Scraper");
-
 var RadionomyScraper = (function (_super) {
     __extends(RadionomyScraper, _super);
     function RadionomyScraper(name, radioId) {
@@ -24,25 +23,23 @@ var RadionomyScraper = (function (_super) {
             _this.parseBody(body, callback);
         });
     };
-
     RadionomyScraper.prototype.parseBody = function (body, callback) {
         if (!body) {
             callback(null, { Artist: null, Track: null });
             return;
         }
-
         // Cheerio & json not working, use regex
         var artistPattern = / artists:'(.*?)'/;
         var artistMatches = artistPattern.exec(body);
         var titlePattern = / title:'(.*?)'/;
         var titleMatches = titlePattern.exec(body);
-
         if (artistMatches && artistMatches.length > 1 && titleMatches && titleMatches.length > 1) {
             callback(null, {
                 Artist: artistMatches[1].trim(),
                 Track: titleMatches[1].trim()
             });
-        } else {
+        }
+        else {
             callback(null, { Artist: null, Track: null });
         }
     };

@@ -6,7 +6,6 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 var jsonScrap = require("./JsonScraper");
-
 var MediaStreamScraper = (function (_super) {
     __extends(MediaStreamScraper, _super);
     function MediaStreamScraper(name, id) {
@@ -16,7 +15,6 @@ var MediaStreamScraper = (function (_super) {
     MediaStreamScraper.prototype.getUrl = function (scraperParam) {
         return this.url;
     };
-
     MediaStreamScraper.prototype.extractNowPlayingSong = function (jsonData) {
         return {
             Artist: jsonData.data.artist.name,

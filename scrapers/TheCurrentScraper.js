@@ -7,9 +7,7 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 var scrap = require("./CheerioScraper");
-
 var winston = require("winston");
-
 var TheCurrentScraper = (function (_super) {
     __extends(TheCurrentScraper, _super);
     function TheCurrentScraper(name) {
@@ -18,32 +16,27 @@ var TheCurrentScraper = (function (_super) {
     TheCurrentScraper.prototype.getUrl = function () {
         return "http://www.thecurrent.org/playlist";
     };
-
     TheCurrentScraper.prototype.parseCheerio = function ($, callback) {
         var playlistRows = $('li#playlist li div.songDetails');
-
         if (playlistRows.length < 1) {
             winston.info("TheCurrentScraper could not find song");
             callback(null, { Artist: null, Track: null });
             return;
         }
-
         var artist = playlistRows.first().find('h5.artist').text();
         var song = playlistRows.first().find('h5.title').text();
-
         if (!artist || !song) {
             winston.info("TheCurrentScraper could not find song");
             callback(null, { Artist: null, Track: null });
             return;
         }
-
         artist = artist.trim();
         song = song.trim();
-
         if (!artist || !song) {
             winston.info("TheCurrentScraper could not find song");
             callback(null, { Artist: null, Track: null });
-        } else {
+        }
+        else {
             winston.info("TheCurrentScraper found song " + artist + " - " + song);
             callback(null, { Artist: artist, Track: song });
         }

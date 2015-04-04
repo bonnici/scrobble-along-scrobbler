@@ -8,7 +8,6 @@ var __extends = this.__extends || function (d, b) {
 };
 var request = require("request");
 var winston = require("winston");
-
 // Abstract base class
 var Scraper = (function () {
     function Scraper(name) {
@@ -19,12 +18,10 @@ var Scraper = (function () {
     Scraper.prototype.fetchAndParse = function (callback, scraperParam) {
         throw new Error("Abstract");
     };
-
     // protected
     Scraper.prototype.fetchUrl = function (fullUrl, callback) {
         this.fetchUrlWithHeaders(fullUrl, null, callback);
     };
-
     // protected
     Scraper.prototype.fetchUrlWithHeaders = function (fullUrl, headers, callback) {
         winston.info("Fetching URL", fullUrl);
@@ -36,19 +33,18 @@ var Scraper = (function () {
                 callback(null, body);
                 return;
             }
-
             if (error) {
                 var errorStr = "Error requesting URL " + fullUrl;
                 winston.error(errorStr, error);
                 callback(errorStr, null);
-            } else {
+            }
+            else {
                 var errorStr = "Bad status code (" + response.statusCode + ") fetching URL " + fullUrl;
                 winston.warn(errorStr);
                 callback(errorStr, null);
             }
         });
     };
-
     Scraper.prototype.capitalize = function (input) {
         return input.replace(/\w\S*/g, function (txt) {
             return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
@@ -57,7 +53,6 @@ var Scraper = (function () {
     return Scraper;
 })();
 exports.Scraper = Scraper;
-
 var DummyScraper = (function (_super) {
     __extends(DummyScraper, _super);
     function DummyScraper(suffix) {

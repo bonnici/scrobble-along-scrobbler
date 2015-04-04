@@ -6,7 +6,6 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 var scrap = require("./CheerioScraper");
-
 var FusionScraper = (function (_super) {
     __extends(FusionScraper, _super);
     function FusionScraper(name, url) {
@@ -15,18 +14,14 @@ var FusionScraper = (function (_super) {
     FusionScraper.prototype.getUrl = function (scraperParam) {
         return "http://load.fusion.fm/" + scraperParam + "/title/nowplaying.php";
     };
-
     FusionScraper.prototype.parseCheerio = function ($, callback) {
         var divs = $('body div div');
-
         if (divs.length < 2) {
             callback(null, { Artist: null, Track: null });
             return;
         }
-
         var track = divs.eq(0).text().trim();
         var artist = divs.eq(1).text().trim();
-
         callback(null, { Artist: artist, Track: track });
     };
     return FusionScraper;

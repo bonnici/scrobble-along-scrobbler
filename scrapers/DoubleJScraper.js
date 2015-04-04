@@ -7,9 +7,7 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 var scrap = require("./JsonScraper");
-
 var winston = require("winston");
-
 var DoubleJScraper = (function (_super) {
     __extends(DoubleJScraper, _super);
     function DoubleJScraper(name) {
@@ -19,15 +17,14 @@ var DoubleJScraper = (function (_super) {
     DoubleJScraper.prototype.getUrl = function (lastfmUsername) {
         return this.url;
     };
-
     DoubleJScraper.prototype.extractNowPlayingSong = function (jsonData) {
         var artistName = jsonData.now.recording.artists[0].name;
         var title = jsonData.now.recording.title;
-
         if (!artistName || !title) {
             winston.warn("DoubleJScraper could not find song");
             return { Artist: null, Track: null };
-        } else {
+        }
+        else {
             winston.info("DoubleJScraper found song " + artistName + " - " + title);
             return { Artist: artistName, Track: title };
         }

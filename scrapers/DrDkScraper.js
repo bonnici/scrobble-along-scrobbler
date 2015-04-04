@@ -5,7 +5,6 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 var scrap = require("./CheerioScraper");
-
 var DrDkScraper = (function (_super) {
     __extends(DrDkScraper, _super);
     function DrDkScraper(name) {
@@ -15,47 +14,39 @@ var DrDkScraper = (function (_super) {
         var url = "http://www.dr.dk/radio/live/" + scraperParam + "/";
         return url;
     };
-
     DrDkScraper.prototype.parseCheerio = function ($, callback) {
         // Can't look for li.now-playing since that class is added after the page loads
         var trackDivs = $('ul.playlist-items li.track');
-
         if (trackDivs.length < 1) {
             callback(null, { Artist: null, Track: null });
             return;
         }
-
         var trackInfo = trackDivs.eq(0).find('div.trackInfo');
-
         if (trackInfo.length < 1) {
             callback(null, { Artist: null, Track: null });
             return;
         }
-
         var trackInfoChildren = trackInfo.eq(0).children();
-
         if (trackInfoChildren.length < 2) {
             callback(null, { Artist: null, Track: null });
             return;
         }
-
         var artistName = '';
         var trackName = '';
-
         // Go through each child to get things like 'feat. X' in the artist name
         trackInfoChildren.each(function (i, elem) {
             var text = $(this).text().trim();
-
             if ($(this).hasClass('track')) {
                 trackName += text + ' ';
-            } else {
+            }
+            else {
                 artistName += text + ' ';
             }
         });
-
         if (trackName && artistName) {
             callback(null, { Artist: artistName.trim(), Track: trackName.trim() });
-        } else {
+        }
+        else {
             callback(null, { Artist: null, Track: null });
         }
     };

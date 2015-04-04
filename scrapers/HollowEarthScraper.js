@@ -6,9 +6,7 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 var scrap = require("./Scraper");
-
 var winston = require("winston");
-
 var HollowEarthScraper = (function (_super) {
     __extends(HollowEarthScraper, _super);
     function HollowEarthScraper(name) {
@@ -26,20 +24,16 @@ var HollowEarthScraper = (function (_super) {
             _this.parseHtml(body, callback);
         });
     };
-
     HollowEarthScraper.prototype.parseHtml = function (body, callback) {
         body = body.replace("\\", "");
         var split = body.split("<br/>");
-
         if (split.length <= 1) {
             winston.info("HollowEarthScraper could not find song");
             callback(null, { Artist: null, Track: null });
             return;
         }
-
         var currentSong = split[1];
         var currentSongSplit = currentSong.split(" - ");
-
         if (currentSongSplit.length >= 2) {
             winston.info("HollowEarthScraper found song " + currentSongSplit[0] + " - " + currentSongSplit[1]);
             callback(null, { Artist: currentSongSplit[0], Track: currentSongSplit[1] });

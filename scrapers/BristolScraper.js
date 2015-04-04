@@ -7,7 +7,6 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 var scrap = require("./CheerioScraper");
-
 var BristolScraper = (function (_super) {
     __extends(BristolScraper, _super);
     function BristolScraper(name) {
@@ -16,14 +15,13 @@ var BristolScraper = (function (_super) {
     BristolScraper.prototype.getUrl = function () {
         return "http://api.radionomy.com/currentsong.cfm?radiouid=f9d055a4-0ce8-4f45-a401-28aed720b2d2&type=xml&cachbuster=" + new Date().getTime();
     };
-
     BristolScraper.prototype.parseCheerio = function ($, callback) {
         var title = $('title').first().text().trim();
         var artist = $('artists').first().text().trim();
-
         if (title && artist) {
             callback(null, { Artist: artist, Track: title });
-        } else {
+        }
+        else {
             callback(null, { Artist: null, Track: null });
         }
     };

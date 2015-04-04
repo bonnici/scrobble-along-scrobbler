@@ -7,10 +7,8 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 var scrap = require("./Scraper");
-
 var cheerio = require("cheerio");
 var winston = require("winston");
-
 var CheerioScraper = (function (_super) {
     __extends(CheerioScraper, _super);
     function CheerioScraper(name) {
@@ -19,11 +17,9 @@ var CheerioScraper = (function (_super) {
     CheerioScraper.prototype.getUrl = function (scraperParam) {
         throw "Abstract Class";
     };
-
     CheerioScraper.prototype.parseCheerio = function ($, callback) {
         throw "Abstract Class";
     };
-
     CheerioScraper.prototype.fetchAndParse = function (callback, scraperParam) {
         var _this = this;
         this.fetchUrl(this.getUrl(scraperParam), function (err, body) {
@@ -31,17 +27,16 @@ var CheerioScraper = (function (_super) {
                 callback(err, null);
                 return;
             }
-
             if (!body) {
                 winston.warn("CheerioScraper: No HTML body");
                 callback(null, { Artist: null, Track: null });
                 return;
             }
-
-            try  {
+            try {
                 var $ = cheerio.load(body);
                 _this.parseCheerio($, callback);
-            } catch (e) {
+            }
+            catch (e) {
                 winston.warn("CheerioScraper: Could not parse HTML");
                 callback("Could not parse HTML", null);
             }

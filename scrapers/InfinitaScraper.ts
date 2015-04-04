@@ -85,7 +85,7 @@ export class InfinitaScraper extends jsonScrap.JsonScraper {
 	}
 
 	extractNowPlayingSong(jsonData:any): song.Song {
-		if (!jsonData || !jsonData.items || !jsonData.items.length > 0 || !jsonData.items[0].song) {
+		if (!jsonData || !jsonData.items || jsonData.items.length == 0 || !jsonData.items[0].song) {
 			winston.error("InfinitaScraper found invalid json ", jsonData);
 			return { Artist: null, Track: null };
 		}

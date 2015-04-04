@@ -7,7 +7,6 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 var scrap = require("./CheerioScraper");
-
 var BluesDebutScraper = (function (_super) {
     __extends(BluesDebutScraper, _super);
     function BluesDebutScraper(name) {
@@ -16,17 +15,15 @@ var BluesDebutScraper = (function (_super) {
     BluesDebutScraper.prototype.getUrl = function () {
         return "http://streamdb4web.securenetsystems.net/player_status_update/BLUSDBUT.xml?randStr=" + Math.random();
     };
-
     BluesDebutScraper.prototype.parseCheerio = function ($, callback) {
         var artistElem = $('playlist artist');
         var titleElem = $('playlist title');
-
         var artist = artistElem.text();
         var title = titleElem.text();
-
         if (artist.trim() && title.trim()) {
             callback(null, { Artist: artist.trim(), Track: title.trim() });
-        } else {
+        }
+        else {
             callback(null, { Artist: null, Track: null });
         }
     };

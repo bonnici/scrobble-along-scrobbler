@@ -2,52 +2,47 @@
 /// <reference path="./definitions/dummy-definitions/lastfm.d.ts"/>
 /// <reference path="./definitions/typescript-node-definitions/winston.d.ts"/>
 var winston = require("winston");
-
 var DummyLastFmDao = (function () {
     function DummyLastFmDao() {
     }
     DummyLastFmDao.prototype.postNowPlaying = function (song, lastFmUsername, session, callback) {
         callback = callback || (function () {
         });
-
         if (song.Artist && song.Track) {
             winston.info("Faking post now playing to user " + lastFmUsername + ", session " + session + " of song:", song);
             callback(null, "OK");
-        } else {
+        }
+        else {
             callback("Invalid song", null);
         }
     };
-
     DummyLastFmDao.prototype.scrobble = function (song, lastFmUsername, session, callback) {
         callback = callback || (function () {
         });
-
         if (song.Artist && song.Track) {
             winston.info("Faking scrobble to user " + lastFmUsername + ", session " + session + " of song:", song);
             callback(null, "OK");
-        } else {
+        }
+        else {
             callback("Invalid song", null);
         }
     };
     return DummyLastFmDao;
 })();
 exports.DummyLastFmDao = DummyLastFmDao;
-
 var LastFmDaoImpl = (function () {
     function LastFmDaoImpl(lastfmNode) {
         this.lastfmNode = lastfmNode;
-        this.POST_NOW_PLAYING_DURATION = 40;
+        this.POST_NOW_PLAYING_DURATION = 40; // in seconds
     }
     LastFmDaoImpl.prototype.postNowPlaying = function (song, lastFmUsername, sessionKey, callback) {
         callback = callback || (function () {
         });
-
         if (!song || !song.Artist || !song.Track || !lastFmUsername || !sessionKey) {
             winston.error("postNowPlaying invalid parameters:", { song: song, lastFmUsername: lastFmUsername, sessionKey: sessionKey });
             callback("Invalid parameters", null);
             return;
         }
-
         var updateOptions = {
             artist: song.Artist,
             track: song.Track,
@@ -66,21 +61,17 @@ var LastFmDaoImpl = (function () {
                 }
             }
         };
-
         var session = this.lastfmNode.session(lastFmUsername, sessionKey);
         this.lastfmNode.update('nowplaying', session, updateOptions);
     };
-
     LastFmDaoImpl.prototype.scrobble = function (song, lastFmUsername, sessionKey, callback) {
         callback = callback || (function () {
         });
-
         if (!song || !song.Artist || !song.Track || !lastFmUsername || !sessionKey) {
             winston.error("scrobble invalid parameters:", { song: song, lastFmUsername: lastFmUsername, sessionKey: sessionKey });
             callback("Invalid parameters", null);
             return;
         }
-
         var updateOptions = {
             artist: song.Artist,
             track: song.Track,
@@ -99,7 +90,6 @@ var LastFmDaoImpl = (function () {
                 }
             }
         };
-
         var session = this.lastfmNode.session(lastFmUsername, sessionKey);
         this.lastfmNode.update('scrobble', session, updateOptions);
     };

@@ -6,9 +6,7 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 var scrap = require("./Scraper");
-
 var winston = require("winston");
-
 var NewtownRadioScraper = (function (_super) {
     __extends(NewtownRadioScraper, _super);
     function NewtownRadioScraper(name) {
@@ -26,26 +24,24 @@ var NewtownRadioScraper = (function (_super) {
             _this.parseHtml(body, callback);
         });
     };
-
     NewtownRadioScraper.prototype.parseHtml = function (body, callback) {
         if (!body) {
             winston.warn("NewtownRadioScraper: No HTML body");
             callback(null, { Artist: null, Track: null });
             return;
         }
-
         // Cheerio not working, use regex
         var artistPattern = /<Artist>(.*?)<\/Artist>/;
         var artistMatches = artistPattern.exec(body);
         var titlePattern = /<Title>(.*?)<\/Title>/;
         var titleMatches = titlePattern.exec(body);
-
         if (artistMatches && artistMatches.length > 1 && titleMatches && titleMatches.length > 1) {
             callback(null, {
                 Artist: artistMatches[1].trim(),
                 Track: titleMatches[1].trim()
             });
-        } else {
+        }
+        else {
             callback(null, {
                 Artist: null,
                 Track: null

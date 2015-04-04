@@ -6,7 +6,6 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 var jsonScrap = require("./JsonScraper");
-
 var FluxFmScraper = (function (_super) {
     __extends(FluxFmScraper, _super);
     function FluxFmScraper(name) {
@@ -15,7 +14,6 @@ var FluxFmScraper = (function (_super) {
     FluxFmScraper.prototype.getUrl = function (scraperParam) {
         return "http://www.fluxfm.de/fluxfm-playlist/api.php?act=list&cuttime=1&limit=1&loc=berlin";
     };
-
     FluxFmScraper.prototype.extractNowPlayingSong = function (jsonData) {
         return {
             Artist: jsonData.tracks[0].artist.trim(),

@@ -7,10 +7,8 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 var scrap = require("./CheerioScraper");
-
 var winston = require("winston");
 var moment = require("moment-timezone");
-
 var CbcRadio3Scraper = (function (_super) {
     __extends(CbcRadio3Scraper, _super);
     function CbcRadio3Scraper(name) {
@@ -20,7 +18,6 @@ var CbcRadio3Scraper = (function (_super) {
         var now = moment().tz("America/New_York");
         return "http://music.cbc.ca/radio3broadcastlogs/radio3broadcastlogs.aspx?broadcastdate=" + now.format("YYYY-MM-DD");
     };
-
     CbcRadio3Scraper.prototype.parseCheerio = function ($, callback) {
         var lastEntry = $('div.logEntryInfo').last();
         if (!lastEntry) {
@@ -28,13 +25,12 @@ var CbcRadio3Scraper = (function (_super) {
             callback(null, { Artist: null, Track: null });
             return;
         }
-
         var splitInfo = lastEntry.text().trim().split("\n");
-
         if (splitInfo.length != 2) {
             winston.warn("CbcRadio3Scraper: Invalid entry info", splitInfo);
             callback(null, { Artist: null, Track: null });
-        } else {
+        }
+        else {
             callback(null, { Artist: splitInfo[0].trim(), Track: splitInfo[1].trim() });
         }
     };

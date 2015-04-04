@@ -6,7 +6,6 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 var jsonScrap = require("./JsonScraper");
-
 var KcrwEclectic24Scraper = (function (_super) {
     __extends(KcrwEclectic24Scraper, _super);
     function KcrwEclectic24Scraper(name) {
@@ -15,7 +14,6 @@ var KcrwEclectic24Scraper = (function (_super) {
     KcrwEclectic24Scraper.prototype.getUrl = function (lastfmUsername) {
         return "http://www.kcrw.com/json_song";
     };
-
     KcrwEclectic24Scraper.prototype.extractNowPlayingSong = function (jsonData) {
         return { Artist: jsonData.artist, Track: jsonData.title };
     };

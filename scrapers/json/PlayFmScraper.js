@@ -12,10 +12,12 @@ var PlayFmScraper = (function (_super) {
         _super.call(this, name);
     }
     PlayFmScraper.prototype.getUrl = function (lastfmUsername) {
-        return "http://nowplaying.playfm.cl/api/station/4f47e1a2ee909d6c7b0001db/nowplaying";
+        //return "http://nowplaying.playfm.cl/api/station/4f47e1a2ee909d6c7b0001db/nowplaying";
+        return "http://playfm-int.janus.cl/app_janus/site/canciones/last.json?_=" + new Date().getTime();
     };
     PlayFmScraper.prototype.extractNowPlayingSong = function (jsonData) {
-        return { Artist: jsonData.data.artist.name, Track: jsonData.data.song.title };
+        //return { Artist: jsonData.data.artist.name, Track: jsonData.data.song.title };
+        return { Artist: this.capitalize(jsonData[0].artistName), Track: this.capitalize(jsonData[0].titleName) };
     };
     return PlayFmScraper;
 })(scrap.JsonScraper);

@@ -31,9 +31,9 @@ var DummyLastFmDao = (function () {
 })();
 exports.DummyLastFmDao = DummyLastFmDao;
 var LastFmDaoImpl = (function () {
-    function LastFmDaoImpl(lastfmNode) {
+    function LastFmDaoImpl(lastfmNode, postNowPlayingLength) {
         this.lastfmNode = lastfmNode;
-        this.POST_NOW_PLAYING_DURATION = 40; // in seconds
+        this.postNowPlayingLength = postNowPlayingLength;
     }
     LastFmDaoImpl.prototype.postNowPlaying = function (song, lastFmUsername, sessionKey, callback) {
         callback = callback || (function () {
@@ -46,7 +46,7 @@ var LastFmDaoImpl = (function () {
         var updateOptions = {
             artist: song.Artist,
             track: song.Track,
-            duration: this.POST_NOW_PLAYING_DURATION,
+            duration: this.postNowPlayingLength,
             handlers: {
                 success: function (data) {
                     winston.info("Success posting now playing for " + lastFmUsername, song);

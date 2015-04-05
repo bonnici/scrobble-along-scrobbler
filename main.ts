@@ -80,6 +80,7 @@ var SHOULD_SCROBBLE = process.env.SA_SHOULD_SCROBBLE;
 var NODE_ENV = process.env.NODE_ENV;
 var TESTING_MODE = process.env.SA_TESTING_MODE;
 var TESTING_MODE_SCRAPERS = process.env.SA_TESTING_MODE_SCRAPERS; // e.g. KEXP,DoubleJ,DrDk|p3
+var TESTING_MODE_USE_LISTENERS = process.env.SA_TESTING_MODE_USE_LISTENERS;
 
 if (!STATION_CRYPTO_KEY || !USER_CRYPTO_KEY || !MONGO_URI || !LASTFM_API_KEY || !LASTFM_SECRET || !SHOULD_SCROBBLE
 	|| !NODE_ENV) {
@@ -100,7 +101,16 @@ else {
 winston.remove(winston.transports.Console);
 winston.add(winston.transports.Console, winstonOpts);
 
-var interval = 30000; // 30 seconds
+// All times are in seconds
+var newSongCheckInterval = 30; // How often the scrapers should check for a new song
+
+// When a new song is found, it is posted as now playing for this long
+var postNowPlayingLength = 5*60;
+
+// We should skip posting now playing if the same song was already posted within this time frame.
+// This is timed so that we definitely post a now playing before the last post expires.
+var skipPostNowPlayingTime = postNowPlayingLength - newSongCheckInterval - 1;
+
 var scrapers:{ [index: string]: scrap.Scraper; } = {
 	KEXP: new kexp.KexpScraper("KEXP"),
 	NNM: new nnm.NnmScraper("NNM"),
@@ -177,7 +187,7 @@ var lastfmNode = new lastfm.LastFmNode({
 	useragent: 'scrobblealong/v0.0.1 ScrobbleAlong'
 });
 
-var lastFmDao = SHOULD_SCROBBLE == "true" ? new lfmDao.LastFmDaoImpl(lastfmNode) : new lfmDao.DummyLastFmDao();
+var lastFmDao = SHOULD_SCROBBLE == "true" ? new lfmDao.LastFmDaoImpl(lastfmNode, postNowPlayingLength) : new lfmDao.DummyLastFmDao();
 
 if (TESTING_MODE == "once" || TESTING_MODE == "continuous") {
 	runTestMode(TESTING_MODE == "continuous");
@@ -195,11 +205,11 @@ function runScrobbler() {
 
 		var stationDao = new statDao.MongoStationDao(dbClient, new crypt.CrypterImpl(STATION_CRYPTO_KEY));
 		var userDao = new usrDao.MongoUserDao(dbClient, new crypt.CrypterImpl(USER_CRYPTO_KEY));
-		var scrobbler = new scrob.Scrobbler(lastFmDao, userDao, stationDao);
+		var scrobbler = new scrob.Scrobbler(lastFmDao, userDao, stationDao, skipPostNowPlayingTime);
 
 		setInterval(() => {
 			scrapeAndScrobbleAllStations(stationDao, userDao);
-		}, interval);
+		}, newSongCheckInterval * 1000);
 		scrapeAndScrobbleAllStations(stationDao, userDao);
 
 		function scrapeAndScrobbleAllStations(stationDao, userDao) {
@@ -264,18 +274,19 @@ function runTestMode(continuous: boolean) {
 			ScraperParam: scraperParam
 		});
 
-		usersListening[scraperName] = [
-			{ UserName: scraperName + "Listener1", Session: scraperName + "Listener1Session" },
-			{ UserName: scraperName + "Listener2", Session: scraperName + "Listener2Session" }
-		];
+        if (TESTING_MODE_USE_LISTENERS == "true") {
+            usersListening[scraperName] = [
+                {UserName: scraperName + "Listener1", Session: scraperName + "Listener1Session"},
+                {UserName: scraperName + "Listener2", Session: scraperName + "Listener2Session"}
+            ];
+        }
 	}
 
-	var lastFmDao = new lfmDao.DummyLastFmDao();
 	var userDao = new usrDao.DummyUserDao();
-	var scrobbler = new scrob.Scrobbler(lastFmDao, userDao);
+	var scrobbler = new scrob.Scrobbler(lastFmDao, userDao, null, skipPostNowPlayingTime);
 
 	if (continuous) {
-		setInterval(() => { testScrapeAndScrobble(); }, interval);
+		setInterval(() => { testScrapeAndScrobble(); }, newSongCheckInterval * 1000);
 	}
 	testScrapeAndScrobble();
 

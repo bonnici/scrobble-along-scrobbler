@@ -19,14 +19,18 @@ var MIN_SCROBBLE_TIME = 35 * 1000; // The minimum time a song has to play before
 class ScrobblerStationData {
 	public stationName: string;
 	public nowPlayingSong: song.Song;
+    public lastNowPlayingSong: song.Song;
 	public lastScrobbledSong: song.Song;
 	public lastUpdatedTime: number;
+    public lastPostedNowPlayingTime: number;
 
 	constructor(stationName: string) {
 		this.stationName = stationName,
 		this.nowPlayingSong = { Artist: null, Track: null };
+        this.lastNowPlayingSong = null;
 		this.lastScrobbledSong = null;
 		this.lastUpdatedTime = null;
+        this.lastPostedNowPlayingTime = null;
 	}
 };
 
@@ -35,11 +39,13 @@ export class Scrobbler {
 	private lastFmDao:lfmDao.LastFmDao;
 	private userDao:usrDao.UserDao;
 	private stationDao:statDao.StationDao;
+	private skipPostNowPlayingTime:number;
 
-	constructor(lastFmDao:lfmDao.LastFmDao, userDao:usrDao.UserDao, stationDao?:statDao.StationDao) {
+	constructor(lastFmDao:lfmDao.LastFmDao, userDao:usrDao.UserDao, stationDao:statDao.StationDao, skipPostNowPlayingTime:number) {
 		this.lastFmDao = lastFmDao;
 		this.userDao = userDao;
 		this.stationDao = stationDao;
+		this.skipPostNowPlayingTime = skipPostNowPlayingTime;
 		this.stationData = {};
 	}
 
@@ -178,6 +184,21 @@ export class Scrobbler {
 			return;
 		}
 
+        // Make sure it's not the same as the one we posted last, unless it was posted a long time ago
+        if (stationData.lastNowPlayingSong != null
+            && stationData.nowPlayingSong.Artist == stationData.lastNowPlayingSong.Artist
+            && stationData.nowPlayingSong.Track == stationData.lastNowPlayingSong.Track) {
+
+            winston.info("Found same song for station " + station.StationName + ": " + stationData.nowPlayingSong.Artist + " - " + stationData.nowPlayingSong.Track);
+
+            if (stationData.lastPostedNowPlayingTime != null
+                && stationData.lastPostedNowPlayingTime > (new Date().getTime() - (this.skipPostNowPlayingTime * 1000))) {
+
+                winston.info("Same song was already posted recently, skipping");
+                return;
+            }
+        }
+
 		if (this.stationDao) {
 			this.stationDao.updateStationNowPlayingSong(station.StationName, stationData.nowPlayingSong, (err) => {
 				if (err) {
@@ -192,6 +213,8 @@ export class Scrobbler {
 
 		if (station.Session) {
 			this.lastFmDao.postNowPlaying(stationData.nowPlayingSong, station.StationName, station.Session);
+            stationData.lastPostedNowPlayingTime = new Date().getTime();
+            stationData.lastNowPlayingSong = stationData.nowPlayingSong;
 		}
 
 		_.each(users, (user) => {

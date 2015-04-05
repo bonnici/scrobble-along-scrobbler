@@ -8,17 +8,20 @@ var MIN_SCROBBLE_TIME = 35 * 1000; // The minimum time a song has to play before
 var ScrobblerStationData = (function () {
     function ScrobblerStationData(stationName) {
         this.stationName = stationName, this.nowPlayingSong = { Artist: null, Track: null };
+        this.lastNowPlayingSong = null;
         this.lastScrobbledSong = null;
         this.lastUpdatedTime = null;
+        this.lastPostedNowPlayingTime = null;
     }
     return ScrobblerStationData;
 })();
 ;
 var Scrobbler = (function () {
-    function Scrobbler(lastFmDao, userDao, stationDao) {
+    function Scrobbler(lastFmDao, userDao, stationDao, skipPostNowPlayingTime) {
         this.lastFmDao = lastFmDao;
         this.userDao = userDao;
         this.stationDao = stationDao;
+        this.skipPostNowPlayingTime = skipPostNowPlayingTime;
         this.stationData = {};
     }
     Scrobbler.prototype.scrapeAndScrobble = function (scraper, station, users, timestamp) {
@@ -129,6 +132,14 @@ var Scrobbler = (function () {
         if (!(stationData.nowPlayingSong)) {
             return;
         }
+        // Make sure it's not the same as the one we posted last, unless it was posted a long time ago
+        if (stationData.lastNowPlayingSong != null && stationData.nowPlayingSong.Artist == stationData.lastNowPlayingSong.Artist && stationData.nowPlayingSong.Track == stationData.lastNowPlayingSong.Track) {
+            winston.info("Found same song for station " + station.StationName + ": " + stationData.nowPlayingSong.Artist + " - " + stationData.nowPlayingSong.Track);
+            if (stationData.lastPostedNowPlayingTime != null && stationData.lastPostedNowPlayingTime > (new Date().getTime() - (this.skipPostNowPlayingTime * 1000))) {
+                winston.info("Same song was already posted recently, skipping");
+                return;
+            }
+        }
         if (this.stationDao) {
             this.stationDao.updateStationNowPlayingSong(station.StationName, stationData.nowPlayingSong, function (err) {
                 if (err) {
@@ -141,6 +152,8 @@ var Scrobbler = (function () {
         }
         if (station.Session) {
             this.lastFmDao.postNowPlaying(stationData.nowPlayingSong, station.StationName, station.Session);
+            stationData.lastPostedNowPlayingTime = new Date().getTime();
+            stationData.lastNowPlayingSong = stationData.nowPlayingSong;
         }
         _.each(users, function (user) {
             if (user) {

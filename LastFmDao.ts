@@ -40,9 +40,11 @@ export class DummyLastFmDao implements LastFmDao {
 }
 
 export class LastFmDaoImpl implements LastFmDao {
-	private POST_NOW_PLAYING_DURATION = 40; // in seconds
+	private postNowPlayingLength: number;
 
-	constructor(private lastfmNode: lastfm.LastFmNode) {}
+	constructor(private lastfmNode: lastfm.LastFmNode, postNowPlayingLength: number) {
+		this.postNowPlayingLength = postNowPlayingLength;
+	}
 
 	postNowPlaying(song:s.Song, lastFmUsername:string, sessionKey:string, callback?:(err, status)=>void): void {
 		callback = callback || (() => {});
@@ -56,7 +58,7 @@ export class LastFmDaoImpl implements LastFmDao {
 		var updateOptions = {
 			artist: song.Artist,
 			track: song.Track,
-			duration: this.POST_NOW_PLAYING_DURATION,
+			duration: this.postNowPlayingLength,
 			handlers: {
 				success: function (data) {
 					winston.info("Success posting now playing for " + lastFmUsername, song);

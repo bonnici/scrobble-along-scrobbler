@@ -63,6 +63,7 @@ var wave965 = require("./scrapers/json/Wave965Scraper");
 var wfku = require("./scrapers/json/WfkuScraper");
 var kfjc = require("./scrapers/json/KfjcScraper");
 var allsongs = require("./scrapers/json/AllSongs247Scraper");
+var xray = require("./scrapers/json/XrayScraper");
 // Required environment variables
 var STATION_CRYPTO_KEY = process.env.SA_STATION_CRYPTO_KEY;
 var USER_CRYPTO_KEY = process.env.SA_USER_CRYPTO_KEY;
@@ -166,7 +167,8 @@ var scrapers = {
     Wave965: new wave965.Wave965Scraper("Wave965"),
     ChillDAB: new chilldab.ChillDABScraper("ChillDAB"),
     KFJC: new kfjc.KfjcScraper("KFJC"),
-    AllSongs: new allsongs.AllSongs247Scraper("AllSongs")
+    AllSongs: new allsongs.AllSongs247Scraper("AllSongs"),
+    Xray: new xray.XrayScraper("Xray")
 };
 var lastfmNode = new lastfm.LastFmNode({
     api_key: LASTFM_API_KEY,

@@ -55,7 +55,6 @@ var lfmNoNowPlayingScraper = require("./scrapers/json/LastfmNoNowPlayingScraper"
 var lfmScraper = require("./scrapers/json/LastfmScraper");
 var mediaStream = require("./scrapers/json/MediaStreamScraper");
 var newLfmScraper = require("./scrapers/json/NewLastfmScraper");
-var playFm = require("./scrapers/json/PlayFmScraper");
 var punkFm = require("./scrapers/json/PunkFmScraper");
 var radio2Nl = require("./scrapers/json/Radio2NLScraper");
 var rockFm = require("./scrapers/json/RockFmScraper");
@@ -64,6 +63,7 @@ var wfku = require("./scrapers/json/WfkuScraper");
 var kfjc = require("./scrapers/json/KfjcScraper");
 var allsongs = require("./scrapers/json/AllSongs247Scraper");
 var xray = require("./scrapers/json/XrayScraper");
+var janus = require("./scrapers/json/JanusScraper");
 // Required environment variables
 var STATION_CRYPTO_KEY = process.env.SA_STATION_CRYPTO_KEY;
 var USER_CRYPTO_KEY = process.env.SA_USER_CRYPTO_KEY;
@@ -123,14 +123,14 @@ var scrapers = {
     DigMusic: new digMusic.DigMusicScraper("DigMusic"),
     DoubleJ: new doubleJ.DoubleJScraper("DoubleJ"),
     WZBC: new wzbc.WzbcScraper("WZBC"),
-    PlayFM: new playFm.PlayFmScraper("PlayFM"),
+    PlayFM: new janus.JanusScraper("PlayFM", "playfm"),
     ABCJazz: new digMusic.DigMusicScraper("ABCJazz", "http://abcjazz.net.au/player-data.php"),
     TheCurrent: new theCurrent.TheCurrentScraper("TheCurrent"),
     LastFM: new lfmScraper.LastfmScraper("LastFM", LASTFM_API_KEY),
     LastFMIgnoreListening: new lfmNoNowPlayingScraper.LastfmNoNowPlayingScraper("LastFMIgnoreListening", LASTFM_API_KEY),
     NewLastFM: new newLfmScraper.NewLastfmScraper("NewLastFM", LASTFM_API_KEY),
     Infinita: new infinita.InfinitaScraper("Infinita"),
-    Oasis: new mediaStream.MediaStreamScraper("Oasis", "5124ed51ed596bde7d000016"),
+    Oasis: new janus.JanusScraper("Oasis", "oasisfm"),
     Horizonte: new mediaStream.MediaStreamScraper("Horizonte", "5124f1b4ed596bde7d000017"),
     NewtownRadio: new newtown.NewtownRadioScraper("NewtownRadio"),
     Radio2NL: new radio2Nl.Radio2NLScraper("Radio2NL"),
@@ -143,7 +143,7 @@ var scrapers = {
     WFMUIchiban: new wfmu.WfmuScraper("WFMUIchiban", "6"),
     WFMUUbu: new wfmu.WfmuScraper("WFMUUbu", "7"),
     WFMUBored: new wfmu.WfmuScraper("WFMUBored", "8"),
-    Sonar: new mediaStream.MediaStreamScraper("Sonar", "4f34676f86d21c6572001ab9"),
+    Sonar: new janus.JanusScraper("Sonar", "sonarfm"),
     RockFM: new rockFm.RockFmScraper("RockFM"),
     FluxFM: new fluxFm.FluxFmScraper("FluxFMRadio"),
     CBCRadio2: new cbcRadio2.CbcRadio2Scraper("CBCRadio2"),

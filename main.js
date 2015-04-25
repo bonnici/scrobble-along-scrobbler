@@ -19,6 +19,7 @@ var nnm = require("./scrapers/NnmScraper");
 var radionomy = require("./scrapers/RadionomyScraper");
 var wfuv = require("./scrapers/WfuvScraper");
 var wzbc = require("./scrapers/WzbcScraper");
+var belly = require("./scrapers/BellyUp4BluesScraper");
 var andys80s = require("./scrapers/cheerio/Andys80sScraper");
 var bluesdebut = require("./scrapers/cheerio/BluesDebutScraper");
 var bristol = require("./scrapers/cheerio/BristolScraper");
@@ -165,10 +166,12 @@ var scrapers = {
     Go963: new go963.Go963Scraper("Go963"),
     LuvuFm: new radionomy.RadionomyScraper("LuvuFm", "850b8904-2108-4ed7-a01c-dfde83b22ae8"),
     Wave965: new wave965.Wave965Scraper("Wave965"),
+    //Wave965: new wave965Html.Wave965HtmlScraper("Wave965"),
     ChillDAB: new chilldab.ChillDABScraper("ChillDAB"),
     KFJC: new kfjc.KfjcScraper("KFJC"),
     AllSongs: new allsongs.AllSongs247Scraper("AllSongs"),
-    Xray: new xray.XrayScraper("Xray")
+    Xray: new xray.XrayScraper("Xray"),
+    BellyUp4Blues: new belly.BellyUp4BluesScraper("BellyUp4Blues")
 };
 var lastfmNode = new lastfm.LastFmNode({
     api_key: LASTFM_API_KEY,

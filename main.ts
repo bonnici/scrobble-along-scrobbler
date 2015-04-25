@@ -25,6 +25,7 @@ import nnm = require("./scrapers/NnmScraper");
 import radionomy = require("./scrapers/RadionomyScraper");
 import wfuv = require("./scrapers/WfuvScraper");
 import wzbc = require("./scrapers/WzbcScraper");
+import belly = require("./scrapers/BellyUp4BluesScraper");
 
 import andys80s = require("./scrapers/cheerio/Andys80sScraper");
 import bluesdebut = require("./scrapers/cheerio/BluesDebutScraper");
@@ -46,6 +47,7 @@ import theEnd = require("./scrapers/cheerio/TheEndHtmlScraper");
 import tunein = require("./scrapers/cheerio/TuneInScraper");
 import wfmu = require("./scrapers/cheerio/WfmuScraper");
 import xfm = require("./scrapers/cheerio/XfmScraper");
+import wave965Html = require("./scrapers/cheerio/Wave965HtmlScraper");
 
 import amazing = require("./scrapers/json/AmazingRadioScraper");
 import chronisch = require("./scrapers/json/ChronischScraper");
@@ -182,10 +184,12 @@ var scrapers:{ [index: string]: scrap.Scraper; } = {
     Go963: new go963.Go963Scraper("Go963"),
     LuvuFm: new radionomy.RadionomyScraper("LuvuFm", "850b8904-2108-4ed7-a01c-dfde83b22ae8"),
     Wave965: new wave965.Wave965Scraper("Wave965"),
+    //Wave965: new wave965Html.Wave965HtmlScraper("Wave965"),
     ChillDAB: new chilldab.ChillDABScraper("ChillDAB"),
     KFJC: new kfjc.KfjcScraper("KFJC"),
     AllSongs: new allsongs.AllSongs247Scraper("AllSongs"),
-    Xray: new xray.XrayScraper("Xray")
+    Xray: new xray.XrayScraper("Xray"),
+    BellyUp4Blues: new belly.BellyUp4BluesScraper("BellyUp4Blues")
 };
 
 var lastfmNode = new lastfm.LastFmNode({

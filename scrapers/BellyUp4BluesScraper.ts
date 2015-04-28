@@ -6,11 +6,15 @@ import song = require("../Song");
 
 import _ = require("underscore");
 import winston = require("winston");
+import htmlentities = require("html-entities");
 
 export class BellyUp4BluesScraper extends scrap.Scraper {
 
+    private entities: any;
+
     constructor(name:string) {
         super(name);
+        this.entities = new htmlentities.XmlEntities();
     }
 
     public fetchAndParse(callback: (err, newNowPlayingSong: song.Song, justScrobbledSong?:song.Song) => void): void {
@@ -33,8 +37,8 @@ export class BellyUp4BluesScraper extends scrap.Scraper {
 
         var parts = body.split(" - ");
 
-        if (parts.length >= 2) {
-            callback(null, { Artist: parts[0], Track: parts[1] });
+        if (parts.length >= 2 && parts[0] && parts[1]) {
+            callback(null, { Artist: this.entities.decode(parts[0].trim()), Track: this.entities.decode(parts[1].trim()) });
         }
         else {
             callback(null, { Artist: null, Track: null });

@@ -7,10 +7,12 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 var scrap = require("./Scraper");
+var htmlentities = require("html-entities");
 var BellyUp4BluesScraper = (function (_super) {
     __extends(BellyUp4BluesScraper, _super);
     function BellyUp4BluesScraper(name) {
         _super.call(this, name);
+        this.entities = new htmlentities.XmlEntities();
     }
     BellyUp4BluesScraper.prototype.fetchAndParse = function (callback) {
         var _this = this;
@@ -29,8 +31,8 @@ var BellyUp4BluesScraper = (function (_super) {
             return;
         }
         var parts = body.split(" - ");
-        if (parts.length >= 2) {
-            callback(null, { Artist: parts[0], Track: parts[1] });
+        if (parts.length >= 2 && parts[0] && parts[1]) {
+            callback(null, { Artist: this.entities.decode(parts[0].trim()), Track: this.entities.decode(parts[1].trim()) });
         }
         else {
             callback(null, { Artist: null, Track: null });

@@ -10,9 +10,9 @@ import winston = require("winston");
 export class DoubleJScraper extends scrap.JsonScraper {
 	private url: string;
 
-	constructor(name:string) {
+	constructor(name:string, url?:string) {
 		super(name);
-		this.url = "http://music.abcradio.net.au/api/v1/plays/doublej/now.json";
+		this.url = url || "http://music.abcradio.net.au/api/v1/plays/doublej/now.json";
 	}
 
 	getUrl(lastfmUsername?:string): string {

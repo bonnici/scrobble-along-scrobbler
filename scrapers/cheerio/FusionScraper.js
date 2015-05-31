@@ -12,16 +12,22 @@ var FusionScraper = (function (_super) {
         _super.call(this, name);
     }
     FusionScraper.prototype.getUrl = function (scraperParam) {
-        return "http://load.fusion.fm/" + scraperParam + "/title/nowplaying.php";
+        return "http://load.nexusradio.fm/" + scraperParam + "/title/nowplaying.php";
     };
     FusionScraper.prototype.parseCheerio = function ($, callback) {
         var divs = $('body div div');
-        if (divs.length < 2) {
+        if (divs.length < 1) {
             callback(null, { Artist: null, Track: null });
             return;
         }
-        var track = divs.eq(0).text().trim();
-        var artist = divs.eq(1).text().trim();
+        var trackAndArtist = divs.eq(0).text().trim();
+        var dashIndex = trackAndArtist.indexOf("-");
+        if (dashIndex < 0) {
+            callback(null, { Artist: null, Track: null });
+            return;
+        }
+        var track = trackAndArtist.substring(0, dashIndex).trim();
+        var artist = trackAndArtist.substring(dashIndex + 1).trim();
         callback(null, { Artist: artist, Track: track });
     };
     return FusionScraper;

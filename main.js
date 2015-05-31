@@ -125,7 +125,7 @@ var scrapers = {
     DoubleJ: new doubleJ.DoubleJScraper("DoubleJ"),
     WZBC: new wzbc.WzbcScraper("WZBC"),
     PlayFM: new janus.JanusScraper("PlayFM", "playfm"),
-    ABCJazz: new digMusic.DigMusicScraper("ABCJazz", "http://abcjazz.net.au/player-data.php"),
+    ABCJazz: new doubleJ.DoubleJScraper("ABCJazz", "http://music.abcradio.net.au/api/v1/plays/jazz/now.json"),
     TheCurrent: new theCurrent.TheCurrentScraper("TheCurrent"),
     LastFM: new lfmScraper.LastfmScraper("LastFM", LASTFM_API_KEY),
     LastFMIgnoreListening: new lfmNoNowPlayingScraper.LastfmNoNowPlayingScraper("LastFMIgnoreListening", LASTFM_API_KEY),

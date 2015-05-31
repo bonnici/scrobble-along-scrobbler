@@ -10,9 +10,9 @@ var scrap = require("./JsonScraper");
 var winston = require("winston");
 var DoubleJScraper = (function (_super) {
     __extends(DoubleJScraper, _super);
-    function DoubleJScraper(name) {
+    function DoubleJScraper(name, url) {
         _super.call(this, name);
-        this.url = "http://music.abcradio.net.au/api/v1/plays/doublej/now.json";
+        this.url = url || "http://music.abcradio.net.au/api/v1/plays/doublej/now.json";
     }
     DoubleJScraper.prototype.getUrl = function (lastfmUsername) {
         return this.url;

@@ -65,6 +65,7 @@ var kfjc = require("./scrapers/json/KfjcScraper");
 var allsongs = require("./scrapers/json/AllSongs247Scraper");
 var xray = require("./scrapers/json/XrayScraper");
 var janus = require("./scrapers/json/JanusScraper");
+var kgsr = require("./scrapers/json/KGSRScraper");
 // Required environment variables
 var STATION_CRYPTO_KEY = process.env.SA_STATION_CRYPTO_KEY;
 var USER_CRYPTO_KEY = process.env.SA_USER_CRYPTO_KEY;
@@ -171,7 +172,9 @@ var scrapers = {
     KFJC: new kfjc.KfjcScraper("KFJC"),
     AllSongs: new allsongs.AllSongs247Scraper("AllSongs"),
     Xray: new xray.XrayScraper("Xray"),
-    BellyUp4Blues: new belly.BellyUp4BluesScraper("BellyUp4Blues")
+    BellyUp4Blues: new belly.BellyUp4BluesScraper("BellyUp4Blues"),
+    GemRadio: new tunein.TuneInScraper("GemRadio", "Gem-Radio-New-Wave-s183330"),
+    KGSR: new kgsr.KGSRScraper("KGSR")
 };
 var lastfmNode = new lastfm.LastFmNode({
     api_key: LASTFM_API_KEY,

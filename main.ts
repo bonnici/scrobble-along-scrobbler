@@ -75,6 +75,7 @@ import kfjc = require("./scrapers/json/KfjcScraper");
 import allsongs = require("./scrapers/json/AllSongs247Scraper");
 import xray = require("./scrapers/json/XrayScraper");
 import janus = require("./scrapers/json/JanusScraper");
+import kgsr = require("./scrapers/json/KGSRScraper");
 
 // Required environment variables
 var STATION_CRYPTO_KEY = process.env.SA_STATION_CRYPTO_KEY;
@@ -189,7 +190,9 @@ var scrapers:{ [index: string]: scrap.Scraper; } = {
     KFJC: new kfjc.KfjcScraper("KFJC"),
     AllSongs: new allsongs.AllSongs247Scraper("AllSongs"),
     Xray: new xray.XrayScraper("Xray"),
-    BellyUp4Blues: new belly.BellyUp4BluesScraper("BellyUp4Blues")
+    BellyUp4Blues: new belly.BellyUp4BluesScraper("BellyUp4Blues"),
+    GemRadio: new tunein.TuneInScraper("GemRadio", "Gem-Radio-New-Wave-s183330"),
+    KGSR: new kgsr.KGSRScraper("KGSR")
 };
 
 var lastfmNode = new lastfm.LastFmNode({

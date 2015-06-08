@@ -20,6 +20,7 @@ var radionomy = require("./scrapers/RadionomyScraper");
 var wfuv = require("./scrapers/WfuvScraper");
 var wzbc = require("./scrapers/WzbcScraper");
 var belly = require("./scrapers/BellyUp4BluesScraper");
+var noesfm = require("./scrapers/NoEsFmScraper");
 var andys80s = require("./scrapers/cheerio/Andys80sScraper");
 var bluesdebut = require("./scrapers/cheerio/BluesDebutScraper");
 var bristol = require("./scrapers/cheerio/BristolScraper");
@@ -174,7 +175,8 @@ var scrapers = {
     Xray: new xray.XrayScraper("Xray"),
     BellyUp4Blues: new belly.BellyUp4BluesScraper("BellyUp4Blues"),
     GemRadio: new tunein.TuneInScraper("GemRadio", "Gem-Radio-New-Wave-s183330"),
-    KGSR: new kgsr.KGSRScraper("KGSR")
+    KGSR: new kgsr.KGSRScraper("KGSR"),
+    NoEsFm: new noesfm.NoEsFmScraper("NoEsFm")
 };
 var lastfmNode = new lastfm.LastFmNode({
     api_key: LASTFM_API_KEY,

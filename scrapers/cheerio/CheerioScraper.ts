@@ -8,9 +8,11 @@ import cheerio = require("cheerio");
 import winston = require("winston");
 
 export class CheerioScraper extends scrap.Scraper {
+    public xmlMode: boolean;
 
 	constructor(name:string) {
 		super(name);
+        this.xmlMode = false;
 	}
 
 	public getUrl(scraperParam?:string): string {
@@ -35,7 +37,7 @@ export class CheerioScraper extends scrap.Scraper {
             }
 
             try {
-                var $ = cheerio.load(body);
+                var $ = cheerio.load(body, { xmlMode: this.xmlMode });
                 this.parseCheerio($, callback);
             }
             catch (e) {

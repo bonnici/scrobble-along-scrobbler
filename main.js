@@ -21,10 +21,11 @@ var wfuv = require("./scrapers/WfuvScraper");
 var wzbc = require("./scrapers/WzbcScraper");
 var belly = require("./scrapers/BellyUp4BluesScraper");
 var noesfm = require("./scrapers/NoEsFmScraper");
+var marci = require("./scrapers/MarciScraper");
 var andys80s = require("./scrapers/cheerio/Andys80sScraper");
 var bluesdebut = require("./scrapers/cheerio/BluesDebutScraper");
 var bristol = require("./scrapers/cheerio/BristolScraper");
-var bytefm = require("./scrapers/cheerio/ByteFmScraper");
+//import bytefm = require("./scrapers/cheerio/ByteFmScraper");
 var c895 = require("./scrapers/cheerio/C895Scraper");
 var cbcRadio2 = require("./scrapers/cheerio/CbcRadio2Scraper");
 var cbcRadio3 = require("./scrapers/cheerio/CbcRadio3Scraper");
@@ -41,6 +42,8 @@ var theEnd = require("./scrapers/cheerio/TheEndHtmlScraper");
 var tunein = require("./scrapers/cheerio/TuneInScraper");
 var wfmu = require("./scrapers/cheerio/WfmuScraper");
 var xfm = require("./scrapers/cheerio/XfmScraper");
+var vodafone = require("./scrapers/cheerio/VodafoneFmScraper");
+var spiff = require("./scrapers/cheerio/SpiffRadioScraper");
 var amazing = require("./scrapers/json/AmazingRadioScraper");
 var chronisch = require("./scrapers/json/ChronischScraper");
 var cod = require("./scrapers/json/CoreOfDestructionScraper");
@@ -67,6 +70,8 @@ var allsongs = require("./scrapers/json/AllSongs247Scraper");
 var xray = require("./scrapers/json/XrayScraper");
 var janus = require("./scrapers/json/JanusScraper");
 var kgsr = require("./scrapers/json/KGSRScraper");
+var bytefm = require("./scrapers/json/ByteFmJsonScraper");
+var sixforty = require("./scrapers/json/SixFortyScraper");
 // Required environment variables
 var STATION_CRYPTO_KEY = process.env.SA_STATION_CRYPTO_KEY;
 var USER_CRYPTO_KEY = process.env.SA_USER_CRYPTO_KEY;
@@ -159,7 +164,8 @@ var scrapers = {
     Bristol: new bristol.BristolScraper("Bristol"),
     Fip: new fip.FipScraper("Fip", "http://www.fipradio.fr/sites/default/files/import_si/si_titre_antenne/FIP_player_current.json?_="),
     Chronisch: new chronisch.ChronischScraper("Chronisch"),
-    ByteFM: new bytefm.ByteFmScraper("ByteFM"),
+    //ByteFM: new bytefm.ByteFmScraper("ByteFM"),
+    ByteFM: new bytefm.ByteFmJsonScraper("ByteFM"),
     RadyoBabylon: new tunein.TuneInScraper("RadyoBabylon", "Radyo-Babylon-s131728"),
     BluesDebut: new bluesdebut.BluesDebutScraper("BluesDebut"),
     FarPastPost: new farpastpost.FarPastPostScraper("FarPastPost"),
@@ -176,7 +182,12 @@ var scrapers = {
     BellyUp4Blues: new belly.BellyUp4BluesScraper("BellyUp4Blues"),
     GemRadio: new tunein.TuneInScraper("GemRadio", "Gem-Radio-New-Wave-s183330"),
     KGSR: new kgsr.KGSRScraper("KGSR"),
-    NoEsFm: new noesfm.NoEsFmScraper("NoEsFm")
+    NoEsFm: new noesfm.NoEsFmScraper("NoEsFm"),
+    VodafoneFm: new vodafone.VodafoneFmScraper("VodafoneFm"),
+    DriveRadio: new radionomy.RadionomyScraper("DriveRadio", "e962db7e-2a01-40d2-99a8-c1c66b5fa64c"),
+    SixForty: new sixforty.SixFortyScraper("SixForty"),
+    KLFM: new marci.MarciScraper("KLFM", "451"),
+    Beats1: new spiff.SpiffRadioScraper("Beats1", "beats-1")
 };
 var lastfmNode = new lastfm.LastFmNode({
     api_key: LASTFM_API_KEY,

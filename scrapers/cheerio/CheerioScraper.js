@@ -13,6 +13,7 @@ var CheerioScraper = (function (_super) {
     __extends(CheerioScraper, _super);
     function CheerioScraper(name) {
         _super.call(this, name);
+        this.xmlMode = false;
     }
     CheerioScraper.prototype.getUrl = function (scraperParam) {
         throw "Abstract Class";
@@ -33,7 +34,7 @@ var CheerioScraper = (function (_super) {
                 return;
             }
             try {
-                var $ = cheerio.load(body);
+                var $ = cheerio.load(body, { xmlMode: _this.xmlMode });
                 _this.parseCheerio($, callback);
             }
             catch (e) {

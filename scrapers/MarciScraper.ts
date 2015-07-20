@@ -26,6 +26,7 @@ export class MarciScraper extends scrap.Scraper {
                     Artist: split[0].trim(),
                     Track: split[1].trim()
                 });
+                return;
             }
             callback(null, {
                 Artist: null,

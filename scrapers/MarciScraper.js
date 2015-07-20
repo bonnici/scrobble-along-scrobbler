@@ -24,6 +24,7 @@ var MarciScraper = (function (_super) {
                     Artist: split[0].trim(),
                     Track: split[1].trim()
                 });
+                return;
             }
             callback(null, {
                 Artist: null,

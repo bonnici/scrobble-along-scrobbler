@@ -10,14 +10,19 @@ import winston = require("winston");
 export class SpiffRadioScraper extends scrap.CheerioScraper {
     private id: string;
 
-    constructor(name:string, id: string) {
+    constructor(name:string, id?: string) {
         super(name);
         this.id = id;
         this.xmlMode = true;
     }
 
-    public getUrl(): string {
-        return " http://www.spiff-radio.org/station/" + this.id + "/?xspf=1%2C";
+    getUrl(lastfmUsername?:string): string {
+        if (this.id) {
+            var urlSuffix = this.id + "/?xspf=1";
+        } else {
+            var urlSuffix = lastfmUsername;
+        }
+        return " http://www.spiff-radio.org/station/" + urlSuffix;
     }
 
     public parseCheerio($:any, callback: (err, newNowPlayingSong: song.Song, justScrobbledSong?:song.Song) => void): void {

@@ -205,7 +205,8 @@ var scrapers:{ [index: string]: scrap.Scraper; } = {
     DriveRadio: new radionomy.RadionomyScraper("DriveRadio", "e962db7e-2a01-40d2-99a8-c1c66b5fa64c"),
     SixForty: new sixforty.SixFortyScraper("SixForty"),
     KLFM: new marci.MarciScraper("KLFM", "451"),
-    Beats1: new spiff.SpiffRadioScraper("Beats1", "beats-1")
+    Beats1: new spiff.SpiffRadioScraper("Beats1", "beats-1"),
+    Spiff: new spiff.SpiffRadioScraper("Spiff")
 };
 
 var lastfmNode = new lastfm.LastFmNode({

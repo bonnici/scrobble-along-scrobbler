@@ -14,8 +14,14 @@ var SpiffRadioScraper = (function (_super) {
         this.id = id;
         this.xmlMode = true;
     }
-    SpiffRadioScraper.prototype.getUrl = function () {
-        return " http://www.spiff-radio.org/station/" + this.id + "/?xspf=1%2C";
+    SpiffRadioScraper.prototype.getUrl = function (lastfmUsername) {
+        if (this.id) {
+            var urlSuffix = this.id + "/?xspf=1";
+        }
+        else {
+            var urlSuffix = lastfmUsername;
+        }
+        return " http://www.spiff-radio.org/station/" + urlSuffix;
     };
     SpiffRadioScraper.prototype.parseCheerio = function ($, callback) {
         var tracks = $('trackList track');

@@ -52,6 +52,7 @@ import xfm = require("./scrapers/cheerio/XfmScraper");
 import wave965Html = require("./scrapers/cheerio/Wave965HtmlScraper");
 import vodafone = require("./scrapers/cheerio/VodafoneFmScraper");
 import spiff = require("./scrapers/cheerio/SpiffRadioScraper");
+import wmbr = require("./scrapers/cheerio/WmbrScraper");
 
 import amazing = require("./scrapers/json/AmazingRadioScraper");
 import chronisch = require("./scrapers/json/ChronischScraper");
@@ -206,7 +207,8 @@ var scrapers:{ [index: string]: scrap.Scraper; } = {
     SixForty: new sixforty.SixFortyScraper("SixForty"),
     KLFM: new marci.MarciScraper("KLFM", "451"),
     Beats1: new spiff.SpiffRadioScraper("Beats1", "beats-1"),
-    Spiff: new spiff.SpiffRadioScraper("Spiff")
+    Spiff: new spiff.SpiffRadioScraper("Spiff"),
+    WMBR: new wmbr.WmbrScraper("WMBR")
 };
 
 var lastfmNode = new lastfm.LastFmNode({

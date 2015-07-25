@@ -40,6 +40,7 @@ export class WmbrScraper extends scrap.CheerioScraper {
 
                         if (titleText) {
                             callback(null, {Artist: artistText, Track: titleText});
+                            return;
                         }
                     }
                 }

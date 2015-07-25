@@ -33,6 +33,7 @@ var WmbrScraper = (function (_super) {
                         var titleText = recentText.substring(artistEnd);
                         if (titleText) {
                             callback(null, { Artist: artistText, Track: titleText });
+                            return;
                         }
                     }
                 }

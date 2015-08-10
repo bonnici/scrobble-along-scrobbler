@@ -8,8 +8,9 @@ import winston = require("winston");
 
 // Abstract base class
 export class Scraper {
+    protected ignoreStatusCode = false;
 
-	constructor(public name:string) {}
+	constructor(public name:string) { }
 
 	// Should call success with a song if it was found, success with null artist/track if no song was found,
 	// failure if there was a recoverable error fetching or parsing
@@ -28,8 +29,10 @@ export class Scraper {
 		if (headers) {
 			winston.info("With headers", headers);
 		}
+
+        var ignoreStatusCode = this.ignoreStatusCode;
 		request({ url: fullUrl, headers: headers || {} }, function (error, response, body) {
-			if (!error && response.statusCode == 200) {
+			if (!error && (response.statusCode == 200 || ignoreStatusCode)) {
 				callback(null, body);
 				return;
 			}

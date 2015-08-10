@@ -45,6 +45,7 @@ var xfm = require("./scrapers/cheerio/XfmScraper");
 var vodafone = require("./scrapers/cheerio/VodafoneFmScraper");
 var spiff = require("./scrapers/cheerio/SpiffRadioScraper");
 var wmbr = require("./scrapers/cheerio/WmbrScraper");
+var gnl = require("./scrapers/cheerio/GnlScraper");
 var amazing = require("./scrapers/json/AmazingRadioScraper");
 var chronisch = require("./scrapers/json/ChronischScraper");
 var cod = require("./scrapers/json/CoreOfDestructionScraper");
@@ -190,7 +191,8 @@ var scrapers = {
     KLFM: new marci.MarciScraper("KLFM", "451"),
     Beats1: new spiff.SpiffRadioScraper("Beats1", "beats-1"),
     Spiff: new spiff.SpiffRadioScraper("Spiff"),
-    WMBR: new wmbr.WmbrScraper("WMBR")
+    WMBR: new wmbr.WmbrScraper("WMBR"),
+    GNL: new gnl.GnlScraper("GNLRadio")
 };
 var lastfmNode = new lastfm.LastFmNode({
     api_key: LASTFM_API_KEY,

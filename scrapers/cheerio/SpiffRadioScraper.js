@@ -29,6 +29,10 @@ var SpiffRadioScraper = (function (_super) {
             var firstTrack = tracks.eq(0);
             var title = firstTrack.children('title').eq(0).text();
             var artist = firstTrack.children('creator').eq(0).text();
+            // Workaround for Beats1 having an opening bracket appended to the end of artist names
+            if (artist.length > 2 && artist.substr(artist.length - 2, 2) == " (") {
+                artist = artist.substr(0, artist.length - 2);
+            }
             if (title && artist) {
                 callback(null, { Artist: artist, Track: title });
                 return;

@@ -12,13 +12,13 @@ export class Radio2NLScraper extends jsonScrap.JsonScraper {
 	}
 
 	getUrl(scraperParam?:string): string {
-		return "http://www.radio2.nl/block/header/currentsong.json";
+        return "http://radiobox2.omroep.nl/data/radiobox2/nowonair/2.json?npo_cc_skip_wall=1";
 	}
 
 	extractNowPlayingSong(jsonData:any): song.Song {
 		return {
-			Artist: jsonData.data.songfile.artist.trim(),
-			Track: jsonData.data.songfile.title.trim()
+			Artist: jsonData.results[0].songfile.artist.trim(),
+			Track: jsonData.results[0].songfile.title.trim()
 		};
 	}
 }

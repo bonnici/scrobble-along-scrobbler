@@ -12,12 +12,12 @@ var Radio2NLScraper = (function (_super) {
         _super.call(this, name);
     }
     Radio2NLScraper.prototype.getUrl = function (scraperParam) {
-        return "http://www.radio2.nl/block/header/currentsong.json";
+        return "http://radiobox2.omroep.nl/data/radiobox2/nowonair/2.json?npo_cc_skip_wall=1";
     };
     Radio2NLScraper.prototype.extractNowPlayingSong = function (jsonData) {
         return {
-            Artist: jsonData.data.songfile.artist.trim(),
-            Track: jsonData.data.songfile.title.trim()
+            Artist: jsonData.results[0].songfile.artist.trim(),
+            Track: jsonData.results[0].songfile.title.trim()
         };
     };
     return Radio2NLScraper;

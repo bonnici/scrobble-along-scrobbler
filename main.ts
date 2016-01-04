@@ -84,6 +84,7 @@ import janus = require("./scrapers/json/JanusScraper");
 import kgsr = require("./scrapers/json/KGSRScraper");
 import bytefm = require("./scrapers/json/ByteFmJsonScraper");
 import sixforty = require("./scrapers/json/SixFortyScraper");
+import cpr = require("./scrapers/json/CprScraper");
 
 // Required environment variables
 var STATION_CRYPTO_KEY = process.env.SA_STATION_CRYPTO_KEY;
@@ -210,7 +211,8 @@ var scrapers:{ [index: string]: scrap.Scraper; } = {
     Beats1: new spiff.SpiffRadioScraper("Beats1", "beats-1"),
     Spiff: new spiff.SpiffRadioScraper("Spiff"),
     WMBR: new wmbr.WmbrScraper("WMBR"),
-    GNL: new gnl.GnlScraper("GNLRadio")
+    GNL: new gnl.GnlScraper("GNLRadio"),
+    CPROpenAir: new cpr.CprScraper("CPROpenAir", "playlistCO")
 };
 
 var lastfmNode = new lastfm.LastFmNode({

@@ -1,10 +1,9 @@
 /// <reference path="../definitions/typescript-node-definitions/winston.d.ts"/>
 /// <reference path="../definitions/typescript-node-definitions/request.d.ts"/>
-var __extends = this.__extends || function (d, b) {
+var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
-    __.prototype = b.prototype;
-    d.prototype = new __();
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var request = require("request");
 var winston = require("winston");
@@ -48,9 +47,7 @@ var Scraper = (function () {
         });
     };
     Scraper.prototype.capitalize = function (input) {
-        return input.replace(/\w\S*/g, function (txt) {
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-        });
+        return input.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
     };
     return Scraper;
 })();

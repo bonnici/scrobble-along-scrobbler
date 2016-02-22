@@ -1,28 +1,23 @@
 /// <reference path="../../definitions/DefinitelyTyped/jasmine/jasmine.d.ts"/>
 /// <reference path="../../definitions/typescript-node-definitions/nock.d.ts"/>
 var nock = require("nock");
-
 var lfm = require("../../scrapers/LastfmScraper");
-
 function setupTest(jsonResponseCode, jsonResponse, username, apiKey) {
     var host = "http://ws.audioscrobbler.com";
     var path = "/2.0/?method=user.getrecenttracks&user=" + username + "&api_key=" + apiKey + "&limit=1&format=json";
-
-    var scope = nock(host).get(path).reply(jsonResponseCode, jsonResponse);
-
+    var scope = nock(host)
+        .get(path)
+        .reply(jsonResponseCode, jsonResponse);
     return new lfm.LastfmScraper("TestScraper", apiKey);
 }
-
 describe('LastfmScraper', function () {
     describe("fetchAndParse", function () {
         afterEach(function () {
             nock.cleanAll();
         });
-
         it('should return an error code on a 404', function () {
             var parser = setupTest(404, '404', 'username', 'apiKey');
             var done = false;
-
             runs(function () {
                 parser.fetchAndParse(function (err, song) {
                     expect(err).not.toBeFalsy();
@@ -30,12 +25,8 @@ describe('LastfmScraper', function () {
                     done = true;
                 }, "username");
             });
-
-            waitsFor(function () {
-                return done;
-            }, "Timeout", 5000);
+            waitsFor(function () { return done; }, "Timeout", 5000);
         });
-
         it('should return a song if its now playing', function () {
             var jsonString = '{\
 				  "recenttracks": {\
@@ -121,10 +112,8 @@ describe('LastfmScraper', function () {
 					}\
 				  }\
 				}';
-
             var parser = setupTest(200, jsonString, 'username', 'apiKey');
             var done = false;
-
             runs(function () {
                 parser.fetchAndParse(function (err, song) {
                     expect(err).toBeFalsy();
@@ -132,12 +121,8 @@ describe('LastfmScraper', function () {
                     done = true;
                 }, "username");
             });
-
-            waitsFor(function () {
-                return done;
-            }, "Timeout", 5000);
+            waitsFor(function () { return done; }, "Timeout", 5000);
         });
-
         it('should return a single song if its now playing and the track data is not a list', function () {
             var jsonString = '{\
 				  "recenttracks": {\
@@ -186,10 +171,8 @@ describe('LastfmScraper', function () {
 					}\
 				  }\
 				}';
-
             var parser = setupTest(200, jsonString, 'username', 'apiKey');
             var done = false;
-
             runs(function () {
                 parser.fetchAndParse(function (err, song) {
                     expect(err).toBeFalsy();
@@ -197,12 +180,8 @@ describe('LastfmScraper', function () {
                     done = true;
                 }, "username");
             });
-
-            waitsFor(function () {
-                return done;
-            }, "Timeout", 5000);
+            waitsFor(function () { return done; }, "Timeout", 5000);
         });
-
         it('should return a null song if the most recent song is not now playing', function () {
             var jsonString = '{\
 				  "recenttracks": {\
@@ -285,10 +264,8 @@ describe('LastfmScraper', function () {
 					}\
 				  }\
 				}';
-
             var parser = setupTest(200, jsonString, 'username', 'apiKey');
             var done = false;
-
             runs(function () {
                 parser.fetchAndParse(function (err, song) {
                     expect(err).toBeFalsy();
@@ -296,12 +273,8 @@ describe('LastfmScraper', function () {
                     done = true;
                 }, "username");
             });
-
-            waitsFor(function () {
-                return done;
-            }, "Timeout", 5000);
+            waitsFor(function () { return done; }, "Timeout", 5000);
         });
-
         it('should return a null song if the JSON is invalid', function () {
             var jsonString = '{\
 				  "recenttracks": {\
@@ -383,10 +356,8 @@ describe('LastfmScraper', function () {
 					}\
 				  }\
 				}';
-
             var parser = setupTest(200, jsonString, 'username', 'apiKey');
             var done = false;
-
             runs(function () {
                 parser.fetchAndParse(function (err, song) {
                     expect(err).toBeFalsy();
@@ -394,10 +365,7 @@ describe('LastfmScraper', function () {
                     done = true;
                 }, "username");
             });
-
-            waitsFor(function () {
-                return done;
-            }, "Timeout", 5000);
+            waitsFor(function () { return done; }, "Timeout", 5000);
         });
     });
 });

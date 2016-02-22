@@ -87,7 +87,8 @@ var NODE_ENV = process.env.NODE_ENV;
 var TESTING_MODE = process.env.SA_TESTING_MODE;
 var TESTING_MODE_SCRAPERS = process.env.SA_TESTING_MODE_SCRAPERS; // e.g. KEXP,DoubleJ,DrDk|p3
 var TESTING_MODE_USE_LISTENERS = process.env.SA_TESTING_MODE_USE_LISTENERS;
-if (!STATION_CRYPTO_KEY || !USER_CRYPTO_KEY || !MONGO_URI || !LASTFM_API_KEY || !LASTFM_SECRET || !SHOULD_SCROBBLE || !NODE_ENV) {
+if (!STATION_CRYPTO_KEY || !USER_CRYPTO_KEY || !MONGO_URI || !LASTFM_API_KEY || !LASTFM_SECRET || !SHOULD_SCROBBLE
+    || !NODE_ENV) {
     winston.error("A required environment variable is missing:", process.env);
     process.exit(1);
 }
@@ -287,9 +288,7 @@ function runTestMode(continuous) {
     var userDao = new usrDao.DummyUserDao();
     var scrobbler = new scrob.Scrobbler(lastFmDao, userDao, null, skipPostNowPlayingTime);
     if (continuous) {
-        setInterval(function () {
-            testScrapeAndScrobble();
-        }, newSongCheckInterval * 1000);
+        setInterval(function () { testScrapeAndScrobble(); }, newSongCheckInterval * 1000);
     }
     testScrapeAndScrobble();
     function testScrapeAndScrobble() {

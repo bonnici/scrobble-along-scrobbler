@@ -1,9 +1,8 @@
 /// <reference path="../../definitions/typescript-node-definitions/winston.d.ts"/>
-var __extends = this.__extends || function (d, b) {
+var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
-    __.prototype = b.prototype;
-    d.prototype = new __();
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var jsonScrap = require("./JsonScraper");
 var SixFortyScraper = (function (_super) {
@@ -12,7 +11,8 @@ var SixFortyScraper = (function (_super) {
         _super.call(this, name);
     }
     SixFortyScraper.prototype.getUrl = function (scraperParam) {
-        return "http://54.173.171.80:8000/json.xsl?callback=parseMusic&_=" + new Date().getTime();
+        return "http://54.173.171.80:8000/json.xsl?callback=parseMusic&_="
+            + new Date().getTime();
     };
     SixFortyScraper.prototype.preprocessBody = function (body) {
         // Strip "parseMusic(" from start and ");" from end

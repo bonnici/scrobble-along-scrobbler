@@ -7,7 +7,8 @@ var LAST_UPDATE_TIMEOUT = 60 * 1000; // Amount of time failures can occur before
 var MIN_SCROBBLE_TIME = 35 * 1000; // The minimum time a song has to play before it can be scrobbled
 var ScrobblerStationData = (function () {
     function ScrobblerStationData(stationName) {
-        this.stationName = stationName, this.nowPlayingSong = { Artist: null, Track: null };
+        this.stationName = stationName,
+            this.nowPlayingSong = { Artist: null, Track: null };
         this.lastNowPlayingSong = null;
         this.lastScrobbledSong = null;
         this.lastUpdatedTime = null;
@@ -63,19 +64,19 @@ var Scrobbler = (function () {
                     stationData.nowPlayingSong = {
                         Artist: newNowPlayingSong.Artist,
                         Track: newNowPlayingSong.Track,
-                        StartTime: timestamp
-                    };
+                        StartTime: timestamp };
                     _this.postNowPlayingIfValid(stationData, station, users);
                 }
             }
             else {
-                if (!newNowPlayingSong || !stationData.nowPlayingSong || newNowPlayingSong.Artist != stationData.nowPlayingSong.Artist || newNowPlayingSong.Track != stationData.nowPlayingSong.Track) {
+                if (!newNowPlayingSong || !stationData.nowPlayingSong ||
+                    newNowPlayingSong.Artist != stationData.nowPlayingSong.Artist ||
+                    newNowPlayingSong.Track != stationData.nowPlayingSong.Track) {
                     _this.scrobbleNowPlayingIfValid(stationData, null, station, users);
                     stationData.nowPlayingSong = {
                         Artist: newNowPlayingSong.Artist,
                         Track: newNowPlayingSong.Track,
-                        StartTime: timestamp
-                    };
+                        StartTime: timestamp };
                 }
                 _this.postNowPlayingIfValid(stationData, station, users);
             }
@@ -90,7 +91,8 @@ var Scrobbler = (function () {
         if (!songToScrobble) {
             songToScrobble = stationData.nowPlayingSong;
             // If we are scrobbling the now playing song, check play time
-            if (!songToScrobble.StartTime || !stationData.lastUpdatedTime || stationData.lastUpdatedTime - songToScrobble.StartTime <= MIN_SCROBBLE_TIME) {
+            if (!songToScrobble.StartTime || !stationData.lastUpdatedTime ||
+                stationData.lastUpdatedTime - songToScrobble.StartTime <= MIN_SCROBBLE_TIME) {
                 return;
             }
         }
@@ -99,7 +101,9 @@ var Scrobbler = (function () {
             return;
         }
         // Make sure it's not the same as the one we scrobbled last
-        if (songToScrobble != null && stationData.lastScrobbledSong != null && songToScrobble.Artist == stationData.lastScrobbledSong.Artist && songToScrobble.Track == stationData.lastScrobbledSong.Track) {
+        if (songToScrobble != null && stationData.lastScrobbledSong != null
+            && songToScrobble.Artist == stationData.lastScrobbledSong.Artist
+            && songToScrobble.Track == stationData.lastScrobbledSong.Track) {
             return;
         }
         stationData.lastScrobbledSong = { Artist: songToScrobble.Artist, Track: songToScrobble.Track };
@@ -111,10 +115,12 @@ var Scrobbler = (function () {
                 _this.lastFmDao.scrobble(songToScrobble, user.UserName, user.Session);
                 _this.userDao.incrementUserScrobble(user.UserName, station.StationName, function (err, status) {
                     if (err) {
-                        winston.info("Error incrementing scrobble count for user " + user.UserName + " and station " + station.StationName + ":", err);
+                        winston.info("Error incrementing scrobble count for user " + user.UserName + " and station " +
+                            station.StationName + ":", err);
                     }
                     else {
-                        winston.info("Incremented scrobble count for user " + user.UserName + " and station " + station.StationName);
+                        winston.info("Incremented scrobble count for user " + user.UserName + " and station " +
+                            station.StationName);
                     }
                 });
             }
@@ -133,9 +139,12 @@ var Scrobbler = (function () {
             return;
         }
         // Make sure it's not the same as the one we posted last, unless it was posted a long time ago
-        if (stationData.lastNowPlayingSong != null && stationData.nowPlayingSong.Artist == stationData.lastNowPlayingSong.Artist && stationData.nowPlayingSong.Track == stationData.lastNowPlayingSong.Track) {
+        if (stationData.lastNowPlayingSong != null
+            && stationData.nowPlayingSong.Artist == stationData.lastNowPlayingSong.Artist
+            && stationData.nowPlayingSong.Track == stationData.lastNowPlayingSong.Track) {
             winston.info("Found same song for station " + station.StationName + ": " + stationData.nowPlayingSong.Artist + " - " + stationData.nowPlayingSong.Track);
-            if (stationData.lastPostedNowPlayingTime != null && stationData.lastPostedNowPlayingTime > (new Date().getTime() - (this.skipPostNowPlayingTime * 1000))) {
+            if (stationData.lastPostedNowPlayingTime != null
+                && stationData.lastPostedNowPlayingTime > (new Date().getTime() - (this.skipPostNowPlayingTime * 1000))) {
                 winston.info("Same song was already posted recently, skipping");
                 return;
             }

@@ -6,8 +6,7 @@ var DummyLastFmDao = (function () {
     function DummyLastFmDao() {
     }
     DummyLastFmDao.prototype.postNowPlaying = function (song, lastFmUsername, session, callback) {
-        callback = callback || (function () {
-        });
+        callback = callback || (function () { });
         if (song.Artist && song.Track) {
             winston.info("Faking post now playing to user " + lastFmUsername + ", session " + session + " of song:", song);
             callback(null, "OK");
@@ -17,8 +16,7 @@ var DummyLastFmDao = (function () {
         }
     };
     DummyLastFmDao.prototype.scrobble = function (song, lastFmUsername, session, callback) {
-        callback = callback || (function () {
-        });
+        callback = callback || (function () { });
         if (song.Artist && song.Track) {
             winston.info("Faking scrobble to user " + lastFmUsername + ", session " + session + " of song:", song);
             callback(null, "OK");
@@ -36,8 +34,7 @@ var LastFmDaoImpl = (function () {
         this.postNowPlayingLength = postNowPlayingLength;
     }
     LastFmDaoImpl.prototype.postNowPlaying = function (song, lastFmUsername, sessionKey, callback) {
-        callback = callback || (function () {
-        });
+        callback = callback || (function () { });
         if (!song || !song.Artist || !song.Track || !lastFmUsername || !sessionKey) {
             winston.error("postNowPlaying invalid parameters:", { song: song, lastFmUsername: lastFmUsername, sessionKey: sessionKey });
             callback("Invalid parameters", null);
@@ -65,8 +62,7 @@ var LastFmDaoImpl = (function () {
         this.lastfmNode.update('nowplaying', session, updateOptions);
     };
     LastFmDaoImpl.prototype.scrobble = function (song, lastFmUsername, sessionKey, callback) {
-        callback = callback || (function () {
-        });
+        callback = callback || (function () { });
         if (!song || !song.Artist || !song.Track || !lastFmUsername || !sessionKey) {
             winston.error("scrobble invalid parameters:", { song: song, lastFmUsername: lastFmUsername, sessionKey: sessionKey });
             callback("Invalid parameters", null);

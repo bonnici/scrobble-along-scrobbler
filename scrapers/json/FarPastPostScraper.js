@@ -1,17 +1,17 @@
 /// <reference path="../../definitions/typescript-node-definitions/winston.d.ts"/>
 /// <reference path="../../definitions/DefinitelyTyped/underscore/underscore.d.ts"/>
-var __extends = this.__extends || function (d, b) {
+var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
-    __.prototype = b.prototype;
-    d.prototype = new __();
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var scrap = require("./JsonScraper");
 var FarPastPostScraper = (function (_super) {
     __extends(FarPastPostScraper, _super);
     function FarPastPostScraper(name) {
         _super.call(this, name);
-        this.url = "http://192.99.34.205/external/rpc.php?m=streaminfo.get&username=farpastp&charset=&mountpoint=&rid=farpastp&_=" + new Date().getTime();
+        this.url = "http://192.99.34.205/external/rpc.php?m=streaminfo.get&username=farpastp&charset=&mountpoint=&rid=farpastp&_="
+            + new Date().getTime();
     }
     FarPastPostScraper.prototype.getUrl = function (lastfmUsername) {
         return this.url;

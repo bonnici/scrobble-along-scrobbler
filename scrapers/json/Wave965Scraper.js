@@ -1,9 +1,8 @@
 /// <reference path="../../definitions/typescript-node-definitions/winston.d.ts"/>
-var __extends = this.__extends || function (d, b) {
+var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
-    __.prototype = b.prototype;
-    d.prototype = new __();
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var jsonScrap = require("./JsonScraper");
 var Wave965Scraper = (function (_super) {
@@ -12,7 +11,8 @@ var Wave965Scraper = (function (_super) {
         _super.call(this, name);
     }
     Wave965Scraper.prototype.getUrl = function (scraperParam) {
-        return "http://np.radioplayer.co.uk/qp/v3/onair?rpIds=501&nameSize=200&artistNameSize=200&descriptionSize=200&_=" + new Date().getTime();
+        return "http://np.radioplayer.co.uk/qp/v3/onair?rpIds=501&nameSize=200&artistNameSize=200&descriptionSize=200&_="
+            + new Date().getTime();
     };
     Wave965Scraper.prototype.preprocessBody = function (body) {
         // Strip "callback(" from start and ")" from end

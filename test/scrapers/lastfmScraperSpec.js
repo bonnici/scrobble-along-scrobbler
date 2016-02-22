@@ -1,7 +1,7 @@
 /// <reference path="../../definitions/DefinitelyTyped/jasmine/jasmine.d.ts"/>
 /// <reference path="../../definitions/typescript-node-definitions/nock.d.ts"/>
 var nock = require("nock");
-var lfm = require("../../scrapers/LastfmScraper");
+var lfm = require("../../scrapers/json/LastfmScraper");
 function setupTest(jsonResponseCode, jsonResponse, username, apiKey) {
     var host = "http://ws.audioscrobbler.com";
     var path = "/2.0/?method=user.getrecenttracks&user=" + username + "&api_key=" + apiKey + "&limit=1&format=json";

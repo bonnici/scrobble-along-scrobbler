@@ -4,7 +4,7 @@
 var util = require("util");
 var moment = require("moment");
 var nock = require("nock");
-var kexp = require("../../scrapers/KexpScraper");
+var kexp = require("../../scrapers/cheerio/KexpScraper");
 describe('KexpScraper', function () {
     describe("fetchAndParse", function () {
         var setupTest = function (responseCode, response, isResponseFile) {

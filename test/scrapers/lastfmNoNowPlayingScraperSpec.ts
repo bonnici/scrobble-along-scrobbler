@@ -3,12 +3,11 @@
 
 import nock = require("nock");
 
-import lfm = require("../../scrapers/LastfmNoNowPlayingScraper");
+import lfm = require("../../scrapers/json/LastfmNoNowPlayingScraper");
 
 function setupTest(jsonResponseCode: number, jsonResponse: string, username: string, apiKey: string) {
 	var host = "http://ws.audioscrobbler.com";
-	var path = "/2.0/?method=user.getrecenttracks&user=" + username + "&api_key=" + apiKey + "&limit=1&format=json";
-
+	var path = "/2.0/?method=user.getrecenttracks&user=" + username + "&api_key=" + apiKey + "&limit=2&format=json";
 	var scope = nock(host)
 		.get(path)
 		.reply(jsonResponseCode, jsonResponse);
@@ -16,7 +15,7 @@ function setupTest(jsonResponseCode: number, jsonResponse: string, username: str
 	return new lfm.LastfmNoNowPlayingScraper("TestScraper", apiKey);
 }
 
-describe('LastfmScraper', () => {
+describe('LastfmNoNowPlayingScraper', () => {
 
 	describe("fetchAndParse", () => {
 
@@ -127,8 +126,8 @@ describe('LastfmScraper', () => {
 			waitsFor(() => { return done; }, "Timeout", 5000);
 		});
 
-		it('should not return a just played song if its hasnt been played in the last 5 minutes', () => {
-			var timestamp = "" + Math.floor((new Date().getTime() / 1000) - (5*60 + 1));
+		it('should not return a just played song if its hasnt been played in the last 20 minutes', () => {
+			var timestamp = "" + Math.floor((new Date().getTime() / 1000) - (20*60 + 1));
 			var jsonString =
 				'{\
 				  "recenttracks": {\

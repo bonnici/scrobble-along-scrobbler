@@ -2,7 +2,7 @@
 /// <reference path="../../definitions/dummy-definitions/moment.d.ts"/>
 /// <reference path="../../definitions/typescript-node-definitions/nock.d.ts"/>
 var nock = require("nock");
-var soma = require("../../scrapers/SomaScraper");
+var soma = require("../../scrapers/cheerio/SomaScraper");
 describe('SomaScraper', function () {
     describe("fetchAndParse", function () {
         var setupTest = function (responseCode, response, isResponseFile) {

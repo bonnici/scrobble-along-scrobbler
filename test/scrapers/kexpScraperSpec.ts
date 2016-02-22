@@ -7,7 +7,7 @@ import assert = require("assert");
 import moment = require("moment");
 import nock = require("nock");
 
-import kexp = require("../../scrapers/KexpScraper");
+import kexp = require("../../scrapers/cheerio/KexpScraper");
 
 describe('KexpScraper', () => {
 

@@ -3,7 +3,7 @@
 
 import nock = require("nock");
 
-import lfm = require("../../scrapers/LastfmScraper");
+import lfm = require("../../scrapers/json/LastfmScraper");
 
 function setupTest(jsonResponseCode: number, jsonResponse: string, username: string, apiKey: string) {
 	var host = "http://ws.audioscrobbler.com";

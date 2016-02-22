@@ -2,7 +2,7 @@
 /// <reference path="../../definitions/dummy-definitions/moment.d.ts"/>
 /// <reference path="../../definitions/typescript-node-definitions/nock.d.ts"/>
 var nock = require("nock");
-var jjj = require("../../scrapers/JjjScraper");
+var jjj = require("../../scrapers/cheerio/JjjScraper");
 describe('JjjScraper', function () {
     describe("fetchAndParse", function () {
         var setupTest = function (responseCode, response, isResponseFile) {

@@ -7,7 +7,7 @@ import assert = require("assert");
 import moment = require("moment");
 import nock = require("nock");
 
-import soma = require("../../scrapers/SomaScraper");
+import soma = require("../../scrapers/cheerio/SomaScraper");
 
 describe('SomaScraper', () => {
 

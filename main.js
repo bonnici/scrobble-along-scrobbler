@@ -77,6 +77,8 @@ var bytefm = require("./scrapers/json/ByteFmJsonScraper");
 var sixforty = require("./scrapers/json/SixFortyScraper");
 var cpr = require("./scrapers/json/CprScraper");
 var radioRiel = require("./scrapers/json/RadioRielScraper");
+var radioNova = require("./scrapers/json/RadioNovaScraper");
+var megaStarFm = require("./scrapers/json/MegaStarFmScraper");
 // Required environment variables
 var STATION_CRYPTO_KEY = process.env.SA_STATION_CRYPTO_KEY;
 var USER_CRYPTO_KEY = process.env.SA_USER_CRYPTO_KEY;
@@ -198,7 +200,9 @@ var scrapers = {
     WMBR: new wmbr.WmbrScraper("WMBR"),
     GNL: new gnl.GnlScraper("GNLRadio"),
     CPROpenAir: new cpr.CprScraper("CPROpenAir", "playlistCO"),
-    RadioRiel: new radioRiel.RadioRielScraper("RadioRiel")
+    RadioRiel: new radioRiel.RadioRielScraper("RadioRiel"),
+    RadioNova: new radioNova.RadioNovaScraper("RadioNova"),
+    MegaStarFm: new megaStarFm.MegaStarFmScraper("MegaStarFM")
 };
 var lastfmNode = new lastfm.LastFmNode({
     api_key: LASTFM_API_KEY,

@@ -1,4 +1,5 @@
 /// <reference path="../../definitions/typescript-node-definitions/winston.d.ts"/>
+"use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -21,6 +22,6 @@ var RadioRielScraper = (function (_super) {
         return { Artist: jsonData.data[0].track.artist, Track: jsonData.data[0].track.title };
     };
     return RadioRielScraper;
-})(jsonScrap.JsonScraper);
+}(jsonScrap.JsonScraper));
 exports.RadioRielScraper = RadioRielScraper;
 //# sourceMappingURL=RadioRielScraper.js.map

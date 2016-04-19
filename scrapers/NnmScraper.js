@@ -2,6 +2,7 @@
 /// <reference path="../definitions/dummy-definitions/moment.d.ts"/>
 /// <reference path="../definitions/DefinitelyTyped/underscore/underscore.d.ts"/>
 /// <reference path="../definitions/typescript-node-definitions/winston.d.ts"/>
+"use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -146,6 +147,6 @@ var NnmScraper = (function (_super) {
             _.any(this.artistContainsFilter, function (curArtist) { return artist.toLowerCase().indexOf(curArtist) != -1; });
     };
     return NnmScraper;
-})(scrap.Scraper);
+}(scrap.Scraper));
 exports.NnmScraper = NnmScraper;
 //# sourceMappingURL=NnmScraper.js.map

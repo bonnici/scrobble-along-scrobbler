@@ -1,4 +1,5 @@
 /// <reference path="./../definitions/DefinitelyTyped/node/node.d.ts"/>
+"use strict";
 var crypto = require("crypto");
 var DummyCrypter = (function () {
     function DummyCrypter() {
@@ -10,7 +11,7 @@ var DummyCrypter = (function () {
         return text;
     };
     return DummyCrypter;
-})();
+}());
 exports.DummyCrypter = DummyCrypter;
 var CrypterImpl = (function () {
     function CrypterImpl(key) {
@@ -27,6 +28,6 @@ var CrypterImpl = (function () {
         return result;
     };
     return CrypterImpl;
-})();
+}());
 exports.CrypterImpl = CrypterImpl;
 //# sourceMappingURL=Crypter.js.map

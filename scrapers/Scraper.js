@@ -1,5 +1,6 @@
 /// <reference path="../definitions/typescript-node-definitions/winston.d.ts"/>
 /// <reference path="../definitions/typescript-node-definitions/request.d.ts"/>
+"use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -50,7 +51,7 @@ var Scraper = (function () {
         return input.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
     };
     return Scraper;
-})();
+}());
 exports.Scraper = Scraper;
 var DummyScraper = (function (_super) {
     __extends(DummyScraper, _super);
@@ -69,6 +70,6 @@ var DummyScraper = (function (_super) {
         return;
     };
     return DummyScraper;
-})(Scraper);
+}(Scraper));
 exports.DummyScraper = DummyScraper;
 //# sourceMappingURL=Scraper.js.map

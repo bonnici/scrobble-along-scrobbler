@@ -1,6 +1,7 @@
 /// <reference path="./definitions/DefinitelyTyped/underscore/underscore.d.ts"/>
 /// <reference path="./definitions/dummy-definitions/lastfm.d.ts"/>
 /// <reference path="./definitions/typescript-node-definitions/winston.d.ts"/>
+"use strict";
 var winston = require("winston");
 var DummyLastFmDao = (function () {
     function DummyLastFmDao() {
@@ -26,7 +27,7 @@ var DummyLastFmDao = (function () {
         }
     };
     return DummyLastFmDao;
-})();
+}());
 exports.DummyLastFmDao = DummyLastFmDao;
 var LastFmDaoImpl = (function () {
     function LastFmDaoImpl(lastfmNode, postNowPlayingLength) {
@@ -90,6 +91,6 @@ var LastFmDaoImpl = (function () {
         this.lastfmNode.update('scrobble', session, updateOptions);
     };
     return LastFmDaoImpl;
-})();
+}());
 exports.LastFmDaoImpl = LastFmDaoImpl;
 //# sourceMappingURL=LastFmDao.js.map

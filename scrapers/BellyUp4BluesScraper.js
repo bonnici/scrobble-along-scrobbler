@@ -1,5 +1,6 @@
 /// <reference path="../definitions/typescript-node-definitions/winston.d.ts"/>
 /// <reference path="../definitions/DefinitelyTyped/underscore/underscore.d.ts"/>
+"use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -38,6 +39,6 @@ var BellyUp4BluesScraper = (function (_super) {
         }
     };
     return BellyUp4BluesScraper;
-})(scrap.Scraper);
+}(scrap.Scraper));
 exports.BellyUp4BluesScraper = BellyUp4BluesScraper;
 //# sourceMappingURL=BellyUp4BluesScraper.js.map

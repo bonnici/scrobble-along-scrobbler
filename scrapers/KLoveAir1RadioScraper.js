@@ -1,4 +1,5 @@
 /// <reference path="../definitions/typescript-node-definitions/winston.d.ts"/>
+"use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -44,6 +45,6 @@ var KLoveAir1RadioScraper = (function (_super) {
         }
     };
     return KLoveAir1RadioScraper;
-})(scrap.Scraper);
+}(scrap.Scraper));
 exports.KLoveAir1RadioScraper = KLoveAir1RadioScraper;
 //# sourceMappingURL=KLoveAir1RadioScraper.js.map

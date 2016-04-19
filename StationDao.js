@@ -1,6 +1,7 @@
 /// <reference path="./definitions/DefinitelyTyped/mongodb/mongodb.d.ts"/>
 /// <reference path="./definitions/DefinitelyTyped/underscore/underscore.d.ts"/>
 /// <reference path="./definitions/typescript-node-definitions/winston.d.ts"/>
+"use strict";
 var _ = require("underscore");
 var winston = require("winston");
 var DummyStationDao = (function () {
@@ -20,7 +21,7 @@ var DummyStationDao = (function () {
         callback(null);
     };
     return DummyStationDao;
-})();
+}());
 exports.DummyStationDao = DummyStationDao;
 var MongoStationDao = (function () {
     function MongoStationDao(dbClient, crypter) {
@@ -94,6 +95,6 @@ var MongoStationDao = (function () {
         });
     };
     return MongoStationDao;
-})();
+}());
 exports.MongoStationDao = MongoStationDao;
 //# sourceMappingURL=StationDao.js.map

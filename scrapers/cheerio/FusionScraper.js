@@ -1,4 +1,5 @@
 /// <reference path="../../definitions/typescript-node-definitions/winston.d.ts"/>
+"use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -30,6 +31,6 @@ var FusionScraper = (function (_super) {
         callback(null, { Artist: artist, Track: track });
     };
     return FusionScraper;
-})(scrap.CheerioScraper);
+}(scrap.CheerioScraper));
 exports.FusionScraper = FusionScraper;
 //# sourceMappingURL=FusionScraper.js.map

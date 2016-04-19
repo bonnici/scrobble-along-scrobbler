@@ -1,4 +1,5 @@
 /// <reference path="../definitions/typescript-node-definitions/winston.d.ts"/>
+"use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -42,6 +43,6 @@ var HollowEarthScraper = (function (_super) {
         callback(null, { Artist: null, Track: null });
     };
     return HollowEarthScraper;
-})(scrap.Scraper);
+}(scrap.Scraper));
 exports.HollowEarthScraper = HollowEarthScraper;
 //# sourceMappingURL=HollowEarthScraper.js.map

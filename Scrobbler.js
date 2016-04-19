@@ -1,5 +1,6 @@
 /// <reference path="./definitions/typescript-node-definitions/winston.d.ts"/>
 /// <reference path="./definitions/DefinitelyTyped/underscore/underscore.d.ts"/>
+"use strict";
 var _ = require("underscore");
 var winston = require("winston");
 // Constants
@@ -15,7 +16,7 @@ var ScrobblerStationData = (function () {
         this.lastPostedNowPlayingTime = null;
     }
     return ScrobblerStationData;
-})();
+}());
 ;
 var Scrobbler = (function () {
     function Scrobbler(lastFmDao, userDao, stationDao, skipPostNowPlayingTime) {
@@ -171,6 +172,6 @@ var Scrobbler = (function () {
         });
     };
     return Scrobbler;
-})();
+}());
 exports.Scrobbler = Scrobbler;
 //# sourceMappingURL=Scrobbler.js.map

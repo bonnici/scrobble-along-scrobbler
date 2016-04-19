@@ -1,5 +1,6 @@
 /// <reference path="../../definitions/typescript-node-definitions/winston.d.ts"/>
 /// <reference path="../../definitions/dummy-definitions/moment-timezone.d.ts"/>
+"use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -70,6 +71,6 @@ var CbcRadio2Scraper = (function (_super) {
         }
     };
     return CbcRadio2Scraper;
-})(scrap.CheerioScraper);
+}(scrap.CheerioScraper));
 exports.CbcRadio2Scraper = CbcRadio2Scraper;
 //# sourceMappingURL=CbcRadio2Scraper.js.map

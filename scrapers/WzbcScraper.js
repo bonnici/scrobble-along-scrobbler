@@ -1,5 +1,6 @@
 /// <reference path="../definitions/dummy-definitions/cheerio.d.ts"/>
 /// <reference path="../definitions/typescript-node-definitions/winston.d.ts"/>
+"use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -57,6 +58,6 @@ var WzbcScraper = (function (_super) {
         }
     };
     return WzbcScraper;
-})(scrap.Scraper);
+}(scrap.Scraper));
 exports.WzbcScraper = WzbcScraper;
 //# sourceMappingURL=WzbcScraper.js.map

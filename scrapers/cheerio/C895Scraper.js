@@ -1,4 +1,5 @@
 /// <reference path="../../definitions/typescript-node-definitions/winston.d.ts"/>
+"use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -44,6 +45,6 @@ var C895Scraper = (function (_super) {
         callback(null, { Artist: artist, Track: song });
     };
     return C895Scraper;
-})(scrap.CheerioScraper);
+}(scrap.CheerioScraper));
 exports.C895Scraper = C895Scraper;
 //# sourceMappingURL=C895Scraper.js.map

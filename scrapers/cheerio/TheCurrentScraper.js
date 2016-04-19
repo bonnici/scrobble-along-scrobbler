@@ -1,5 +1,6 @@
 /// <reference path="../../definitions/dummy-definitions/cheerio.d.ts"/>
 /// <reference path="../../definitions/typescript-node-definitions/winston.d.ts"/>
+"use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -41,6 +42,6 @@ var TheCurrentScraper = (function (_super) {
         }
     };
     return TheCurrentScraper;
-})(scrap.CheerioScraper);
+}(scrap.CheerioScraper));
 exports.TheCurrentScraper = TheCurrentScraper;
 //# sourceMappingURL=TheCurrentScraper.js.map

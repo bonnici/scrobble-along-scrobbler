@@ -1,4 +1,5 @@
 /// <reference path="../../definitions/typescript-node-definitions/winston.d.ts"/>
+"use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -21,6 +22,6 @@ var Wave965HtmlScraper = (function (_super) {
         callback(null, { Artist: null, Track: null });
     };
     return Wave965HtmlScraper;
-})(scrap.CheerioScraper);
+}(scrap.CheerioScraper));
 exports.Wave965HtmlScraper = Wave965HtmlScraper;
 //# sourceMappingURL=Wave965HtmlScraper.js.map

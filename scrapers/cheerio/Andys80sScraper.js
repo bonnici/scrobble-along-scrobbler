@@ -1,4 +1,5 @@
 /// <reference path="../../definitions/typescript-node-definitions/winston.d.ts"/>
+"use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -59,6 +60,6 @@ var Andys80sScraper = (function (_super) {
         }
     };
     return Andys80sScraper;
-})(scrap.CheerioScraper);
+}(scrap.CheerioScraper));
 exports.Andys80sScraper = Andys80sScraper;
 //# sourceMappingURL=Andys80sScraper.js.map

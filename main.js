@@ -20,9 +20,10 @@ var nnm = require("./scrapers/NnmScraper");
 var radionomy = require("./scrapers/RadionomyScraper");
 var wfuv = require("./scrapers/WfuvScraper");
 var wzbc = require("./scrapers/WzbcScraper");
-var belly = require("./scrapers/BellyUp4BluesScraper");
+//import belly = require("./scrapers/BellyUp4BluesScraper");
 var noesfm = require("./scrapers/NoEsFmScraper");
 var marci = require("./scrapers/MarciScraper");
+var theCurrent = require("./scrapers/TheCurrentScraper");
 var andys80s = require("./scrapers/cheerio/Andys80sScraper");
 var bluesdebut = require("./scrapers/cheerio/BluesDebutScraper");
 var bristol = require("./scrapers/cheerio/BristolScraper");
@@ -38,7 +39,7 @@ var jjj = require("./scrapers/cheerio/JjjScraper");
 var kcqn = require("./scrapers/cheerio/KcqnScraper");
 var kexp = require("./scrapers/cheerio/KexpScraper");
 var soma = require("./scrapers/cheerio/SomaScraper");
-var theCurrent = require("./scrapers/cheerio/TheCurrentScraper");
+//import theCurrent = require("./scrapers/cheerio/TheCurrentScraper");
 var theEnd = require("./scrapers/cheerio/TheEndHtmlScraper");
 var tunein = require("./scrapers/cheerio/TuneInScraper");
 var wfmu = require("./scrapers/cheerio/WfmuScraper");
@@ -47,6 +48,8 @@ var vodafone = require("./scrapers/cheerio/VodafoneFmScraper");
 var spiff = require("./scrapers/cheerio/SpiffRadioScraper");
 var wmbr = require("./scrapers/cheerio/WmbrScraper");
 var gnl = require("./scrapers/cheerio/GnlScraper");
+var raveo = require("./scrapers/cheerio/RaveoScraper");
+var belly = require("./scrapers/cheerio/BellyUp4BluesScraper");
 var amazing = require("./scrapers/json/AmazingRadioScraper");
 var chronisch = require("./scrapers/json/ChronischScraper");
 var cod = require("./scrapers/json/CoreOfDestructionScraper");
@@ -187,6 +190,7 @@ var scrapers = {
     KFJC: new kfjc.KfjcScraper("KFJC"),
     AllSongs: new allsongs.AllSongs247Scraper("AllSongs"),
     Xray: new xray.XrayScraper("Xray"),
+    //BellyUp4Blues: new belly.BellyUp4BluesScraper("BellyUp4Blues"),
     BellyUp4Blues: new belly.BellyUp4BluesScraper("BellyUp4Blues"),
     GemRadio: new tunein.TuneInScraper("GemRadio", "Gem-Radio-New-Wave-s183330"),
     KGSR: new kgsr.KGSRScraper("KGSR"),
@@ -202,7 +206,8 @@ var scrapers = {
     CPROpenAir: new cpr.CprScraper("CPROpenAir", "playlistCO"),
     RadioRiel: new radioRiel.RadioRielScraper("RadioRiel"),
     RadioNova: new radioNova.RadioNovaScraper("RadioNova"),
-    MegaStarFm: new megaStarFm.MegaStarFmScraper("MegaStarFM")
+    MegaStarFm: new megaStarFm.MegaStarFmScraper("MegaStarFM"),
+    Raveo: new raveo.RaveoScraper("Raveo")
 };
 var lastfmNode = new lastfm.LastFmNode({
     api_key: LASTFM_API_KEY,

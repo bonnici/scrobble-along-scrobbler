@@ -32,8 +32,6 @@ var TheCurrentScraper = (function (_super) {
         var artistPattern = /<div class="player-artist js-update-artist">(.*?)<\/div>/;
         var titleMatches = titlePattern.exec(body);
         var artistMatches = artistPattern.exec(body);
-        console.log("titleMatches[1]", titleMatches[1]);
-        console.log("artistMatches[1]", artistMatches[1]);
         if (artistMatches && artistMatches.length > 1 && titleMatches && titleMatches.length > 1) {
             callback(null, {
                 Artist: artistMatches[1].trim(),

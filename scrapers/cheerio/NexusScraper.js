@@ -7,15 +7,15 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var scrap = require("./CheerioScraper");
-var RaveoScraper = (function (_super) {
-    __extends(RaveoScraper, _super);
-    function RaveoScraper(name) {
+var NexusScraper = (function (_super) {
+    __extends(NexusScraper, _super);
+    function NexusScraper(name) {
         _super.call(this, name);
     }
-    RaveoScraper.prototype.getUrl = function () {
-        return "http://raveo.fm/load/title/nowplaying-wordpress.php";
+    NexusScraper.prototype.getUrl = function (scraperParam) {
+        return scraperParam;
     };
-    RaveoScraper.prototype.parseCheerio = function ($, callback) {
+    NexusScraper.prototype.parseCheerio = function ($, callback) {
         var infoDivs = $('body div div');
         if (infoDivs.length > 1) {
             var track = infoDivs.eq(0).text();
@@ -27,7 +27,7 @@ var RaveoScraper = (function (_super) {
         }
         callback(null, { Artist: null, Track: null });
     };
-    return RaveoScraper;
+    return NexusScraper;
 }(scrap.CheerioScraper));
-exports.RaveoScraper = RaveoScraper;
-//# sourceMappingURL=RaveoScraper.js.map
+exports.NexusScraper = NexusScraper;
+//# sourceMappingURL=NexusScraper.js.map

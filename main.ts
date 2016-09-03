@@ -55,8 +55,9 @@ import vodafone = require("./scrapers/cheerio/VodafoneFmScraper");
 import spiff = require("./scrapers/cheerio/SpiffRadioScraper");
 import wmbr = require("./scrapers/cheerio/WmbrScraper");
 import gnl = require("./scrapers/cheerio/GnlScraper");
-import raveo = require("./scrapers/cheerio/RaveoScraper");
+//import raveo = require("./scrapers/cheerio/RaveoScraper");
 import belly = require("./scrapers/cheerio/BellyUp4BluesScraper");
+import nexus = require("./scrapers/cheerio/NexusScraper");
 
 import amazing = require("./scrapers/json/AmazingRadioScraper");
 import chronisch = require("./scrapers/json/ChronischScraper");
@@ -223,7 +224,7 @@ var scrapers:{ [index: string]: scrap.Scraper; } = {
     RadioRiel: new radioRiel.RadioRielScraper("RadioRiel"),
     RadioNova: new radioNova.RadioNovaScraper("RadioNova"),
     MegaStarFm: new megaStarFm.MegaStarFmScraper("MegaStarFM"),
-    Raveo: new raveo.RaveoScraper("Raveo")
+    Nexus: new nexus.NexusScraper("Nexus")
 };
 
 var lastfmNode = new lastfm.LastFmNode({

@@ -48,8 +48,9 @@ var vodafone = require("./scrapers/cheerio/VodafoneFmScraper");
 var spiff = require("./scrapers/cheerio/SpiffRadioScraper");
 var wmbr = require("./scrapers/cheerio/WmbrScraper");
 var gnl = require("./scrapers/cheerio/GnlScraper");
-var raveo = require("./scrapers/cheerio/RaveoScraper");
+//import raveo = require("./scrapers/cheerio/RaveoScraper");
 var belly = require("./scrapers/cheerio/BellyUp4BluesScraper");
+var nexus = require("./scrapers/cheerio/NexusScraper");
 var amazing = require("./scrapers/json/AmazingRadioScraper");
 var chronisch = require("./scrapers/json/ChronischScraper");
 var cod = require("./scrapers/json/CoreOfDestructionScraper");
@@ -207,7 +208,7 @@ var scrapers = {
     RadioRiel: new radioRiel.RadioRielScraper("RadioRiel"),
     RadioNova: new radioNova.RadioNovaScraper("RadioNova"),
     MegaStarFm: new megaStarFm.MegaStarFmScraper("MegaStarFM"),
-    Raveo: new raveo.RaveoScraper("Raveo")
+    Nexus: new nexus.NexusScraper("Nexus")
 };
 var lastfmNode = new lastfm.LastFmNode({
     api_key: LASTFM_API_KEY,

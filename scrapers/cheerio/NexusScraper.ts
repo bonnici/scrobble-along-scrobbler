@@ -7,14 +7,13 @@ import song = require("../../Song");
 import cheerio = require("cheerio");
 import winston = require("winston");
 
-export class RaveoScraper extends scrap.CheerioScraper {
-
+export class NexusScraper extends scrap.CheerioScraper {
     constructor(name:string) {
         super(name);
     }
     
-    getUrl(): string {
-        return "http://raveo.fm/load/title/nowplaying-wordpress.php";
+    getUrl(scraperParam?:string): string {
+        return scraperParam;
     }
 
     public parseCheerio($:any, callback: (err, newNowPlayingSong: song.Song, justScrobbledSong?:song.Song) => void): void {

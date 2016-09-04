@@ -51,6 +51,7 @@ var gnl = require("./scrapers/cheerio/GnlScraper");
 //import raveo = require("./scrapers/cheerio/RaveoScraper");
 var belly = require("./scrapers/cheerio/BellyUp4BluesScraper");
 var nexus = require("./scrapers/cheerio/NexusScraper");
+var gensokyo = require("./scrapers/cheerio/GensokyoRadioScraper");
 var amazing = require("./scrapers/json/AmazingRadioScraper");
 var chronisch = require("./scrapers/json/ChronischScraper");
 var cod = require("./scrapers/json/CoreOfDestructionScraper");
@@ -83,6 +84,8 @@ var cpr = require("./scrapers/json/CprScraper");
 var radioRiel = require("./scrapers/json/RadioRielScraper");
 var radioNova = require("./scrapers/json/RadioNovaScraper");
 var megaStarFm = require("./scrapers/json/MegaStarFmScraper");
+var radioU = require("./scrapers/json/RadioUScraper");
+var los40 = require("./scrapers/json/Los40Scraper");
 // Required environment variables
 var STATION_CRYPTO_KEY = process.env.SA_STATION_CRYPTO_KEY;
 var USER_CRYPTO_KEY = process.env.SA_USER_CRYPTO_KEY;
@@ -208,7 +211,10 @@ var scrapers = {
     RadioRiel: new radioRiel.RadioRielScraper("RadioRiel"),
     RadioNova: new radioNova.RadioNovaScraper("RadioNova"),
     MegaStarFm: new megaStarFm.MegaStarFmScraper("MegaStarFM"),
-    Nexus: new nexus.NexusScraper("Nexus")
+    Nexus: new nexus.NexusScraper("Nexus"),
+    RadioU: new radioU.RadioUScraper("RadioU"),
+    Gensokyo: new gensokyo.GensokyoRadioScraper("Gensokyo"),
+    Los40: new los40.Los40Scraper("Los40")
 };
 var lastfmNode = new lastfm.LastFmNode({
     api_key: LASTFM_API_KEY,

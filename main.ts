@@ -35,8 +35,8 @@ import bluesdebut = require("./scrapers/cheerio/BluesDebutScraper");
 import bristol = require("./scrapers/cheerio/BristolScraper");
 //import bytefm = require("./scrapers/cheerio/ByteFmScraper");
 import c895 = require("./scrapers/cheerio/C895Scraper");
-import cbcRadio2 = require("./scrapers/cheerio/CbcRadio2Scraper");
-import cbcRadio3 = require("./scrapers/cheerio/CbcRadio3Scraper");
+//import cbcRadio2 = require("./scrapers/cheerio/CbcRadio2Scraper");
+//import cbcRadio3 = require("./scrapers/cheerio/CbcRadio3Scraper");
 import dawg = require("./scrapers/cheerio/DawgFmScraper");
 import drDk = require("./scrapers/cheerio/DrDkScraper");
 import fusion = require("./scrapers/cheerio/FusionScraper");
@@ -95,6 +95,7 @@ import radioNova = require("./scrapers/json/RadioNovaScraper");
 import megaStarFm = require("./scrapers/json/MegaStarFmScraper");
 import radioU = require("./scrapers/json/RadioUScraper");
 import los40 = require("./scrapers/json/Los40Scraper");
+import cbcRadio = require("./scrapers/json/CbcRadioScraper");
 
 // Required environment variables
 var STATION_CRYPTO_KEY = process.env.SA_STATION_CRYPTO_KEY;
@@ -185,8 +186,8 @@ var scrapers:{ [index: string]: scrap.Scraper; } = {
     Sonar: new janus.JanusScraper("Sonar", "sonarfm"),
 	RockFM: new rockFm.RockFmScraper("RockFM"),
 	FluxFM: new fluxFm.FluxFmScraper("FluxFMRadio"),
-	CBCRadio2: new cbcRadio2.CbcRadio2Scraper("CBCRadio2"),
-	CBCRadio3: new cbcRadio3.CbcRadio3Scraper("CBCRadio3"),
+	//CBCRadio2: new cbcRadio2.CbcRadio2Scraper("CBCRadio2"),
+	//CBCRadio3: new cbcRadio3.CbcRadio3Scraper("CBCRadio3"),
 	WFKUGoth: new wfku.WfkuScraper("WFKUGoth", "wfkugoth"),
 	WFKUPerki: new wfku.WfkuScraper("WFKUPerki", "wfkuperki"),
 	DawgFM: new dawg.DawgFmScraper("DawgFM"),
@@ -235,7 +236,8 @@ var scrapers:{ [index: string]: scrap.Scraper; } = {
     NexusJamz: new nexus.NexusScraper("Nexus", "http://party1019.com/load/title/nowplaying-wordpress.php", true),
     NexusLatin: new nexus.NexusScraper("Nexus", "http://nexuslatino.com/load/title/nowplaying-white.php", false),
     NexusPop: new nexus.NexusScraper("Nexus", "http://nexusradio.fm/load/pop/title/nowplaying-white.php", false),
-    NexusRaveo: new nexus.NexusScraper("Nexus", "http://raveo.fm/load/title/nowplaying-wordpress.php", true)
+    NexusRaveo: new nexus.NexusScraper("Nexus", "http://raveo.fm/load/title/nowplaying-wordpress.php", true),
+    CbcRadio : new cbcRadio.CbcRadioScraper("CbcRadio")
 };
 
 var lastfmNode = new lastfm.LastFmNode({

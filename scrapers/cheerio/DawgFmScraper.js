@@ -12,26 +12,19 @@ var DawgFmScraper = (function (_super) {
     __extends(DawgFmScraper, _super);
     function DawgFmScraper(name) {
         _super.call(this, name);
+        this.xmlMode = true;
     }
     DawgFmScraper.prototype.getUrl = function () {
         return "http://www.dawgfm.com/cidg_fm.xml?_=" + new Date().getTime();
     };
     DawgFmScraper.prototype.parseCheerio = function ($, callback) {
-        var artist = $('Artist');
-        var title = $('SongTitle');
-        if (artist.length < 1 || title.length < 1) {
-            winston.warn("DawgFmScraper: No artist or song");
+        var entry = $('PlayList Entry');
+        if (entry.length < 1) {
+            winston.warn("DawgFmScraper: No entry");
             callback(null, { Artist: null, Track: null });
             return;
         }
-        var artistText = artist.eq(0).text();
-        var titleText = title.eq(0).text();
-        if (!artistText || !titleText) {
-            winston.warn("DawgFmScraper: No artist or song text");
-            callback(null, { Artist: null, Track: null });
-            return;
-        }
-        callback(null, { Artist: this.capitalize(artistText), Track: this.capitalize(titleText) });
+        callback(null, { Artist: entry.eq(0)[0].attribs.Artist, Track: entry.eq(0)[0].attribs.Title });
     };
     return DawgFmScraper;
 }(scrap.CheerioScraper));

@@ -10,6 +10,7 @@ export class DawgFmScraper extends scrap.CheerioScraper {
 
 	constructor(name:string) {
 		super(name);
+        this.xmlMode = true;
 	}
 
 	public getUrl(): string {
@@ -17,24 +18,14 @@ export class DawgFmScraper extends scrap.CheerioScraper {
 	}
 
 	public parseCheerio($:any, callback: (err, newNowPlayingSong: song.Song, justScrobbledSong?:song.Song) => void): void {
-		var artist = $('Artist');
-		var title = $('SongTitle');
+        var entry = $('PlayList Entry');
 
-		if (artist.length < 1 || title.length < 1) {
-			winston.warn("DawgFmScraper: No artist or song");
-			callback(null, { Artist: null, Track: null });
-			return;
-		}
+        if (entry.length < 1) {
+            winston.warn("DawgFmScraper: No entry");
+            callback(null, { Artist: null, Track: null });
+            return;
+        }
 
-		var artistText = artist.eq(0).text();
-		var titleText = title.eq(0).text();
-
-		if (!artistText || !titleText) {
-			winston.warn("DawgFmScraper: No artist or song text");
-			callback(null, { Artist: null, Track: null });
-			return;
-		}
-
-		callback(null, { Artist: this.capitalize(artistText), Track: this.capitalize(titleText) });
+        callback(null, { Artist: entry.eq(0)[0].attribs.Artist, Track: entry.eq(0)[0].attribs.Title });
 	}
 }

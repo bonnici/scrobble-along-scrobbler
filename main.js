@@ -211,10 +211,15 @@ var scrapers = {
     RadioRiel: new radioRiel.RadioRielScraper("RadioRiel"),
     RadioNova: new radioNova.RadioNovaScraper("RadioNova"),
     MegaStarFm: new megaStarFm.MegaStarFmScraper("MegaStarFM"),
-    Nexus: new nexus.NexusScraper("Nexus"),
     RadioU: new radioU.RadioUScraper("RadioU"),
     Gensokyo: new gensokyo.GensokyoRadioScraper("Gensokyo"),
-    Los40: new los40.Los40Scraper("Los40")
+    Los40: new los40.Los40Scraper("Los40"),
+    NexusAlt: new nexus.NexusScraper("Nexus", "http://alt360radio.com/load/title/nowplaying-wordpress.php", true),
+    NexusDance: new nexus.NexusScraper("Nexus", "http://nexusradio.fm/load/title/nowplaying-page.php", false),
+    NexusJamz: new nexus.NexusScraper("Nexus", "http://party1019.com/load/title/nowplaying-wordpress.php", true),
+    NexusLatin: new nexus.NexusScraper("Nexus", "http://nexuslatino.com/load/title/nowplaying-white.php", false),
+    NexusPop: new nexus.NexusScraper("Nexus", "http://nexusradio.fm/load/pop/title/nowplaying-white.php", false),
+    NexusRaveo: new nexus.NexusScraper("Nexus", "http://raveo.fm/load/title/nowplaying-wordpress.php", true)
 };
 var lastfmNode = new lastfm.LastFmNode({
     api_key: LASTFM_API_KEY,

@@ -9,17 +9,13 @@ var __extends = (this && this.__extends) || function (d, b) {
 var scrap = require("./CheerioScraper");
 var NexusScraper = (function (_super) {
     __extends(NexusScraper, _super);
-    function NexusScraper(name) {
+    function NexusScraper(name, url, trackFirst) {
         _super.call(this, name);
-        this.trackFirst = true;
+        this.url = url;
+        this.trackFirst = trackFirst;
     }
     NexusScraper.prototype.getUrl = function (scraperParam) {
-        var split = scraperParam.split('~');
-        if (split && split.length > 1) {
-            this.trackFirst = split[1] == 'true';
-            return split[0];
-        }
-        return scraperParam;
+        return this.url;
     };
     NexusScraper.prototype.parseCheerio = function ($, callback) {
         var infoDivs = $('body div div');

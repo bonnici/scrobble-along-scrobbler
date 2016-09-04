@@ -8,20 +8,12 @@ import cheerio = require("cheerio");
 import winston = require("winston");
 
 export class NexusScraper extends scrap.CheerioScraper {
-    private trackFirst = true;
-    
-    constructor(name:string) {
+    constructor(name:string, private url: string, private trackFirst: boolean) {
         super(name);
     }
     
     getUrl(scraperParam?:string): string {
-        var split = scraperParam.split('~');
-        if (split && split.length > 1) {
-            this.trackFirst = split[1] == 'true';
-            return split[0];
-        }
-        
-        return scraperParam;
+        return this.url;
     }
 
     public parseCheerio($:any, callback: (err, newNowPlayingSong: song.Song, justScrobbledSong?:song.Song) => void): void {

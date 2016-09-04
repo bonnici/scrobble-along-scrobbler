@@ -11,15 +11,21 @@ var NexusScraper = (function (_super) {
     __extends(NexusScraper, _super);
     function NexusScraper(name) {
         _super.call(this, name);
+        this.trackFirst = true;
     }
     NexusScraper.prototype.getUrl = function (scraperParam) {
+        var split = scraperParam.split('~');
+        if (split && split.length > 1) {
+            this.trackFirst = split[1] == 'true';
+            return split[0];
+        }
         return scraperParam;
     };
     NexusScraper.prototype.parseCheerio = function ($, callback) {
         var infoDivs = $('body div div');
         if (infoDivs.length > 1) {
-            var track = infoDivs.eq(0).text();
-            var artist = infoDivs.eq(1).text();
+            var track = infoDivs.eq(this.trackFirst ? 0 : 1).text();
+            var artist = infoDivs.eq(this.trackFirst ? 1 : 0).text();
             if (track && artist) {
                 callback(null, { Artist: artist.trim(), Track: track.trim() });
                 return;

@@ -9,7 +9,7 @@ import winston = require("winston");
 export class TheCurrentScraper extends scrap.Scraper {
     private url: string;
 
-    constructor(name:string, radioId:string) {
+    constructor(name:string) {
         super(name);
         this.url =  "http://www.thecurrent.org/listen";
     }

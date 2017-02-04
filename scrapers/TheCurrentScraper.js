@@ -9,7 +9,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 var scrap = require("./Scraper");
 var TheCurrentScraper = (function (_super) {
     __extends(TheCurrentScraper, _super);
-    function TheCurrentScraper(name, radioId) {
+    function TheCurrentScraper(name) {
         _super.call(this, name);
         this.url = "http://www.thecurrent.org/listen";
     }

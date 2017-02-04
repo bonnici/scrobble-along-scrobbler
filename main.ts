@@ -96,7 +96,8 @@ import megaStarFm = require("./scrapers/json/MegaStarFmScraper");
 import radioU = require("./scrapers/json/RadioUScraper");
 import los40 = require("./scrapers/json/Los40Scraper");
 import cbcRadio = require("./scrapers/json/CbcRadioScraper");
-import kiis = require("./scrapers/json/Kiis1065Scraper")
+import kiis = require("./scrapers/json/Kiis1065Scraper");
+import newKexp = require("./scrapers/json/NewKexpScraper");
 
 // Required environment variables
 var STATION_CRYPTO_KEY = process.env.SA_STATION_CRYPTO_KEY;
@@ -239,7 +240,8 @@ var scrapers:{ [index: string]: scrap.Scraper; } = {
     NexusPop: new nexus.NexusScraper("Nexus", "http://nexusradio.fm/load/pop/title/nowplaying-white.php", false),
     NexusRaveo: new nexus.NexusScraper("Nexus", "http://raveo.fm/load/title/nowplaying-wordpress.php", true),
     CbcRadio : new cbcRadio.CbcRadioScraper("CbcRadio"),
-    Kiis1065Scraper: new kiis.Kiis1065Scraper("Kiis1065")
+    Kiis1065Scraper: new kiis.Kiis1065Scraper("Kiis1065"),
+    NewKexp: new newKexp.NewKexpScraper("NewKexp")
 };
 
 var lastfmNode = new lastfm.LastFmNode({

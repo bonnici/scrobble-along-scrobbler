@@ -88,6 +88,7 @@ var radioU = require("./scrapers/json/RadioUScraper");
 var los40 = require("./scrapers/json/Los40Scraper");
 var cbcRadio = require("./scrapers/json/CbcRadioScraper");
 var kiis = require("./scrapers/json/Kiis1065Scraper");
+var newKexp = require("./scrapers/json/NewKexpScraper");
 // Required environment variables
 var STATION_CRYPTO_KEY = process.env.SA_STATION_CRYPTO_KEY;
 var USER_CRYPTO_KEY = process.env.SA_USER_CRYPTO_KEY;
@@ -223,7 +224,8 @@ var scrapers = {
     NexusPop: new nexus.NexusScraper("Nexus", "http://nexusradio.fm/load/pop/title/nowplaying-white.php", false),
     NexusRaveo: new nexus.NexusScraper("Nexus", "http://raveo.fm/load/title/nowplaying-wordpress.php", true),
     CbcRadio: new cbcRadio.CbcRadioScraper("CbcRadio"),
-    Kiis1065Scraper: new kiis.Kiis1065Scraper("Kiis1065")
+    Kiis1065Scraper: new kiis.Kiis1065Scraper("Kiis1065"),
+    NewKexp: new newKexp.NewKexpScraper("NewKexp")
 };
 var lastfmNode = new lastfm.LastFmNode({
     api_key: LASTFM_API_KEY,

@@ -1,16 +1,22 @@
 /// <reference path="../../definitions/typescript-node-definitions/winston.d.ts"/>
 "use strict";
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+exports.__esModule = true;
 var scrap = require("./CheerioScraper");
 var winston = require("winston");
 var GoldRadioScraper = (function (_super) {
     __extends(GoldRadioScraper, _super);
     function GoldRadioScraper(name) {
-        _super.call(this, name);
+        return _super.call(this, name) || this;
     }
     GoldRadioScraper.prototype.getUrl = function () {
         return "http://www.mygoldmusic.co.uk/jsfiles/NowPlayingDisplay.aspx?f=http%3A%2F%2Frope%2Eicgo%2Efimc%2Enet%2FFeeds%2FNowPlaying%2FGCap%5FMedia%2FGold%5FNetwork%2FGold%5FLondon%2F5853%2Exml&l=5853&tzc=8";

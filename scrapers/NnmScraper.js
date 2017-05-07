@@ -3,27 +3,34 @@
 /// <reference path="../definitions/DefinitelyTyped/underscore/underscore.d.ts"/>
 /// <reference path="../definitions/typescript-node-definitions/winston.d.ts"/>
 "use strict";
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+exports.__esModule = true;
 var scrap = require("./Scraper");
 var _ = require("underscore");
 var cheerio = require("cheerio");
-var moment = require('moment');
+var moment = require("moment");
 var util = require("util");
 var winston = require("winston");
 var NnmScraper = (function (_super) {
     __extends(NnmScraper, _super);
     function NnmScraper(name, marciUrl, jsonUrl1, jsonUrl2) {
-        _super.call(this, name);
-        this.artistFilter = ['tobi.', 'nnm', 'discojingles', 'connection timed out', 'tunein', 'beer magazine', 'cc wifi radio', 'www.vinja.tv'];
-        this.artistContainsFilter = ['new normal music', '818.52.radio'];
-        this.defaultStartTime = null; // Overridable for tests
-        this.marciUrl = marciUrl || "http://marci228.getmarci.com/";
-        this.jsonUrl1 = jsonUrl1 || "http://p1.radiocdn.com/player.php?hash=69d494aa557d8028daf3100b0538f48e48c53925&action=getCurrentData&_=%s";
-        this.jsonUrl2 = jsonUrl2 || "http://p2.radiocdn.com/player.php?hash=69d494aa557d8028daf3100b0538f48e48c53925&action=getCurrentData&_=%s";
+        var _this = _super.call(this, name) || this;
+        _this.artistFilter = ['tobi.', 'nnm', 'discojingles', 'connection timed out', 'tunein', 'beer magazine', 'cc wifi radio', 'www.vinja.tv'];
+        _this.artistContainsFilter = ['new normal music', '818.52.radio'];
+        _this.defaultStartTime = null; // Overridable for tests
+        _this.marciUrl = marciUrl || "http://marci228.getmarci.com/";
+        _this.jsonUrl1 = jsonUrl1 || "http://p1.radiocdn.com/player.php?hash=69d494aa557d8028daf3100b0538f48e48c53925&action=getCurrentData&_=%s";
+        _this.jsonUrl2 = jsonUrl2 || "http://p2.radiocdn.com/player.php?hash=69d494aa557d8028daf3100b0538f48e48c53925&action=getCurrentData&_=%s";
+        return _this;
     }
     NnmScraper.prototype.fetchAndParse = function (callback) {
         var _this = this;

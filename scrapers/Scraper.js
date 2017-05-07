@@ -1,11 +1,17 @@
 /// <reference path="../definitions/typescript-node-definitions/winston.d.ts"/>
 /// <reference path="../definitions/typescript-node-definitions/request.d.ts"/>
 "use strict";
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+exports.__esModule = true;
 var request = require("request");
 var winston = require("winston");
 // Abstract base class
@@ -56,8 +62,9 @@ exports.Scraper = Scraper;
 var DummyScraper = (function (_super) {
     __extends(DummyScraper, _super);
     function DummyScraper(suffix) {
-        _super.call(this, "Dummy" + suffix);
-        this.suffix = suffix;
+        var _this = _super.call(this, "Dummy" + suffix) || this;
+        _this.suffix = suffix;
+        return _this;
     }
     DummyScraper.prototype.fetchAndParse = function (callback) {
         var songs = [

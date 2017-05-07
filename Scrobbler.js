@@ -1,6 +1,7 @@
 /// <reference path="./definitions/typescript-node-definitions/winston.d.ts"/>
 /// <reference path="./definitions/DefinitelyTyped/underscore/underscore.d.ts"/>
 "use strict";
+exports.__esModule = true;
 var _ = require("underscore");
 var winston = require("winston");
 // Constants
@@ -65,7 +66,8 @@ var Scrobbler = (function () {
                     stationData.nowPlayingSong = {
                         Artist: newNowPlayingSong.Artist,
                         Track: newNowPlayingSong.Track,
-                        StartTime: timestamp };
+                        StartTime: timestamp
+                    };
                     _this.postNowPlayingIfValid(stationData, station, users);
                 }
             }
@@ -77,7 +79,8 @@ var Scrobbler = (function () {
                     stationData.nowPlayingSong = {
                         Artist: newNowPlayingSong.Artist,
                         Track: newNowPlayingSong.Track,
-                        StartTime: timestamp };
+                        StartTime: timestamp
+                    };
                 }
                 _this.postNowPlayingIfValid(stationData, station, users);
             }

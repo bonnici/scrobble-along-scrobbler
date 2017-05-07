@@ -1,17 +1,24 @@
 /// <reference path="../definitions/typescript-node-definitions/winston.d.ts"/>
 /// <reference path="../definitions/typescript-node-definitions/winston.d.ts"/>
 "use strict";
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+exports.__esModule = true;
 var scrap = require("./Scraper");
 var ChillDABScraper = (function (_super) {
     __extends(ChillDABScraper, _super);
     function ChillDABScraper(name) {
-        _super.call(this, name);
-        this.url = "http://www.ebulabs.org/tools/radiovis-ajaxplayer/radiovis-webplayer/comet.php?last_id=ID%3Alqctwebnode1-41914-1420627692907-2%3A2961232%3A-1%3A1%3A453543399&topic=%2Ftopic%2Fdab%2Fce1%2Fc199%2Fc1c3%2F0%2Ftext&visserver=vis.musicradio.com&visport=61613";
+        var _this = _super.call(this, name) || this;
+        _this.url = "http://www.ebulabs.org/tools/radiovis-ajaxplayer/radiovis-webplayer/comet.php?last_id=ID%3Alqctwebnode1-41914-1420627692907-2%3A2961232%3A-1%3A1%3A453543399&topic=%2Ftopic%2Fdab%2Fce1%2Fc199%2Fc1c3%2F0%2Ftext&visserver=vis.musicradio.com&visport=61613";
+        return _this;
     }
     ChillDABScraper.prototype.fetchAndParse = function (callback) {
         var _this = this;

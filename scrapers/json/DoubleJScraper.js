@@ -1,18 +1,25 @@
 /// <reference path="../../definitions/typescript-node-definitions/winston.d.ts"/>
 /// <reference path="../../definitions/DefinitelyTyped/underscore/underscore.d.ts"/>
 "use strict";
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+exports.__esModule = true;
 var scrap = require("./JsonScraper");
 var winston = require("winston");
 var DoubleJScraper = (function (_super) {
     __extends(DoubleJScraper, _super);
     function DoubleJScraper(name, url) {
-        _super.call(this, name);
-        this.url = url || "http://music.abcradio.net.au/api/v1/plays/doublej/now.json";
+        var _this = _super.call(this, name) || this;
+        _this.url = url || "http://music.abcradio.net.au/api/v1/plays/doublej/now.json";
+        return _this;
     }
     DoubleJScraper.prototype.getUrl = function (lastfmUsername) {
         return this.url;

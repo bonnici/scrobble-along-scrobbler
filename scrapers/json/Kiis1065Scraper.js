@@ -1,16 +1,23 @@
 /// <reference path="../../definitions/typescript-node-definitions/winston.d.ts"/>
 "use strict";
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+exports.__esModule = true;
 var scrap = require("./JsonScraper");
 var Kiis1065Scraper = (function (_super) {
     __extends(Kiis1065Scraper, _super);
     function Kiis1065Scraper(name) {
-        _super.call(this, name);
-        this.baseUrl = "http://www.kiis1065.com.au/umbraco/Arn/ArnFeed/GetOnAir?feedUrl=http://media.arn.com.au/xml/mix1065_now.xml";
+        var _this = _super.call(this, name) || this;
+        _this.baseUrl = "http://www.kiis1065.com.au/umbraco/Arn/ArnFeed/GetOnAir?feedUrl=http://media.arn.com.au/xml/mix1065_now.xml";
+        return _this;
     }
     Kiis1065Scraper.prototype.getUrl = function (lastfmUsername) {
         return this.baseUrl;

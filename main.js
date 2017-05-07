@@ -3,6 +3,7 @@
 /// <reference path="./definitions/dummy-definitions/lastfm.d.ts"/>
 /// <reference path="./definitions/typescript-node-definitions/winston.d.ts"/>
 "use strict";
+exports.__esModule = true;
 var _ = require("underscore");
 var lastfm = require("lastfm");
 var mongodb = require("mongodb");
@@ -89,6 +90,10 @@ var los40 = require("./scrapers/json/Los40Scraper");
 var cbcRadio = require("./scrapers/json/CbcRadioScraper");
 var kiis = require("./scrapers/json/Kiis1065Scraper");
 var newKexp = require("./scrapers/json/NewKexpScraper");
+var qRadio = require("./scrapers/json/QRadioScraper");
+var rockAxis = require("./scrapers/json/RockAxisScraper");
+var chipbit = require("./scrapers/json/ChipbitScraper");
+var oldFashionedRadio = require("./scrapers/json/OFRScraper");
 // Required environment variables
 var STATION_CRYPTO_KEY = process.env.SA_STATION_CRYPTO_KEY;
 var USER_CRYPTO_KEY = process.env.SA_USER_CRYPTO_KEY;
@@ -225,7 +230,11 @@ var scrapers = {
     NexusRaveo: new nexus.NexusScraper("Nexus", "http://raveo.fm/load/title/nowplaying-wordpress.php", true),
     CbcRadio: new cbcRadio.CbcRadioScraper("CbcRadio"),
     Kiis1065Scraper: new kiis.Kiis1065Scraper("Kiis1065"),
-    NewKexp: new newKexp.NewKexpScraper("NewKexp")
+    NewKexp: new newKexp.NewKexpScraper("NewKexp"),
+    QRadio: new qRadio.QRadioScraper("qradiobelfast"),
+    RockAxis: new rockAxis.RockAxisScraper("RockAxisRadio"),
+    ChipBit: new chipbit.ChipbitScraper("ChipBitRadio"),
+    OFR: new oldFashionedRadio.OFRScraper("OFR")
 };
 var lastfmNode = new lastfm.LastFmNode({
     api_key: LASTFM_API_KEY,

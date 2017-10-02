@@ -1,5 +1,5 @@
-/// <reference path="./../definitions/DefinitelyTyped/node/node.d.ts"/>
 "use strict";
+/// <reference path="./../definitions/DefinitelyTyped/node/node.d.ts"/>
 exports.__esModule = true;
 var crypto = require("crypto");
 var DummyCrypter = (function () {

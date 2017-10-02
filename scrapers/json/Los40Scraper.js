@@ -1,5 +1,5 @@
-/// <reference path="../../definitions/typescript-node-definitions/winston.d.ts"/>
 "use strict";
+/// <reference path="../../definitions/typescript-node-definitions/winston.d.ts"/>
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -18,10 +18,10 @@ var Los40Scraper = (function (_super) {
         return _super.call(this, name) || this;
     }
     Los40Scraper.prototype.getUrl = function () {
-        return "http://www.yes.fm/a/radio/fm/hasonado/LOS40";
+        return "https://play.los40.com/api/v1/hasonado/get/los40?host=play.los40.com";
     };
     Los40Scraper.prototype.extractNowPlayingSong = function (jsonData) {
-        return { Artist: jsonData.result[0].artist, Track: jsonData.result[0].track };
+        return { Artist: jsonData[0].artist, Track: jsonData[0].song };
     };
     return Los40Scraper;
 }(jsonScrap.JsonScraper));

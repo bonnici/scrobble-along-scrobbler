@@ -1,6 +1,6 @@
+"use strict";
 /// <reference path="../../definitions/typescript-node-definitions/winston.d.ts"/>
 /// <reference path="../../definitions/dummy-definitions/moment-timezone.d.ts"/>
-"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||

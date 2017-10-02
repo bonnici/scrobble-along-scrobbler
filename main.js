@@ -1,8 +1,8 @@
+"use strict";
 /// <reference path="./definitions/DefinitelyTyped/mongodb/mongodb.d.ts"/>
 /// <reference path="./definitions/DefinitelyTyped/underscore/underscore.d.ts"/>
 /// <reference path="./definitions/dummy-definitions/lastfm.d.ts"/>
 /// <reference path="./definitions/typescript-node-definitions/winston.d.ts"/>
-"use strict";
 exports.__esModule = true;
 var _ = require("underscore");
 var lastfm = require("lastfm");
@@ -25,6 +25,7 @@ var wzbc = require("./scrapers/WzbcScraper");
 var noesfm = require("./scrapers/NoEsFmScraper");
 var marci = require("./scrapers/MarciScraper");
 var theCurrent = require("./scrapers/TheCurrentScraper");
+var twitter = require("./scrapers/TwitterScraper");
 var andys80s = require("./scrapers/cheerio/Andys80sScraper");
 var bluesdebut = require("./scrapers/cheerio/BluesDebutScraper");
 var bristol = require("./scrapers/cheerio/BristolScraper");
@@ -53,6 +54,7 @@ var gnl = require("./scrapers/cheerio/GnlScraper");
 var belly = require("./scrapers/cheerio/BellyUp4BluesScraper");
 var nexus = require("./scrapers/cheerio/NexusScraper");
 var gensokyo = require("./scrapers/cheerio/GensokyoRadioScraper");
+var krautrock = require("./scrapers/cheerio/KrautrockWorld");
 var amazing = require("./scrapers/json/AmazingRadioScraper");
 var chronisch = require("./scrapers/json/ChronischScraper");
 var cod = require("./scrapers/json/CoreOfDestructionScraper");
@@ -94,6 +96,7 @@ var qRadio = require("./scrapers/json/QRadioScraper");
 var rockAxis = require("./scrapers/json/RockAxisScraper");
 var chipbit = require("./scrapers/json/ChipbitScraper");
 var oldFashionedRadio = require("./scrapers/json/OFRScraper");
+var humanoDerecho = require("./scrapers/json/HumanoDerechoScraper");
 // Required environment variables
 var STATION_CRYPTO_KEY = process.env.SA_STATION_CRYPTO_KEY;
 var USER_CRYPTO_KEY = process.env.SA_USER_CRYPTO_KEY;
@@ -105,8 +108,12 @@ var NODE_ENV = process.env.NODE_ENV;
 var TESTING_MODE = process.env.SA_TESTING_MODE;
 var TESTING_MODE_SCRAPERS = process.env.SA_TESTING_MODE_SCRAPERS; // e.g. KEXP,DoubleJ,DrDk|p3
 var TESTING_MODE_USE_LISTENERS = process.env.SA_TESTING_MODE_USE_LISTENERS;
+var TWITTER_CONSUMER_KEY = process.env.TWITTER_CONSUMER_KEY;
+var TWITTER_CONSUMER_SECRET = process.env.TWITTER_CONSUMER_SECRET;
+var TWITTER_ACCESS_TOKEN_KEY = process.env.TWITTER_ACCESS_TOKEN_KEY;
+var TWITTER_ACCESS_TOKEN_SECRET = process.env.TWITTER_ACCESS_TOKEN_SECRET;
 if (!STATION_CRYPTO_KEY || !USER_CRYPTO_KEY || !MONGO_URI || !LASTFM_API_KEY || !LASTFM_SECRET || !SHOULD_SCROBBLE
-    || !NODE_ENV) {
+    || !NODE_ENV || !TWITTER_CONSUMER_KEY || !TWITTER_CONSUMER_SECRET || !TWITTER_ACCESS_TOKEN_KEY || !TWITTER_ACCESS_TOKEN_SECRET) {
     winston.error("A required environment variable is missing:", process.env);
     process.exit(1);
 }
@@ -234,7 +241,10 @@ var scrapers = {
     QRadio: new qRadio.QRadioScraper("qradiobelfast"),
     RockAxis: new rockAxis.RockAxisScraper("RockAxisRadio"),
     ChipBit: new chipbit.ChipbitScraper("ChipBitRadio"),
-    OFR: new oldFashionedRadio.OFRScraper("OFR")
+    OFR: new oldFashionedRadio.OFRScraper("OFR"),
+    Twitter: new twitter.TwitterScraper("Twitter", TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET, TWITTER_ACCESS_TOKEN_KEY, TWITTER_ACCESS_TOKEN_SECRET),
+    Krautrock: new krautrock.KrautrockWorldScraper("KrautrockWorld"),
+    HumanoDerecho: new humanoDerecho.HumanoDerechoScraper("HumanoDerecho")
 };
 var lastfmNode = new lastfm.LastFmNode({
     api_key: LASTFM_API_KEY,

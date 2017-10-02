@@ -1,7 +1,7 @@
+"use strict";
 /// <reference path="./definitions/DefinitelyTyped/underscore/underscore.d.ts"/>
 /// <reference path="./definitions/dummy-definitions/lastfm.d.ts"/>
 /// <reference path="./definitions/typescript-node-definitions/winston.d.ts"/>
-"use strict";
 exports.__esModule = true;
 var winston = require("winston");
 var DummyLastFmDao = (function () {

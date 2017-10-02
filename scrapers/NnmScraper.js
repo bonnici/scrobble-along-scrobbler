@@ -1,8 +1,8 @@
+"use strict";
 /// <reference path="../definitions/dummy-definitions/cheerio.d.ts"/>
 /// <reference path="../definitions/dummy-definitions/moment.d.ts"/>
 /// <reference path="../definitions/DefinitelyTyped/underscore/underscore.d.ts"/>
 /// <reference path="../definitions/typescript-node-definitions/winston.d.ts"/>
-"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||

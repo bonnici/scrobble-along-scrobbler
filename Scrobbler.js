@@ -1,6 +1,6 @@
+"use strict";
 /// <reference path="./definitions/typescript-node-definitions/winston.d.ts"/>
 /// <reference path="./definitions/DefinitelyTyped/underscore/underscore.d.ts"/>
-"use strict";
 exports.__esModule = true;
 var _ = require("underscore");
 var winston = require("winston");

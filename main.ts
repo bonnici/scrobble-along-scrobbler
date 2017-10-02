@@ -29,6 +29,7 @@ import wzbc = require("./scrapers/WzbcScraper");
 import noesfm = require("./scrapers/NoEsFmScraper");
 import marci = require("./scrapers/MarciScraper");
 import theCurrent = require("./scrapers/TheCurrentScraper");
+import twitter = require("./scrapers/TwitterScraper");
 
 import andys80s = require("./scrapers/cheerio/Andys80sScraper");
 import bluesdebut = require("./scrapers/cheerio/BluesDebutScraper");
@@ -59,6 +60,7 @@ import gnl = require("./scrapers/cheerio/GnlScraper");
 import belly = require("./scrapers/cheerio/BellyUp4BluesScraper");
 import nexus = require("./scrapers/cheerio/NexusScraper");
 import gensokyo = require("./scrapers/cheerio/GensokyoRadioScraper");
+import krautrock = require("./scrapers/cheerio/KrautrockWorld");
 
 import amazing = require("./scrapers/json/AmazingRadioScraper");
 import chronisch = require("./scrapers/json/ChronischScraper");
@@ -102,6 +104,7 @@ import qRadio = require("./scrapers/json/QRadioScraper");
 import rockAxis = require("./scrapers/json/RockAxisScraper");
 import chipbit = require("./scrapers/json/ChipbitScraper");
 import oldFashionedRadio = require("./scrapers/json/OFRScraper");
+import humanoDerecho = require("./scrapers/json/HumanoDerechoScraper");
 
 
 // Required environment variables
@@ -115,9 +118,13 @@ var NODE_ENV = process.env.NODE_ENV;
 var TESTING_MODE = process.env.SA_TESTING_MODE;
 var TESTING_MODE_SCRAPERS = process.env.SA_TESTING_MODE_SCRAPERS; // e.g. KEXP,DoubleJ,DrDk|p3
 var TESTING_MODE_USE_LISTENERS = process.env.SA_TESTING_MODE_USE_LISTENERS;
+var TWITTER_CONSUMER_KEY = process.env.TWITTER_CONSUMER_KEY;
+var TWITTER_CONSUMER_SECRET = process.env.TWITTER_CONSUMER_SECRET;
+var TWITTER_ACCESS_TOKEN_KEY = process.env.TWITTER_ACCESS_TOKEN_KEY;
+var TWITTER_ACCESS_TOKEN_SECRET = process.env.TWITTER_ACCESS_TOKEN_SECRET;
 
 if (!STATION_CRYPTO_KEY || !USER_CRYPTO_KEY || !MONGO_URI || !LASTFM_API_KEY || !LASTFM_SECRET || !SHOULD_SCROBBLE
-	|| !NODE_ENV) {
+	|| !NODE_ENV || !TWITTER_CONSUMER_KEY || !TWITTER_CONSUMER_SECRET || !TWITTER_ACCESS_TOKEN_KEY || !TWITTER_ACCESS_TOKEN_SECRET) {
 	winston.error("A required environment variable is missing:", process.env);
 	process.exit(1);
 }
@@ -250,7 +257,10 @@ var scrapers:{ [index: string]: scrap.Scraper; } = {
     QRadio: new qRadio.QRadioScraper("qradiobelfast"),
     RockAxis: new rockAxis.RockAxisScraper("RockAxisRadio"),
     ChipBit: new chipbit.ChipbitScraper("ChipBitRadio"),
-    OFR: new oldFashionedRadio.OFRScraper("OFR")
+    OFR: new oldFashionedRadio.OFRScraper("OFR"),
+    Twitter: new twitter.TwitterScraper("Twitter", TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET, TWITTER_ACCESS_TOKEN_KEY, TWITTER_ACCESS_TOKEN_SECRET),
+    Krautrock: new krautrock.KrautrockWorldScraper("KrautrockWorld"),
+    HumanoDerecho: new humanoDerecho.HumanoDerechoScraper("HumanoDerecho")
 };
 
 var lastfmNode = new lastfm.LastFmNode({

@@ -1,17 +1,18 @@
 {
-    "name": "scrobble-along-scrobbler"
-  , "version": "0.0.1"
-  , "private": true
-  , "dependencies": {
-      "cheerio": "0.18.x"
-    , "lastfm": "0.9.x"
-    , "moment": "2.9.x"
-    , "moment-timezone": "0.3.x"
-    , "mongodb": "1.4.x"
-    , "nock": "0.59.x"
-    , "request": "2.51.x"
-    , "winston": "0.8.x"
-    , "underscore": "1.7.x"
-    , "html-entities": "1.1.x"
+  "name": "scrobble-along-scrobbler",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "cheerio": "0.18.x",
+    "html-entities": "1.1.x",
+    "lastfm": "0.9.x",
+    "moment": "2.9.x",
+    "moment-timezone": "0.3.x",
+    "mongodb": "1.4.x",
+    "nock": "0.59.x",
+    "request": "2.51.x",
+    "twitter": "^1.7.1",
+    "underscore": "1.7.x",
+    "winston": "0.8.x"
   }
 }

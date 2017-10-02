@@ -5,17 +5,17 @@ import jsonScrap = require("./JsonScraper");
 
 import winston = require("winston");
 
-export class Los40Scraper extends jsonScrap.JsonScraper {
+export class HumanoDerechoScraper extends jsonScrap.JsonScraper {
 
     constructor(name:string) {
         super(name);
     }
 
     getUrl(): string {
-        return "https://play.los40.com/api/v1/hasonado/get/los40?host=play.los40.com";
+        return `http://142.44.167.189:2199/external/rpc.php?m=streaminfo.get&username=danzig&charset=&mountpoint=&rid=danzig&_=${new Date().getTime()}`;
     }
 
     extractNowPlayingSong(jsonData:any): song.Song {
-        return { Artist: jsonData[0].artist, Track: jsonData[0].song };
+        return { Artist: jsonData.data[0].track.artist, Track: jsonData.data[0].track.title };
     }
 }

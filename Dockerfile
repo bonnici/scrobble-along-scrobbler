@@ -1,6 +1,6 @@
 # Run with: docker run -d -i --env-file ./env.list containerid
 
-FROM node:0.12
+FROM node:6.11
 
 # Create app directory
 RUN mkdir -p /usr/src/app

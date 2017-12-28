@@ -8,7 +8,7 @@
     "lastfm": "0.9.x",
     "moment": "2.9.x",
     "moment-timezone": "0.3.x",
-    "mongodb": "1.4.x",
+    "mongodb": "^1.4.40",
     "nock": "0.59.x",
     "request": "2.51.x",
     "twitter": "^1.7.1",

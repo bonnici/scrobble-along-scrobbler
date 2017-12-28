@@ -17,8 +17,6 @@ var TwitterScraper = (function (_super) {
     __extends(TwitterScraper, _super);
     function TwitterScraper(name, consumerKey, consumerSecret, accessTokKey, accessTokSecret) {
         var _this = _super.call(this, name) || this;
-        _this.prefix = "Now Playing: ";
-        _this.separator = " - ";
         _this.client = new twitter({
             consumer_key: consumerKey,
             consumer_secret: consumerSecret,
@@ -51,11 +49,22 @@ var TwitterScraper = (function (_super) {
         });
     };
     TwitterScraper.prototype.parseTweet = function (text) {
-        if (text.indexOf(this.prefix) !== 0) {
+        var prefix = "Now Playing: ";
+        var endIndex = null;
+        var separator = " - ";
+        // Detect SomaFM accounts. Should be done in a better way.
+        if (text.indexOf('♬') >= 0) {
+            prefix = '♬ ';
+            endIndex = text.lastIndexOf('♬') - 1;
+        }
+        if (text.indexOf(prefix) !== 0) {
             return null;
         }
-        text = text.substr(this.prefix.length);
-        var split = text.split(this.separator);
+        if (endIndex) {
+            text = text.substring(0, endIndex);
+        }
+        text = text.substring(prefix.length);
+        var split = text.split(separator);
         if (split && split.length > 1) {
             return { artist: split[0], track: split[1] };
         }

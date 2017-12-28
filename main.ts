@@ -55,7 +55,6 @@ import wave965Html = require("./scrapers/cheerio/Wave965HtmlScraper");
 import vodafone = require("./scrapers/cheerio/VodafoneFmScraper");
 import spiff = require("./scrapers/cheerio/SpiffRadioScraper");
 import wmbr = require("./scrapers/cheerio/WmbrScraper");
-import gnl = require("./scrapers/cheerio/GnlScraper");
 //import raveo = require("./scrapers/cheerio/RaveoScraper");
 import belly = require("./scrapers/cheerio/BellyUp4BluesScraper");
 import nexus = require("./scrapers/cheerio/NexusScraper");
@@ -70,7 +69,7 @@ import doubleJ = require("./scrapers/json/DoubleJScraper");
 import farpastpost = require("./scrapers/json/FarPastPostScraper");
 import fip = require("./scrapers/json/FipScraper");
 import fluxFm = require("./scrapers/json/FluxFmScraper");
-import go963 = require("./scrapers/json/Go963Scraper");
+import go963 = require("./scrapers/Go963Scraper");
 import infinita = require("./scrapers/json/InfinitaScraper");
 import kcrwEclectic24 = require("./scrapers/json/KcrwEclectic24Scraper");
 import kcrw = require("./scrapers/json/KcrwScraper");
@@ -105,6 +104,8 @@ import rockAxis = require("./scrapers/json/RockAxisScraper");
 import chipbit = require("./scrapers/json/ChipbitScraper");
 import oldFashionedRadio = require("./scrapers/json/OFRScraper");
 import humanoDerecho = require("./scrapers/json/HumanoDerechoScraper");
+import wwoz = require("./scrapers/json/WWOZScraper");
+import gnl = require("./scrapers/json/GnlScraper");
 
 
 // Required environment variables
@@ -260,7 +261,8 @@ var scrapers:{ [index: string]: scrap.Scraper; } = {
     OFR: new oldFashionedRadio.OFRScraper("OFR"),
     Twitter: new twitter.TwitterScraper("Twitter", TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET, TWITTER_ACCESS_TOKEN_KEY, TWITTER_ACCESS_TOKEN_SECRET),
     Krautrock: new krautrock.KrautrockWorldScraper("KrautrockWorld"),
-    HumanoDerecho: new humanoDerecho.HumanoDerechoScraper("HumanoDerecho")
+    HumanoDerecho: new humanoDerecho.HumanoDerechoScraper("HumanoDerecho"),
+    WWOZ: new wwoz.WWOZScraper("WWOZ")
 };
 
 var lastfmNode = new lastfm.LastFmNode({

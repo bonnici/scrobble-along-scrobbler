@@ -49,7 +49,6 @@ var xfm = require("./scrapers/cheerio/XfmScraper");
 var vodafone = require("./scrapers/cheerio/VodafoneFmScraper");
 var spiff = require("./scrapers/cheerio/SpiffRadioScraper");
 var wmbr = require("./scrapers/cheerio/WmbrScraper");
-var gnl = require("./scrapers/cheerio/GnlScraper");
 //import raveo = require("./scrapers/cheerio/RaveoScraper");
 var belly = require("./scrapers/cheerio/BellyUp4BluesScraper");
 var nexus = require("./scrapers/cheerio/NexusScraper");
@@ -63,7 +62,7 @@ var doubleJ = require("./scrapers/json/DoubleJScraper");
 var farpastpost = require("./scrapers/json/FarPastPostScraper");
 var fip = require("./scrapers/json/FipScraper");
 var fluxFm = require("./scrapers/json/FluxFmScraper");
-var go963 = require("./scrapers/json/Go963Scraper");
+var go963 = require("./scrapers/Go963Scraper");
 var infinita = require("./scrapers/json/InfinitaScraper");
 var kcrwEclectic24 = require("./scrapers/json/KcrwEclectic24Scraper");
 var kcrw = require("./scrapers/json/KcrwScraper");
@@ -97,6 +96,8 @@ var rockAxis = require("./scrapers/json/RockAxisScraper");
 var chipbit = require("./scrapers/json/ChipbitScraper");
 var oldFashionedRadio = require("./scrapers/json/OFRScraper");
 var humanoDerecho = require("./scrapers/json/HumanoDerechoScraper");
+var wwoz = require("./scrapers/json/WWOZScraper");
+var gnl = require("./scrapers/json/GnlScraper");
 // Required environment variables
 var STATION_CRYPTO_KEY = process.env.SA_STATION_CRYPTO_KEY;
 var USER_CRYPTO_KEY = process.env.SA_USER_CRYPTO_KEY;
@@ -244,7 +245,8 @@ var scrapers = {
     OFR: new oldFashionedRadio.OFRScraper("OFR"),
     Twitter: new twitter.TwitterScraper("Twitter", TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET, TWITTER_ACCESS_TOKEN_KEY, TWITTER_ACCESS_TOKEN_SECRET),
     Krautrock: new krautrock.KrautrockWorldScraper("KrautrockWorld"),
-    HumanoDerecho: new humanoDerecho.HumanoDerechoScraper("HumanoDerecho")
+    HumanoDerecho: new humanoDerecho.HumanoDerechoScraper("HumanoDerecho"),
+    WWOZ: new wwoz.WWOZScraper("WWOZ")
 };
 var lastfmNode = new lastfm.LastFmNode({
     api_key: LASTFM_API_KEY,

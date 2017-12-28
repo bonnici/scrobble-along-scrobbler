@@ -8,8 +8,6 @@ import twitter = require('twitter');
 
 export class TwitterScraper extends scrap.Scraper {
     private client: any;
-    private prefix = "Now Playing: ";
-    private separator = " - ";
     
     constructor(name:string, consumerKey:string, consumerSecret:string, accessTokKey:string, accessTokSecret:string) {
         super(name);
@@ -50,12 +48,26 @@ export class TwitterScraper extends scrap.Scraper {
     }
 
     private parseTweet(text: string):any {
-        if (text.indexOf(this.prefix) !== 0) {
+        let prefix = "Now Playing: ";
+        let endIndex = null;
+        let separator = " - ";
+        
+        // Detect SomaFM accounts. Should be done in a better way.
+        if (text.indexOf('♬') >= 0) {
+            prefix = '♬ ';
+            endIndex = text.lastIndexOf('♬') - 1;
+        }
+        
+        if (text.indexOf(prefix) !== 0) {
             return null;
         }
 
-        text = text.substr(this.prefix.length);
-        const split = text.split(this.separator);
+        if (endIndex) {
+            text = text.substring(0, endIndex);
+        }
+        
+        text = text.substring(prefix.length);
+        const split = text.split(separator);
 
         if (split && split.length > 1) {
             return { artist: split[0], track: split[1] };
